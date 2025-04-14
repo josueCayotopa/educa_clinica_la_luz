@@ -25,11 +25,13 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('/')
+            ->path('/admin')
             ->login()
             ->unsavedChangesAlerts()
+            ->brandName('LaLuzApp')
+            ->favicon(asset('images/icono.png'))
             ->spa()
-            
+            ->font('Poppins')
             ->colors([
                 'primary' => '#B11A1A',
                 'secondary' => '#0D3049',
