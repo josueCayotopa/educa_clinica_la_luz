@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LearningCurveController;
+use App\Http\Controllers\PrintEvaluacionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/evaluaciones', function () {
+    return view('evaluaciones');
+});
+
+Route::get('/evaluacion', function () {
+    return view('evaluacion');
+});
+
+Route::middleware(['web','auth'])->group(function () {
+    Route::get('/fellows/curva', [LearningCurveController::class, 'show'])
+        ->name('fellows.curva');
+});
+Route::middleware(['web','auth'])->get(
+    '/fellows/evaluaciones/{id}/imprimir',
+    [PrintEvaluacionController::class, 'show']
+)->name('fellows.eval.print');
