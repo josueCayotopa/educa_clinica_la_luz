@@ -11,17 +11,21 @@ class LearningCurveController extends Controller
     //
     public function show(Request $request)
     {
-        $residenteId = (int) ($request->query('residente_id') ?? Auth::id());
-        $procedimientoId = $request->query('procedimiento_id');
+        $user = Auth::user();
 
-        // Residentes con al menos 1 evaluación
-        $residentes = DB::table('FELLOW_EVALUACIONES')
-            ->join('users','users.id','=','FELLOW_EVALUACIONES.RESIDENTE_ID')
-            ->select('users.id','users.name')
-            ->distinct()
-            ->orderBy('users.name')
-            ->get();
-
+if ($user->canViewAllFellowEvals()) {
+    // Ver todos
+    $residentes = DB::table('users')
+        ->select('id','name')
+        ->orderBy('name')->get();
+    $residenteId = (int)($request->query('residente_id') ?? 0); // opcional
+} else {
+    // Solo sí mismo
+    $residentes = collect([
+        DB::table('users')->select('id','name')->find($user->id)
+    ])->filter();
+    $residenteId = $user->id; // forzado
+}
         // Procedimientos activos
         $procedimientos = DB::table('FELLOW_PROCEDIMIENTOS')
             ->where('ACTIVO','1')

@@ -1,4 +1,5 @@
 {{-- resources/views/fellows/curva.blade.php --}}
+@php $canAll = auth()->user()->canViewAllFellowEvals(); @endphp
 <!doctype html>
 <html lang="es">
 <head>
@@ -14,11 +15,11 @@
   <div class="bg-white p-4 rounded-xl shadow mb-4 grid md:grid-cols-3 gap-3">
     <div>
       <label class="block text-sm font-medium mb-1">Residente</label>
-      <select id="residente" class="w-full border rounded px-3 py-2">
-        @foreach ($residentes as $r)
-          <option value="{{ $r->id }}" @selected($r->id == $residenteId)>{{ $r->name }}</option>
-        @endforeach
-      </select>
+      <select id="residente" class="w-full border rounded px-3 py-2" {{ $canAll ? '' : 'disabled' }}>
+      @foreach ($residentes as $r)
+        <option value="{{ $r->id }}" @selected($r->id == $residenteId)>{{ $r->name }}</option>
+      @endforeach
+    </select>
     </div>
     <div>
       <label class="block text-sm font-medium mb-1">Procedimiento</label>
@@ -44,14 +45,41 @@
 const ctx = document.getElementById('curve').getContext('2d');
 let chart;
 
-function buildChart(labels, promedio, ma3, ref = 4.0) {
+// Plugin para bandas de color (0–70 rojo, 70–90 amarillo, 90–100 verde)
+const bandsPlugin = {
+  id: 'bands',
+  beforeDraw(chart, args, opts) {
+    const {ctx, chartArea, scales} = chart;
+    if (!chartArea) return;
+    const {left, right, top, bottom} = chartArea;
+    const y = scales.y;
+    const toY = v => y.getPixelForValue(v);
+
+    ctx.save();
+
+    // Rojo: 0–70
+    ctx.fillStyle = 'rgba(239, 68, 68, 0.12)'; // tailwind red-500 12%
+    ctx.fillRect(left, toY(70), right-left, toY(0) - toY(70));
+
+    // Amarillo: 70–90
+    ctx.fillStyle = 'rgba(234, 179, 8, 0.12)'; // amber-500 12%
+    ctx.fillRect(left, toY(90), right-left, toY(70) - toY(90));
+
+    // Verde: 90–100
+    ctx.fillStyle = 'rgba(34, 197, 94, 0.12)'; // green-500 12%
+    ctx.fillRect(left, toY(100), right-left, toY(90) - toY(100));
+
+    ctx.restore();
+  }
+};
+
+function buildChart(cases, scores, dates) {
   if (chart) chart.destroy();
 
-  // ¿Cuántos puntos válidos hay?
-  const validCount = promedio.filter(v => v !== null && v !== undefined).length;
+  const validCount = scores.filter(v => v != null).length;
   const singlePoint = validCount <= 1;
 
-  if (!labels.length || validCount === 0) {
+  if (!cases.length || validCount === 0) {
     document.getElementById('empty').classList.remove('hidden');
     return;
   }
@@ -60,39 +88,17 @@ function buildChart(labels, promedio, ma3, ref = 4.0) {
   chart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels,
+      labels: cases, // Nº de caso
       datasets: [
-        // Promedio por evaluación (si hay 1 punto, no dibujar línea)
         {
-          label: 'Promedio',
-          data: promedio,
-          showLine: !singlePoint,   // ← clave para 1 punto
+          label: 'Puntaje (0–100)',
+          data: scores,
+          showLine: !singlePoint,
           tension: 0.25,
           borderWidth: 2,
           pointRadius: 4,
           pointHoverRadius: 6,
-          spanGaps: false
-        },
-
-        // Media móvil (3) sólo si hay al menos 3 puntos
-        ...(validCount >= 3 ? [{
-          label: 'Media móvil (3)',
-          data: ma3,
-          showLine: true,
-          borderWidth: 1,
-          borderDash: [6, 4],
-          pointRadius: 0,
-          spanGaps: true
-        }] : []),
-
-        // Línea de referencia a 4.0
-        {
-          label: 'Referencia 4.0',
-          data: labels.map(() => ref),
-          showLine: true,
-          borderWidth: 1,
-          borderDash: [8, 6],
-          pointRadius: 0
+          spanGaps: false,
         }
       ]
     },
@@ -102,15 +108,14 @@ function buildChart(labels, promedio, ma3, ref = 4.0) {
       elements: { point: { hitRadius: 8 } },
       scales: {
         y: {
-          min: 0, max: 5,
-          title: { display: true, text: 'Promedio (0–5)' },
+          min: 0, max: 100,
+          title: { display: true, text: 'Puntaje ICO-OSCAR (0–100)' },
           grid: { color: '#e5e7eb' }
         },
         x: {
-          // Con 1 punto, centra el tick y el punto
-          offset: singlePoint,            // ← centra el único punto
-          ticks: { minRotation: 45, maxRotation: 45 },
-          title: { display: true, text: 'Fecha' },
+          offset: singlePoint,              // centra si hay 1 punto
+          title: { display: true, text: 'Número de caso (experiencia acumulada)' },
+          ticks: { autoSkip: true },
           grid: { display: false }
         }
       },
@@ -118,14 +123,17 @@ function buildChart(labels, promedio, ma3, ref = 4.0) {
         legend: { position: 'top' },
         tooltip: {
           callbacks: {
-            label: (ctx) => {
-              const val = ctx.parsed.y;
-              return `${ctx.dataset.label}: ${val != null ? val.toFixed(2) : '—'}`;
+            // Muestra fecha en el tooltip usando el mismo índice
+            afterLabel: (ctx) => {
+              const i = ctx.dataIndex;
+              const d = (dates && dates[i]) ? dates[i] : null;
+              return d ? `Fecha: ${d}` : undefined;
             }
           }
         }
       }
-    }
+    },
+    plugins: [bandsPlugin]
   });
 }
 
@@ -134,21 +142,39 @@ async function loadData() {
   const procedimiento_id = document.getElementById('procedimiento').value;
   const qs = new URLSearchParams({ residente_id, procedimiento_id }).toString();
 
-  // Usa la ruta web autenticada por sesión
+  // Usa la ruta WEB autenticada (recomendado)
   const url = '{{ route('fellows.curva.data') }}' + '?' + qs;
 
   const res = await fetch(url, { headers: { 'Accept':'application/json' } });
   const data = await res.json();
-
   if (!data.ok) {
-    buildChart([], [], []);
+    buildChart([],[],[]);
     return;
   }
-  buildChart(data.labels, data.promedio, data.ma3, data.ref);
+  buildChart(data.cases, data.scores, data.dates);
 }
 
 document.getElementById('filtrar').addEventListener('click', loadData);
 window.addEventListener('DOMContentLoaded', loadData);
 </script>
+
+<!-- Leyenda de categorías -->
+<div class="max-w-6xl mx-auto mt-2 text-sm text-gray-700">
+  <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-4 h-4 rounded" style="background:rgba(239,68,68,.35)"></span>
+      <span>Deficiente: &lt; 70</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-4 h-4 rounded" style="background:rgba(234,179,8,.35)"></span>
+      <span>Medio: 70–89</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-4 h-4 rounded" style="background:rgba(34,197,94,.35)"></span>
+      <span>Bueno: ≥ 90</span>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

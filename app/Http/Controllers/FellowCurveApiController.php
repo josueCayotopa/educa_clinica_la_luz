@@ -8,58 +8,72 @@ use Illuminate\Support\Facades\DB;
 class FellowCurveApiController extends Controller
 {
     //
+    // app/Http/Controllers/Api/FellowCurveApiController.php
     public function data(Request $request)
     {
+        $u = $request->user();
         $residenteId = (int) $request->query('residente_id');
-        $procId      = $request->query('procedimiento_id');
+        $procId      = $request->query('procedimiento_id'); // null => todos los procedimientos
 
-        if (!$residenteId) {
-            return response()->json(['ok'=>false,'message'=>'residente_id requerido'], 422);
+        if (!$u) return response()->json(['ok' => false, 'message' => 'Unauthenticated'], 401);
+
+        // Si es OWN, solo puede verse a sí mismo:
+        if (!$u->canViewAllFellowEvals()) {
+            $residenteId = (int) $u->id;  // ignora el que venga
+        } else {
+            // ALL/admin: si no pasa residente_id, puedes mostrar a todos
+            if (!$residenteId) {
+                // ejemplo: si no selecciona a nadie, no devuelvas nada o usa el primero con datos
+                return response()->json(['ok' => true, 'cases' => [], 'scores' => [], 'dates' => []]);
+            }
         }
-
-        $q = DB::table('FELLOW_EVALUACIONES')
+    
+        $rows = DB::table('FELLOW_EVALUACIONES')
             ->where('RESIDENTE_ID', $residenteId)
             ->when($procId, fn($x) => $x->where('PROCEDIMIENTO_ID', $procId))
             ->orderBy('FECHA_EVALUACION')
-            ->select('ID','FECHA_EVALUACION','PROMEDIO');
+            ->orderBy('ID')
+            ->get(['ID', 'FECHA_EVALUACION', 'PUNTAJE_TOTAL', 'PORCENTAJE']); // PORCENTAJE opcional
 
-        $rows = $q->get();
+        $dates  = [];
+        $scores = [];   // 0–100
+        $i = 0;
 
-        // Fallback por si PROMEDIO está null en alguna fila antigua
-        $labels = [];
-        $proms  = [];
         foreach ($rows as $r) {
-            $labels[] = is_object($r->FECHA_EVALUACION) && method_exists($r->FECHA_EVALUACION,'format')
+            $dates[] = is_object($r->FECHA_EVALUACION) && method_exists($r->FECHA_EVALUACION, 'format')
                 ? $r->FECHA_EVALUACION->format('Y-m-d')
                 : (string) $r->FECHA_EVALUACION;
 
-            if ($r->PROMEDIO === null) {
-                $avg = DB::table('FELLOW_EVAL_RESPUESTAS')
-                    ->where('EVALUACION_ID', $r->ID)
-                    ->where('VALOR','>',0)
-                    ->avg('VALOR');
-                $proms[] = $avg !== null ? round((float)$avg, 2) : null;
-            } else {
-                $proms[] = round((float)$r->PROMEDIO, 2);
+            // 1) si ya hay porcentaje en BD, úsalo
+            if ($r->PORCENTAJE !== null) {
+                $scores[] = round((float) $r->PORCENTAJE, 2);
+                continue;
             }
+
+            // 2) calcular 0–100 desde respuestas si no hay porcentaje
+            $sum = DB::table('FELLOW_EVAL_RESPUESTAS')
+                ->where('EVALUACION_ID', $r->ID)
+                ->where('VALOR', '>', 0)
+                ->sum('VALOR');
+
+            $cnt = DB::table('FELLOW_EVAL_RESPUESTAS')
+                ->where('EVALUACION_ID', $r->ID)
+                ->where('VALOR', '>', 0)
+                ->count();
+
+            $score = $cnt > 0 ? ($sum / ($cnt * 5)) * 100 : null;
+            $scores[] = $score !== null ? round($score, 2) : null;
         }
 
-        // Media móvil (window=3) — opcional
-        $ma = [];
-        $w = 3;
-        for ($i=0; $i<count($proms); $i++) {
-            $from = max(0, $i - $w + 1);
-            $slice = array_slice($proms, $from, $i-$from+1);
-            $vals = array_values(array_filter($slice, fn($v)=>$v !== null));
-            $ma[] = count($vals) ? round(array_sum($vals)/count($vals), 2) : null;
-        }
+        // Eje X: número de caso (1..N)
+        $cases = range(1, count($scores));
 
         return response()->json([
-            'ok'       => true,
-            'labels'   => $labels,
-            'promedio' => $proms,
-            'ma3'      => $ma,
-            'ref'      => 4.0,
+            'ok'     => true,
+            'cases'  => $cases,
+            'dates'  => $dates,
+            'scores' => $scores,
+            'bands'  => ['low' => 70, 'high' => 90], // umbrales
         ]);
     }
 }

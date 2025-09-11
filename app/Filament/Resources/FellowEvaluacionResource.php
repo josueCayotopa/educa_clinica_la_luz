@@ -299,11 +299,13 @@ class FellowEvaluacionResource extends Resource
                     ->label('Curva')
                     ->icon('heroicon-o-chart-bar')
                     ->url(fn($record) => route('fellows.curva', [
-                        'residente_id'    => $record->RESIDENTE_ID,
-                        'procedimiento_id' => $record->PROCEDIMIENTO_ID,
+                        'residente_id'    => (auth()->user()->canViewAllFellowEvals()
+                                                ? $record->RESIDENTE_ID
+                                                : auth()->id()),
+                        'procedimiento_id'=> $record->PROCEDIMIENTO_ID,
                     ]))
                     ->openUrlInNewTab(),
-            ]);
+                                ]);
     }
 
     public static function getPages(): array
