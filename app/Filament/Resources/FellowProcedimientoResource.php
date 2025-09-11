@@ -18,49 +18,57 @@ use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class FellowProcedimientoResource extends Resource
 {
     protected static ?string $model = FellowProcedimiento::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Tecnicas quirurgicas';
+    protected static ?string $modelLabel = 'Tecnicas quirurgicas';
+    protected static ?string $pluralModelLabel = 'Tecnicas quirurgicas';
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()?->canViewAllFellowEvals() ?? false;
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Section::make('Datos del procedimiento')
-                ->description('Defina el nombre del procedimiento tal como se mostrará a los evaluadores.')
-                ->schema([
-                    TextInput::make('NOMBRE')
-                        ->label('Nombre del procedimiento')
-                        ->required()
-                        ->maxLength(255)
-                        ->unique(
-                            table: 'FELLOW_PROCEDIMIENTOS',
-                            column: 'NOMBRE',
-                            ignoreRecord: true
-                        )
-                        ->helperText('Ej.: Facoemulsificación de catarata / DMEK / PKP')
-                        ->autofocus()
-                        ->dehydrateStateUsing(fn ($state) => trim(mb_strtoupper($state))),
-                ])
-                ->columns(1),
+                    ->description('Defina el nombre del procedimiento tal como se mostrará a los evaluadores.')
+                    ->schema([
+                        TextInput::make('NOMBRE')
+                            ->label('Nombre del procedimiento')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(
+                                table: 'FELLOW_PROCEDIMIENTOS',
+                                column: 'NOMBRE',
+                                ignoreRecord: true
+                            )
+                            ->helperText('Ej.: Facoemulsificación de catarata / DMEK / PKP')
+                            ->autofocus()
+                            ->dehydrateStateUsing(fn($state) => trim(mb_strtoupper($state))),
+                    ])
+                    ->columns(1),
 
-            Section::make('Estado y publicación')
-                ->schema([
-                    Toggle::make('ACTIVO')
-                        ->label('Activo')
-                        ->default(true)
-                        ->helperText('Si está inactivo, no aparecerá en listas ni formularios.')
-                        ->inline(false),
-                ])
-                ->columns(1),
-    
+                Section::make('Estado y publicación')
+                    ->schema([
+                        Toggle::make('ACTIVO')
+                            ->label('Activo')
+                            ->default(true)
+                            ->helperText('Si está inactivo, no aparecerá en listas ni formularios.')
+                            ->inline(false),
+                    ])
+                    ->columns(1),
+
             ]);
     }
 
-    
+
     public static function table(Table $table): Table
     {
         return $table
@@ -83,9 +91,9 @@ class FellowProcedimientoResource extends Resource
                     ->trueLabel('Solo activos')
                     ->falseLabel('Solo inactivos')
                     ->queries(
-                        true: fn (Builder $q) => $q->where('ACTIVO', '1'),
-                        false: fn (Builder $q) => $q->where('ACTIVO', '0'),
-                        blank: fn (Builder $q) => $q
+                        true: fn(Builder $q) => $q->where('ACTIVO', '1'),
+                        false: fn(Builder $q) => $q->where('ACTIVO', '0'),
+                        blank: fn(Builder $q) => $q
                     ),
             ])
             ->actions([

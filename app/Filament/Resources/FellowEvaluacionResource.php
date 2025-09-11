@@ -37,7 +37,7 @@ class FellowEvaluacionResource extends Resource
 {
     protected static ?string $model = FellowEvaluacion::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
     protected static ?string $navigationGroup = 'Fellows';
     protected static ?string $navigationLabel = 'Evaluaciones';
 
@@ -65,58 +65,62 @@ class FellowEvaluacionResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Section::make('Datos de la evaluación')->schema([
-                Select::make('PROCEDIMIENTO_ID')
-                    ->label('Técnica quirúrgica')
-                    ->options(fn() => FellowProcedimiento::query()
-                        ->where('ACTIVO', '1')->orderBy('NOMBRE')->pluck('NOMBRE', 'ID'))
-                    ->reactive()
-                    ->required()
-                    ->afterStateUpdated(function ($state, Set $set) {
-                        if (!$state) {
-                            $set('respuestas', []);
-                            // limpiar “copiar de” si lo usas
+            Section::make('Datos de la evaluación')
+                ->description('Complete la información general antes de pasar a los pasos.')
+                ->icon('heroicon-o-clipboard-document-check')
+                ->collapsible()
+                ->schema([
+                    Select::make('PROCEDIMIENTO_ID')
+                        ->label('Técnica quirúrgica')
+                        ->options(fn() => FellowProcedimiento::query()
+                            ->where('ACTIVO', '1')->orderBy('NOMBRE')->pluck('NOMBRE', 'ID'))
+                        ->reactive()
+                        ->required()
+                        ->afterStateUpdated(function ($state, Set $set) {
+                            if (!$state) {
+                                $set('respuestas', []);
+                                // limpiar “copiar de” si lo usas
+                                $set('COPIAR_DE', null);
+                                return;
+                            }
+
+                            // Carga solo el esqueleto — SIN copiar ninguna evaluación previa
+                            $pregs = FellowPregunta::query()
+                                ->where('PROCEDIMIENTO_ID', $state)
+                                ->where('ACTIVO', '1')
+                                ->orderBy('ORDEN')
+                                ->get(['ID']);
+
+                            $set('respuestas', $pregs->map(fn($p) => [
+                                'PREGUNTA_ID' => $p->ID,
+                                'OPCION_ID'   => null,
+                                'VALOR'       => null,
+                                'OBSERVACION' => null,
+                            ])->toArray());
+
+                            // (Opcional) limpiar select “Copiar de”
                             $set('COPIAR_DE', null);
-                            return;
-                        }
-
-                        // Carga solo el esqueleto — SIN copiar ninguna evaluación previa
-                        $pregs = FellowPregunta::query()
-                            ->where('PROCEDIMIENTO_ID', $state)
-                            ->where('ACTIVO', '1')
-                            ->orderBy('ORDEN')
-                            ->get(['ID']);
-
-                        $set('respuestas', $pregs->map(fn($p) => [
-                            'PREGUNTA_ID' => $p->ID,
-                            'OPCION_ID'   => null,
-                            'VALOR'       => null,
-                            'OBSERVACION' => null,
-                        ])->toArray());
-
-                        // (Opcional) limpiar select “Copiar de”
-                        $set('COPIAR_DE', null);
-                    }),
+                        }),
 
 
-                // Nombre visible del residente (texto) + ID oculto
+                    // Nombre visible del residente (texto) + ID oculto
 
-                Placeholder::make('RESIDENTE_LABEL')
-                    ->label('Fellow / Residente')
-                    ->content(function (Get $get) {
-                        $id = $get('RESIDENTE_ID') ?: auth()->id();
-                        $user = \App\Models\User::find($id);
-                        return $user?->name ?? $user?->usuario ?? '—';
-                    })
-                    ->columnSpan(1),
+                    Placeholder::make('RESIDENTE_LABEL')
+                        ->label('Fellow / Residente')
+                        ->content(function (Get $get) {
+                            $id = $get('RESIDENTE_ID') ?: auth()->id();
+                            $user = \App\Models\User::find($id);
+                            return $user?->name ?? $user?->usuario ?? '—';
+                        })
+                        ->columnSpan(1),
 
-                DatePicker::make('FECHA_EVALUACION')->label('Fecha')->required(),
-                Textarea::make('OBSERVACIONES')->label('Comentarios')->rows(3),
+                    DatePicker::make('FECHA_EVALUACION')->label('Fecha')->required(),
+                    Textarea::make('OBSERVACIONES')->label('Comentarios')->rows(3),
 
-                Hidden::make('RESIDENTE_ID')
-                    ->default(fn() => Auth::id())
-                    ->hidden(fn() => !Schema::hasColumn('FELLOW_EVALUACIONES', 'RESIDENTE_ID')),
-            ])->columns(2),
+                    Hidden::make('RESIDENTE_ID')
+                        ->default(fn() => Auth::id())
+                        ->hidden(fn() => !Schema::hasColumn('FELLOW_EVALUACIONES', 'RESIDENTE_ID')),
+                ])->columns(2),
 
             Section::make('Historial del residente (últimas 10)')
                 ->visible(fn(Get $get) => filled($get('PROCEDIMIENTO_ID')))
@@ -262,10 +266,26 @@ class FellowEvaluacionResource extends Resource
                     ->label('Residente')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('PUNTAJE_TOTAL')->label('Puntaje')->numeric(0),
+                TextColumn::make('PUNTAJE_TOTAL')
+                    ->label('Puntaje')
+                    ->numeric(0)
+                    ->badge()
+                    ->colors([
+                        'danger' => fn($state) => $state < 10,
+                        'warning' => fn($state) => $state >= 10 && $state < 20,
+                        'success' => fn($state) => $state >= 20,
+                    ])
+                    ->icon(fn($state) => $state >= 20 ? 'heroicon-o-trophy' : 'heroicon-o-check'),
+
                 TextColumn::make('PROMEDIO')
                     ->label('Promedio')
-                    ->numeric(2),
+                    ->numeric(2)
+                    ->badge()
+                    ->colors([
+                        'danger' => fn($state) => $state < 2,
+                        'warning' => fn($state) => $state >= 2 && $state < 3.5,
+                        'success' => fn($state) => $state >= 3.5,
+                    ])
             ])
             ->filters([
                 SelectFilter::make('RESIDENTE_ID')
@@ -300,12 +320,12 @@ class FellowEvaluacionResource extends Resource
                     ->icon('heroicon-o-chart-bar')
                     ->url(fn($record) => route('fellows.curva', [
                         'residente_id'    => (auth()->user()->canViewAllFellowEvals()
-                                                ? $record->RESIDENTE_ID
-                                                : auth()->id()),
-                        'procedimiento_id'=> $record->PROCEDIMIENTO_ID,
+                            ? $record->RESIDENTE_ID
+                            : auth()->id()),
+                        'procedimiento_id' => $record->PROCEDIMIENTO_ID,
                     ]))
                     ->openUrlInNewTab(),
-                                ]);
+            ]);
     }
 
     public static function getPages(): array

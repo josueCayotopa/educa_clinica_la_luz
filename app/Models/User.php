@@ -54,7 +54,6 @@ public function canViewAllFellowEvals(): bool
     return strtoupper((string)($this->TIPO_EVALUADOR_FELLOW ?? 'OWN')) === 'ALL'
         || ($this->type ?? null) === 'admin';
 }
-
     public function personal()
     {
         return $this->hasOneThrough(

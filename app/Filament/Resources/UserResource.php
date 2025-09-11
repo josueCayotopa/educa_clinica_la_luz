@@ -26,8 +26,7 @@ class UserResource extends Resource
     protected static ?string $navigationLabel = 'Usuarios';
     protected static ?string $modelLabel = 'Usuario';
     protected static ?string $pluralModelLabel = 'Usuarios';
-    protected static ?string $navigationGroup = 'Administración';
-    protected static ?int $navigationSort = 1;
+
     // public static function canViewAny(): bool
     // {
     //     return auth()->user()?->can('viewAny') ?? false;

@@ -22,13 +22,21 @@ use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class FellowPreguntaResource extends Resource
 {
     protected static ?string $model = FellowPregunta::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Preguntas';
+    protected static ?string $modelLabel = 'Preguntas';
+    protected static ?string $pluralModelLabel = 'Preguntas';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()?->canViewAllFellowEvals() ?? false;
+    }
 
     public static function form(Form $form): Form
     {
