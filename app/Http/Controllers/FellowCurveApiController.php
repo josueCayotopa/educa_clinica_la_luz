@@ -2,78 +2,81 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class FellowCurveApiController extends Controller
 {
-    //
-    // app/Http/Controllers/Api/FellowCurveApiController.php
+
     public function data(Request $request)
     {
-        $u = $request->user();
-        $residenteId = (int) $request->query('residente_id');
-        $procId      = $request->query('procedimiento_id'); // null => todos los procedimientos
+       
+    $u = Auth::user();
+    if (!$u) {
+        Log::warning('[CURVA:data] 401 Unauthenticated', ['url' => $request->fullUrl()]);
+        return response()->json(['ok' => false, 'message' => 'Unauthenticated'], 401);
+    }
 
-        if (!$u) return response()->json(['ok' => false, 'message' => 'Unauthenticated'], 401);
+    $canAll = $u->canViewAllFellowEvals();
+    $residenteId = $canAll ? (int) $request->query('residente_id') : (int) $u->id;
+    $procId = $request->query('procedimiento_id');
 
-        // Si es OWN, solo puede verse a sí mismo:
-        if (!$u->canViewAllFellowEvals()) {
-            $residenteId = (int) $u->id;  // ignora el que venga
-        } else {
-            // ALL/admin: si no pasa residente_id, puedes mostrar a todos
-            if (!$residenteId) {
-                // ejemplo: si no selecciona a nadie, no devuelvas nada o usa el primero con datos
-                return response()->json(['ok' => true, 'cases' => [], 'scores' => [], 'dates' => []]);
-            }
-        }
-    
-        $rows = DB::table('FELLOW_EVALUACIONES')
-            ->where('RESIDENTE_ID', $residenteId)
-            ->when($procId, fn($x) => $x->where('PROCEDIMIENTO_ID', $procId))
-            ->orderBy('FECHA_EVALUACION')
-            ->orderBy('ID')
-            ->get(['ID', 'FECHA_EVALUACION', 'PUNTAJE_TOTAL', 'PORCENTAJE']); // PORCENTAJE opcional
+    if ($canAll && !$residenteId) {
+        Log::info('[CURVA:data] no residente seleccionado (ALL)');
+        return response()->json(['ok' => true, 'cases' => [], 'scores' => [], 'dates' => []]);
+    }
 
-        $dates  = [];
-        $scores = [];   // 0–100
-        $i = 0;
+    Log::info('[CURVA:data] init', [
+        'uid' => $u->id, 'actor' => $u->name, 'canAll' => $canAll,
+        'residente' => $residenteId, 'procedimiento' => $procId, 'metric' => 'PROMEDIO(0-5)',
+    ]);
 
-        foreach ($rows as $r) {
-            $dates[] = is_object($r->FECHA_EVALUACION) && method_exists($r->FECHA_EVALUACION, 'format')
-                ? $r->FECHA_EVALUACION->format('Y-m-d')
-                : (string) $r->FECHA_EVALUACION;
+    $rows = DB::table('FELLOW_EVALUACIONES as e')
+        ->where('e.RESIDENTE_ID', $residenteId)
+        ->when($procId, fn($q) => $q->where('e.PROCEDIMIENTO_ID', $procId))
+        ->orderBy('e.FECHA_EVALUACION')->orderBy('e.ID')
+        ->get(['e.ID','e.FECHA_EVALUACION','e.PROMEDIO']);
 
-            // 1) si ya hay porcentaje en BD, úsalo
-            if ($r->PORCENTAJE !== null) {
-                $scores[] = round((float) $r->PORCENTAJE, 2);
-                continue;
-            }
+    Log::info('[CURVA:data] rows', ['count' => $rows->count()]);
 
-            // 2) calcular 0–100 desde respuestas si no hay porcentaje
-            $sum = DB::table('FELLOW_EVAL_RESPUESTAS')
-                ->where('EVALUACION_ID', $r->ID)
-                ->where('VALOR', '>', 0)
-                ->sum('VALOR');
+    $dates = []; $scores = []; $dbg = [];
 
-            $cnt = DB::table('FELLOW_EVAL_RESPUESTAS')
-                ->where('EVALUACION_ID', $r->ID)
-                ->where('VALOR', '>', 0)
-                ->count();
+    foreach ($rows as $r) {
+        $fecha = Carbon::parse($r->FECHA_EVALUACION)->format('Y-m-d');
+        $dates[] = $fecha;
 
-            $score = $cnt > 0 ? ($sum / ($cnt * 5)) * 100 : null;
-            $scores[] = $score !== null ? round($score, 2) : null;
+        if ($r->PROMEDIO !== null) {
+            $score = round((float)$r->PROMEDIO, 2);        // 0–5
+            $scores[] = $score;
+            $dbg[] = ['id'=>$r->ID,'src'=>'PROMEDIO','score'=>$score];
+            continue;
         }
 
-        // Eje X: número de caso (1..N)
-        $cases = range(1, count($scores));
+        // Fallback: promedio desde respuestas (0–5)
+        $base = DB::table('FELLOW_EVAL_RESPUESTAS')->where('EVALUACION_ID', $r->ID);
+        $cnt  = (int) $base->count();
+        $sum  = (float) $base->sum('VALOR');
 
-        return response()->json([
-            'ok'     => true,
-            'cases'  => $cases,
-            'dates'  => $dates,
-            'scores' => $scores,
-            'bands'  => ['low' => 70, 'high' => 90], // umbrales
-        ]);
+        $score = $cnt > 0 ? round($sum / $cnt, 2) : null;  // 0–5
+        $scores[] = $score;
+        $dbg[] = ['id'=>$r->ID,'src'=>'CALCULADO_PROM','items'=>$cnt,'sum'=>$sum,'score'=>$score];
+    }
+
+    Log::info('[CURVA:data] computed', [
+        'valid_scores' => collect($scores)->filter(fn($v)=>$v!==null)->count(),
+        'scores' => $scores, 'detail' => $dbg,
+    ]);
+
+    // bandas para 0–5 (equivalentes a 70% y 90%): 3.5 y 4.5
+    return response()->json([
+        'ok'     => true,
+        'cases'  => range(1, count($scores)),
+        'dates'  => $dates,
+        'scores' => $scores,           // 0–5
+        'bands'  => ['low' => 3.5, 'high' => 4.5, 'max' => 5, 'ylabel' => 'Promedio (0–5)'],
+    ]);
     }
 }

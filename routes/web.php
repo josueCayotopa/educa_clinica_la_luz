@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\FellowCurveApiController;
 use App\Http\Controllers\LearningCurveController;
 use App\Http\Controllers\PrintEvaluacionController;
+// routes/web.php
+use Filament\Http\Middleware\Authenticate as FilamentAuthenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,11 +30,11 @@ Route::get('/evaluacion', function () {
     return view('evaluacion');
 });
 
-Route::middleware(['web','auth'])->group(function () {
-    Route::get('/fellows/curva', [LearningCurveController::class, 'show'])
-        ->name('fellows.curva');
+Route::middleware(['web', FilamentAuthenticate::class])->group(function () {
+    Route::get('/fellows/curva', [LearningCurveController::class, 'show'])->name('fellows.curva');
+    Route::get('/fellows/curva/data', [FellowCurveApiController::class, 'data'])->name('fellows.curva.data');
+    Route::middleware(['web', 'auth'])->get(
+        '/fellows/evaluaciones/{id}/imprimir',
+        [PrintEvaluacionController::class, 'show']
+    )->name('fellows.eval.print');
 });
-Route::middleware(['web','auth'])->get(
-    '/fellows/evaluaciones/{id}/imprimir',
-    [PrintEvaluacionController::class, 'show']
-)->name('fellows.eval.print');

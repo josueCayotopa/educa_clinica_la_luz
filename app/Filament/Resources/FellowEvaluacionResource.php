@@ -38,7 +38,7 @@ class FellowEvaluacionResource extends Resource
     protected static ?string $model = FellowEvaluacion::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
-    protected static ?string $navigationGroup = 'Fellows';
+    // protected static ?string $navigationGroup = 'Fellows';
     protected static ?string $navigationLabel = 'Evaluaciones';
 
     /** Limita lo que se lista según TIPO_EVALUADOR_FELLOW (OWN/ALL) */
@@ -319,7 +319,7 @@ class FellowEvaluacionResource extends Resource
                     ->label('Curva')
                     ->icon('heroicon-o-chart-bar')
                     ->url(fn($record) => route('fellows.curva', [
-                        'residente_id'    => (auth()->user()->canViewAllFellowEvals()
+                        'residente_id'     => (auth()->user()->canViewAllFellowEvals()
                             ? $record->RESIDENTE_ID
                             : auth()->id()),
                         'procedimiento_id' => $record->PROCEDIMIENTO_ID,

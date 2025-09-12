@@ -1,5 +1,4 @@
-{{-- resources/views/fellows/curva.blade.php --}}
-@php $canAll = auth()->user()->canViewAllFellowEvals(); @endphp
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -15,7 +14,7 @@
   <div class="bg-white p-4 rounded-xl shadow mb-4 grid md:grid-cols-3 gap-3">
     <div>
       <label class="block text-sm font-medium mb-1">Residente</label>
-      <select id="residente" class="w-full border rounded px-3 py-2" {{ $canAll ? '' : 'disabled' }}>
+<select id="residente" class="w-full border rounded px-3 py-2" {{ $canAll ? '' : 'disabled' }}>
       @foreach ($residentes as $r)
         <option value="{{ $r->id }}" @selected($r->id == $residenteId)>{{ $r->name }}</option>
       @endforeach
@@ -41,122 +40,7 @@
   </div>
 </div>
 
-<script>
-const ctx = document.getElementById('curve').getContext('2d');
-let chart;
 
-// Plugin para bandas de color (0–70 rojo, 70–90 amarillo, 90–100 verde)
-const bandsPlugin = {
-  id: 'bands',
-  beforeDraw(chart, args, opts) {
-    const {ctx, chartArea, scales} = chart;
-    if (!chartArea) return;
-    const {left, right, top, bottom} = chartArea;
-    const y = scales.y;
-    const toY = v => y.getPixelForValue(v);
-
-    ctx.save();
-
-    // Rojo: 0–70
-    ctx.fillStyle = 'rgba(239, 68, 68, 0.12)'; // tailwind red-500 12%
-    ctx.fillRect(left, toY(70), right-left, toY(0) - toY(70));
-
-    // Amarillo: 70–90
-    ctx.fillStyle = 'rgba(234, 179, 8, 0.12)'; // amber-500 12%
-    ctx.fillRect(left, toY(90), right-left, toY(70) - toY(90));
-
-    // Verde: 90–100
-    ctx.fillStyle = 'rgba(34, 197, 94, 0.12)'; // green-500 12%
-    ctx.fillRect(left, toY(100), right-left, toY(90) - toY(100));
-
-    ctx.restore();
-  }
-};
-
-function buildChart(cases, scores, dates) {
-  if (chart) chart.destroy();
-
-  const validCount = scores.filter(v => v != null).length;
-  const singlePoint = validCount <= 1;
-
-  if (!cases.length || validCount === 0) {
-    document.getElementById('empty').classList.remove('hidden');
-    return;
-  }
-  document.getElementById('empty').classList.add('hidden');
-
-  chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: cases, // Nº de caso
-      datasets: [
-        {
-          label: 'Puntaje (0–100)',
-          data: scores,
-          showLine: !singlePoint,
-          tension: 0.25,
-          borderWidth: 2,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          spanGaps: false,
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      interaction: { mode: 'index', intersect: false },
-      elements: { point: { hitRadius: 8 } },
-      scales: {
-        y: {
-          min: 0, max: 100,
-          title: { display: true, text: 'Puntaje ICO-OSCAR (0–100)' },
-          grid: { color: '#e5e7eb' }
-        },
-        x: {
-          offset: singlePoint,              // centra si hay 1 punto
-          title: { display: true, text: 'Número de caso (experiencia acumulada)' },
-          ticks: { autoSkip: true },
-          grid: { display: false }
-        }
-      },
-      plugins: {
-        legend: { position: 'top' },
-        tooltip: {
-          callbacks: {
-            // Muestra fecha en el tooltip usando el mismo índice
-            afterLabel: (ctx) => {
-              const i = ctx.dataIndex;
-              const d = (dates && dates[i]) ? dates[i] : null;
-              return d ? `Fecha: ${d}` : undefined;
-            }
-          }
-        }
-      }
-    },
-    plugins: [bandsPlugin]
-  });
-}
-
-async function loadData() {
-  const residente_id = document.getElementById('residente').value;
-  const procedimiento_id = document.getElementById('procedimiento').value;
-  const qs = new URLSearchParams({ residente_id, procedimiento_id }).toString();
-
-  // Usa la ruta WEB autenticada (recomendado)
-  const url = '{{ route('fellows.curva.data') }}' + '?' + qs;
-
-  const res = await fetch(url, { headers: { 'Accept':'application/json' } });
-  const data = await res.json();
-  if (!data.ok) {
-    buildChart([],[],[]);
-    return;
-  }
-  buildChart(data.cases, data.scores, data.dates);
-}
-
-document.getElementById('filtrar').addEventListener('click', loadData);
-window.addEventListener('DOMContentLoaded', loadData);
-</script>
 
 <!-- Leyenda de categorías -->
 <div class="max-w-6xl mx-auto mt-2 text-sm text-gray-700">
@@ -175,6 +59,129 @@ window.addEventListener('DOMContentLoaded', loadData);
     </div>
   </div>
 </div>
+<script>
+const ctx = document.getElementById('curve').getContext('2d');
+let chart;
+let curveBands = { low: 3.5, high: 4.5, max: 5, ylabel: 'Promedio (0–5)' }; // default
+
+// Bandas de color usando valores dinámicos
+const bandsPlugin = {
+  id: 'bands',
+  beforeDraw(chart) {
+    const {ctx, chartArea, scales} = chart;
+    if (!chartArea) return;
+    const {left, right} = chartArea;
+    const y = scales.y, toY = v => y.getPixelForValue(v);
+
+    ctx.save();
+    // Rojo: 0–low
+    ctx.fillStyle = 'rgba(239, 68, 68, 0.12)';
+    ctx.fillRect(left, toY(curveBands.low), right-left, toY(0) - toY(curveBands.low));
+    // Amarillo: low–high
+    ctx.fillStyle = 'rgba(234, 179, 8, 0.12)';
+    ctx.fillRect(left, toY(curveBands.high), right-left, toY(curveBands.low) - toY(curveBands.high));
+    // Verde: high–max
+    ctx.fillStyle = 'rgba(34, 197, 94, 0.12)';
+    ctx.fillRect(left, toY(curveBands.max), right-left, toY(curveBands.high) - toY(curveBands.max));
+    ctx.restore();
+  }
+};
+
+function setEmpty(msg) {
+  const el = document.getElementById('empty');
+  el.textContent = msg;
+  el.classList.remove('hidden');
+}
+
+function buildChart(cases, scores, dates) {
+  if (chart) chart.destroy();
+
+  const s = (scores || []).map(v => (v==null || v==='') ? null : Number(v));
+  const c = (cases && cases.length) ? cases : s.map((_,i)=>i+1);
+
+  const valid = s.filter(v => v !== null).length;
+  const singlePoint = valid === 1;
+
+  if (!c.length || valid === 0) {
+    setEmpty('No hay suficientes evaluaciones para graficar.');
+    return;
+  }
+  document.getElementById('empty').classList.add('hidden');
+
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: c, datasets: [{
+      label: curveBands.ylabel,
+      data: s,
+      showLine: !singlePoint,
+      tension: 0.25,
+      borderWidth: 2,
+      pointRadius: singlePoint ? 6 : 4,
+      pointHoverRadius: singlePoint ? 8 : 6,
+      spanGaps: false,
+    }]},
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      elements: { point: { hitRadius: 8 } },
+      scales: {
+        y: {
+          min: 0, max: curveBands.max,
+          title: { display: true, text: curveBands.ylabel },
+          grid: { color: '#e5e7eb' }
+        },
+        x: {
+          offset: singlePoint,
+          title: { display: true, text: 'Número de caso (experiencia acumulada)' },
+          ticks: { autoSkip: true }, grid: { display: false }
+        }
+      },
+      plugins: {
+        legend: { position: 'top' },
+        tooltip: { callbacks: {
+          afterLabel: (ctx) => {
+            const i = ctx.dataIndex;
+            const d = (dates && dates[i]) ? dates[i] : null;
+            return d ? `Fecha: ${d}` : undefined;
+          }
+        }}
+      }
+    },
+    plugins: [bandsPlugin]
+  });
+}
+
+async function loadData() {
+  const residente_id = document.getElementById('residente').value;
+  const procedimiento_id = document.getElementById('procedimiento').value;
+  const url = '{{ route('fellows.curva.data') }}' + '?' + new URLSearchParams({ residente_id, procedimiento_id });
+
+  try {
+    const res  = await fetch(url, { headers: { 'Accept':'application/json' }, credentials:'same-origin' });
+    if (res.status === 401) { setEmpty('No autenticado. Inicia sesión.'); return; }
+
+    const data = await res.json();
+    if (!data.ok) { setEmpty('Respuesta no OK del backend.'); return; }
+
+    // Actualiza bandas y etiqueta desde backend
+    if (data.bands) curveBands = {
+      low: Number(data.bands.low ?? 3.5),
+      high: Number(data.bands.high ?? 4.5),
+      max: Number(data.bands.max ?? 5),
+      ylabel: data.bands.ylabel ?? 'Promedio (0–5)',
+    };
+
+    buildChart(data.cases || [], data.scores || [], data.dates || []);
+  } catch (e) {
+    console.error(e);
+    setEmpty('Error al cargar datos.');
+  }
+}
+
+document.getElementById('filtrar').addEventListener('click', loadData);
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+
 
 </body>
 </html>
