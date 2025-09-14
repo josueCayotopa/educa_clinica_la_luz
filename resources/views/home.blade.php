@@ -101,7 +101,7 @@
                 <a href="#contacto"
                     class="text-secondary hover:text-primary transition py-2 border-b border-gray-100">Contacto</a>
                 <a href="#blog" class="text-secondary hover:text-primary transition py-2">Blog</a>
-                <a href="#contacto"
+                <a href="/admin"
                     class="bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition text-center mt-2">
                     Iniciar Sesión
                 </a>
