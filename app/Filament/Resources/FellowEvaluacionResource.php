@@ -40,6 +40,8 @@ class FellowEvaluacionResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
     // protected static ?string $navigationGroup = 'Fellows';
     protected static ?string $navigationLabel = 'Evaluaciones';
+    protected static ?string $modelLabel = 'Evaluacion';
+    protected static ?string $pluralModelLabel = 'Evaluaciones';
 
     /** Limita lo que se lista según TIPO_EVALUADOR_FELLOW (OWN/ALL) */
     public static function getEloquentQuery(): Builder
