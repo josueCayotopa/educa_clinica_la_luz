@@ -81,12 +81,11 @@ class FellowEvaluacionResource extends Resource
                         ->afterStateUpdated(function ($state, Set $set) {
                             if (!$state) {
                                 $set('respuestas', []);
-                                // limpiar “copiar de” si lo usas
                                 $set('COPIAR_DE', null);
                                 return;
                             }
 
-                            // Carga solo el esqueleto — SIN copiar ninguna evaluación previa
+                            // Auto-load questions when procedure is selected
                             $pregs = FellowPregunta::query()
                                 ->where('PROCEDIMIENTO_ID', $state)
                                 ->where('ACTIVO', '1')
@@ -100,10 +99,8 @@ class FellowEvaluacionResource extends Resource
                                 'OBSERVACION' => null,
                             ])->toArray());
 
-                            // (Opcional) limpiar select “Copiar de”
                             $set('COPIAR_DE', null);
                         }),
-
 
                     // Nombre visible del residente (texto) + ID oculto
 
@@ -234,6 +231,9 @@ class FellowEvaluacionResource extends Resource
                             TextInput::make('VALOR')->label('Puntaje')->numeric()->readOnly(),
 
                         ])
+                        ->addable(false)
+                        ->deletable(false)
+                        ->reorderable(false)
                 ]),
             Placeholder::make('preview_total')
                 ->label('Resumen preliminar')
@@ -248,9 +248,13 @@ class FellowEvaluacionResource extends Resource
                             $count++;
                         }
                     }
+                    $avg = $count > 0 ? round($sum / $count, 2) : 0;
                     $porc = $count > 0 ? round(($sum / ($count * 5)) * 100, 2) : 0;
                     return new \Illuminate\Support\HtmlString(
-                        '<div><strong>Puntaje:</strong> ' . $sum . ' — <strong>%:</strong> ' . $porc . '%</div>'
+                        '<div style="padding: 10px; background: #f3f4f6; border-radius: 6px;">' .
+                            '<strong>Puntaje Total:</strong> ' . $sum . ' | ' .
+                            '<strong>Promedio:</strong> ' . $avg . ' | ' .
+                            '<strong>Porcentaje:</strong> ' . $porc . '%</div>'
                     );
                 })
                 ->columnSpanFull(),
@@ -310,7 +314,7 @@ class FellowEvaluacionResource extends Resource
                     ),
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                // Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ViewAction::make(),
                 Action::make('imprimir')
                     ->label('Imprimir')
