@@ -20,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class FellowOpcionResource extends Resource
 {
@@ -31,7 +32,10 @@ class FellowOpcionResource extends Resource
     protected static ?string $navigationLabel = 'Opciones de Preguntas';
     protected static ?string $pluralModelLabel = 'Opciones';
     protected static ?string $modelLabel = 'Opción';
-
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Auth::user()?->canViewAllFellowEvals() ?? false;
+    }
     public static function form(Form $form): Form
     {
         return $form->schema([

@@ -47,7 +47,7 @@
                     <div>
                         <!-- Logo with subtle hover animation -->
                         <a href="#" class="block transition-transform duration-300 hover:scale-105">
-                            <img src="{{ asset('images/logo.png') }}" alt="Clínica la Luz" class="w-15 h-10">
+                            <img src="{{ asset('images/logo-fellow1.png') }}" alt="Clínica la Luz" class="w-15 h-10">
                         </a>
                     </div>
                 </div>
@@ -70,6 +70,8 @@
                     class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Blog</a>
                     <a href="/evaluaciones"
                     class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Evaluaciones </a>
+                     <a href="/calculadora"
+                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Calculadora</a>
             </nav>
 
             <!-- Login Button (Desktop) with hover effect -->
