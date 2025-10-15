@@ -17,41 +17,56 @@
 
 <body class="font-body bg-neutral">
     
-    <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="header">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <a href="{{ url('/') }}" class="block transition-transform duration-300 hover:scale-105">
-                    <img src="{{ asset('images/logo-fellow1.png') }}" alt="Clínica La Luz" class="w-15 h-10">
-                </a>
-            </div>
-
-           
-            <nav class="hidden md:flex space-x-8">
-                <a href="#inicio" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Inicio</a>
-                <a href="#objetivos" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Objetivos</a>
-                <a href="#areas-formacion" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Áreas de Formación</a>
-                <a href="#plan-curricular" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Plan Curricular</a>
-                <a href="#evaluacion" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Evaluación</a>
-                <a href="#contacto" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Contacto</a>
-            </nav>
-
-       
-            <button id="menu-toggle" class="md:hidden text-primary p-2 rounded-lg hover:bg-neutral transition-colors duration-300">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
+<header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="header">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <a href="{{ url('/') }}" class="block transition-transform duration-300 hover:scale-105">
+                <img src="{{ asset('images/logo-fellow1.png') }}" alt="Clínica La Luz" class="w-15 h-10">
+            </a>
         </div>
 
-        
-        <nav id="mobile-menu" class="hidden px-4 py-2 bg-white md:hidden">
-            <div class="flex flex-col space-y-3">
-                <a href="#inicio" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Inicio</a>
-                <a href="#objetivos" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Objetivos</a>
-                <a href="#areas-formacion" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Áreas de Formación</a>
-                <a href="#plan-curricular" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Plan Curricular</a>
-                <a href="#evaluacion" class="text-secondary hover:text-primary transition py-2">Evaluación</a>
-            </div>
+        <!-- Navegación -->
+        <nav class="hidden md:flex space-x-8 items-center">
+            <a href="#inicio" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Inicio</a>
+            <a href="#objetivos" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Objetivos</a>
+            <a href="#areas-formacion" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Áreas de Formación</a>
+            <a href="#plan-curricular" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Plan Curricular</a>
+            <a href="#evaluacion" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Evaluación</a>
+            <a href="#contacto" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Contacto</a>
+
+            <!-- 🔹 Botón de Login -->
+            <a href="/admin" 
+               class="ml-4 bg-[#B11A1A] text-white px-5 py-2 rounded-lg font-semibold hover:bg-[#8B0000] transition-colors duration-300 shadow-sm">
+                Iniciar Sesión
+            </a>
         </nav>
-    </header>
+
+        <!-- Botón móvil -->
+        <button id="menu-toggle" class="md:hidden text-primary p-2 rounded-lg hover:bg-neutral transition-colors duration-300">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Menú móvil -->
+    <nav id="mobile-menu" class="hidden px-4 py-2 bg-white md:hidden">
+        <div class="flex flex-col space-y-3">
+            <a href="#inicio" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Inicio</a>
+            <a href="#objetivos" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Objetivos</a>
+            <a href="#areas-formacion" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Áreas de Formación</a>
+            <a href="#plan-curricular" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Plan Curricular</a>
+            <a href="#evaluacion" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Evaluación</a>
+            <a href="#contacto" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Contacto</a>
+
+            <!-- 🔹 Botón de Login en versión móvil -->
+            <a href="/admin" 
+               class="mt-3 bg-[#B11A1A] text-white px-4 py-2 text-center rounded-lg font-semibold hover:bg-[#8B0000] transition-colors duration-300 shadow-sm">
+                Iniciar Sesión
+            </a>
+        </div>
+    </nav>
+</header>
+
 
     
     <section id="inicio" class="relative overflow-hidden bg-secondary">
@@ -131,7 +146,7 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                
+                  
                 <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-primary hover:shadow-xl transition-all duration-300">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
