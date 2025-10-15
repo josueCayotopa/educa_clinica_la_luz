@@ -30,6 +30,10 @@ Route::get('/evaluaciones', function () {
 Route::get('/evaluacion', function () {
     return view('evaluacion');
 });
+Route::get('/contacto', function () {
+    return view('contacto');
+})->name('contact.submit');
+
 
 Route::middleware(['web', FilamentAuthenticate::class])->group(function () {
     Route::get('/fellows/curva', [LearningCurveController::class, 'show'])->name('fellows.curva');

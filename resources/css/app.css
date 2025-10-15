@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Updated CSS Variables for unified color scheme */
+@layer base {
+    :root {
+        /* Primary: Red #B11A1A */
+        --primary: 0 72% 41%;
+        --primary-foreground: 0 0% 100%;
+
+        /* Secondary: Deep Blue #0D3049 */
+        --secondary: 210 100% 17%;
+        --secondary-foreground: 0 0% 100%;
+
+        /* Neutral: Pearl Gray #F5F6F7 */
+        --neutral: 210 11% 96%;
+        --neutral-foreground: 210 100% 17%;
+
+        /* Background and foreground */
+        --background: 0 0% 100%;
+        --foreground: 210 100% 17%;
+
+        /* Card colors */
+        --card: 0 0% 100%;
+        --card-foreground: 210 100% 17%;
+
+        /* Muted colors */
+        --muted: 210 11% 96%;
+        --muted-foreground: 210 10% 45%;
+
+        /* Accent colors */
+        --accent: 0 72% 41%;
+        --accent-foreground: 0 0% 100%;
+
+        /* Border and input */
+        --border: 210 20% 90%;
+        --input: 210 20% 90%;
+        --ring: 0 72% 41%;
+
+        /* Radius */
+        --radius: 1rem;
+    }
+}
+
+/* Custom font families */
+@layer base {
+    body {
+        font-family: "Open Sans", sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Montserrat", sans-serif;
+    }
+}
+
+/* Carousel animations */
+@layer components {
+    .carousel-slide {
+        transition: opacity 1s ease-in-out;
+    }
+
+    .carousel-slide.active {
+        opacity: 1;
+    }
+
+    .carousel-indicator.active {
+        background-color: white;
+        width: 2rem;
+    }
+
+    /* Card hover effects */
+    .card-hover {
+        @apply transition-all duration-300 hover:scale-105 hover:shadow-primary/20;
+    }
+
+    /* Program tabs */
+    .program-tab {
+        @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer;
+        @apply bg-neutral text-secondary hover:bg-neutral/80;
+    }
+
+    .program-tab.active {
+        @apply bg-primary text-white shadow-lg shadow-primary/30;
+    }
+
+    /* Fellows program page styles */
+    .fellows-hero {
+        background: linear-gradient(135deg, #0d3049 0%, #1a4d6f 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .fellows-hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+    }
+
+    .fellows-hero::after {
+        content: "";
+        position: absolute;
+        bottom: -30%;
+        left: -5%;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 50%;
+    }
+
+    .benefit-card {
+        transition: all 0.3s ease;
+        border: 1px solid #e5e7eb;
+    }
+
+    .benefit-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: #b11a1a;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: -2rem;
+        width: 2px;
+        background: linear-gradient(to bottom, #b11a1a, #e5e7eb);
+    }
+
+    .timeline-item:last-child::before {
+        display: none;
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: -6px;
+        top: 6px;
+        width: 14px;
+        height: 14px;
+        background: #b11a1a;
+        border: 3px solid white;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px #b11a1a;
+    }
+
+    .stat-card {
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        border: 1px solid #e5e7eb;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        border-color: #b11a1a;
+        box-shadow: 0 10px 30px rgba(177, 26, 26, 0.1);
+    }
+
+    .testimonial-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .cta-section {
+        background: linear-gradient(135deg, #0d3049 0%, #1a4d6f 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -10%;
+        width: 600px;
+        height: 600px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+    }
+}
+
+/* Utility classes for unified design */
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .text-pretty {
+        text-wrap: pretty;
+    }
+
+    .font-heading {
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .font-body {
+        font-family: "Open Sans", sans-serif;
+    }
+}

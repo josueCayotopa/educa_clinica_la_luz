@@ -1,1036 +1,1262 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programa de Fellows - Clínica la Luz</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Programa de Alta Especialización en Oftalmología - La Luz Educa</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#B11A1A',
-                        secondary: '#0D3049',
-                        accent: '#669BBB',
-                        light: '#669BBB',
-                    },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': {
-                                transform: 'translateY(0)'
-                            },
-                            '50%': {
-                                transform: 'translateY(-10px)'
-                            },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
-<body class="font-sans bg-white">
-    <!-- Header -->
+<body class="font-body bg-neutral">
+    
     <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="header">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
-                <div class="flex items-center">
-                    <div>
-                        <!-- Logo with subtle hover animation -->
-                        <a href="#" class="block transition-transform duration-300 hover:scale-105">
-                            <img src="{{ asset('images/logo-fellow1.png') }}" alt="Clínica la Luz" class="w-15 h-10">
-                        </a>
-                    </div>
-                </div>
+                <a href="{{ url('/') }}" class="block transition-transform duration-300 hover:scale-105">
+                    <img src="{{ asset('images/logo-fellow1.png') }}" alt="Clínica La Luz" class="w-15 h-10">
+                </a>
             </div>
 
-            <!-- Desktop Navigation with animated underline effect -->
+           
             <nav class="hidden md:flex space-x-8">
-                <a href="#inicio"
-                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Inicio</a>
-                <a href="#programa"
-                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Programa
-                    Fellows</a>
-                <a href="#especialidades"
-                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Especialidades</a>
-                <a href="#logros"
-                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Logros</a>
-                <a href="#contacto"
-                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Contacto</a>
-                <a href="#blog"
-                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Blog</a>
-                    <a href="/evaluaciones"
-                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Evaluaciones </a>
-                     <a href="/calculadora"
-                    class="text-secondary hover:text-primary transition-colors duration-300 nav-link font-medium">Calculadora</a>
+                <a href="#inicio" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Inicio</a>
+                <a href="#objetivos" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Objetivos</a>
+                <a href="#areas-formacion" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Áreas de Formación</a>
+                <a href="#plan-curricular" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Plan Curricular</a>
+                <a href="#evaluacion" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Evaluación</a>
+                <a href="#contacto" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Contacto</a>
             </nav>
 
-            <!-- Login Button (Desktop) with hover effect -->
-            <a href="/admin"
-                class="hidden md:flex items-center bg-primary text-white font-bold py-2 px-5 rounded-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg group">
-                <span>Iniciar Sesión</span>
-                <i class="fas fa-sign-in-alt ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
-            </a>
-
-            <!-- Mobile menu button with animation -->
-            <button id="menu-toggle"
-                class="md:hidden text-primary p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+       
+            <button id="menu-toggle" class="md:hidden text-primary p-2 rounded-lg hover:bg-neutral transition-colors duration-300">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
 
-        <!-- Mobile Navigation -->
+        
         <nav id="mobile-menu" class="hidden px-4 py-2 bg-white md:hidden">
             <div class="flex flex-col space-y-3">
-                <a href="#inicio"
-                    class="text-secondary hover:text-primary transition py-2 border-b border-gray-100">Inicio</a>
-                <a href="#programa"
-                    class="text-secondary hover:text-primary transition py-2 border-b border-gray-100">Programa
-                    Fellows</a>
-                <a href="#especialidades"
-                    class="text-secondary hover:text-primary transition py-2 border-b border-gray-100">Especialidades</a>
-                <a href="#logros"
-                    class="text-secondary hover:text-primary transition py-2 border-b border-gray-100">Logros</a>
-                <a href="#contacto"
-                    class="text-secondary hover:text-primary transition py-2 border-b border-gray-100">Contacto</a>
-                <a href="#blog" class="text-secondary hover:text-primary transition py-2">Blog</a>
-                <a href="/admin"
-                    class="bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition text-center mt-2">
-                    Iniciar Sesión
-                </a>
+                <a href="#inicio" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Inicio</a>
+                <a href="#objetivos" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Objetivos</a>
+                <a href="#areas-formacion" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Áreas de Formación</a>
+                <a href="#plan-curricular" class="text-secondary hover:text-primary transition py-2 border-b border-neutral">Plan Curricular</a>
+                <a href="#evaluacion" class="text-secondary hover:text-primary transition py-2">Evaluación</a>
             </div>
         </nav>
     </header>
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-white to-gray-50">
-        <!-- Background Elements -->
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/5 clip-path-slant-left"></div>
-        <div
-            class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2">
-        </div>
-        <div class="absolute top-20 right-20 w-20 h-20 border-2 border-primary/20 rounded-full"></div>
-        <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-secondary/10 rounded-full"></div>
 
-        <div class="container mx-auto px-4 py-16 md:py-24">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <!-- Left Content Column -->
-                <div class="relative z-10 fade-in-up">
-                    <div class="flex items-center mb-4 text-accent">
-                        <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mr-3">
-                            <i class="fas fa-graduation-cap text-accent"></i>
-                        </div>
-                        <span class="text-sm md:text-base font-medium tracking-wide">Programa de Excelencia en
-                            Oftalmología</span>
-                    </div>
+    
+    <section id="inicio" class="relative overflow-hidden bg-secondary">
 
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                        <span class="text-secondary">Formamos a los </span>
-                        <span class="text-primary relative">
-                            Mejores Especialistas
-                            <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 200 6"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 3C50 0.5 150 0.5 200 3" stroke="#B11A1A" stroke-width="5"
-                                    stroke-linecap="round" />
-                            </svg>
-                        </span>
-                    </h1>
-
-                    <p class="text-gray-600 text-lg mb-8 max-w-xl">
-                        Nuestro programa de fellows en oftalmología ofrece una formación integral con los más altos
-                        estándares de calidad y tecnología de vanguardia para desarrollar a los líderes del futuro en
-                        salud visual.
-                    </p>
-
-                    <!-- Stats Cards -->
-                    <div class="grid grid-cols-3 gap-4 mb-8">
-                        <div class="stat-card group">
-                            <div class="stat-value">15</div>
-                            <div class="stat-label">Años de Experiencia</div>
-                            <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
-                        </div>
-
-                        <div class="stat-card group">
-                            <div class="stat-value">501<span class="text-primary">+</span></div>
-                            <div class="stat-label">Fellows Graduados</div>
-                            <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
-                        </div>
-
-                        <div class="stat-card group">
-                            <div class="stat-value">100<span class="text-primary">%</span></div>
-                            <div class="stat-label">Tasa de Éxito</div>
-                            <div class="stat-icon"><i class="fas fa-award"></i></div>
-                        </div>
-                    </div>
-
-                    <!-- CTA Buttons -->
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#contacto" class="cta-button primary">
-                            <span>Solicitar Información</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-
-                        <a href="#testimonios" class="cta-button secondary">
-                            <i class="fas fa-users"></i>
-                            <span>Ver Testimonios</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Right Image Column -->
-                <div class="relative z-10">
-                    <div class="relative hero-image-container">
-                        <!-- Main Image -->
-                        <div class="relative overflow-hidden rounded-lg shadow-2xl">
-                            <img src="{{ asset('images/graduacion1.jpg') }}" alt="Fellows de Oftalmología"
-                                class="w-full h-full object-cover">
-
-                            <!-- Overlay with Gradient -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-secondary/50 via-transparent to-transparent opacity-60">
-                            </div>
-
-                            <!-- Shine Effect -->
-                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 rotate-45"
-                                style="transform: translateX(-100%); animation: shine 5s infinite;"></div>
-                        </div>
-
-                        <!-- Floating Info Card -->
-                        <div
-                            class="absolute -bottom-6 -left-6 md:bottom-8 md:left-8 bg-white p-4 rounded-lg shadow-xl max-w-xs transform rotate-0 hover:rotate-1 transition-transform duration-300">
-                            <div class="flex items-center mb-2">
-                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2">
-                                    <i class="fas fa-microscope text-white text-xs"></i>
-                                </div>
-                                <h3 class="font-bold text-secondary">Entrenamiento Clínico Avanzado</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">Formación práctica con tecnología de vanguardia y casos
-                                clínicos complejos.</p>
-                        </div>
-
-                        <!-- Decorative Elements -->
-                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-primary rounded-full opacity-80 shadow-lg">
-                        </div>
-                        <div class="absolute -top-8 -right-8 w-16 h-16 border-2 border-primary rounded-full"></div>
-                    </div>
-                </div>
+        <div class="carousel-container relative h-[600px] md:h-[700px]">
+       
+            <div class="carousel-slide active absolute inset-0 transition-opacity duration-1000">
+                <img src="{{ asset('images/graduacion1.jpg') }}" alt="Graduación Fellows" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/50"></div>
             </div>
-        </div>
-    </section>
-     <section id="logros" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-white to-accent/5 relative overflow-hidden">
-        <!-- Background Decorative Elements -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary/10 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute top-1/4 left-1/4 w-4 h-4 bg-primary rounded-full opacity-20"></div>
-        <div class="absolute top-1/3 right-1/3 w-6 h-6 border-2 border-accent rounded-full opacity-30"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-8 h-8 bg-secondary/20 rounded-full"></div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <!-- Section Header -->
-            <div class="text-center mb-16">
-                
-                
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                    <span class="text-secondary">Celebramos el Éxito del</span>
-                    <span class="text-primary block mt-2">Dr. Fermín Silva Cayatopa</span>
-                </h2>
-                
-                <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-8"></div>
+            <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                <img src="{{ asset('images/cirugia1.jpg') }}" alt="Cirugía Oftalmológica" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/50"></div>
+            </div>
+            <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                <img src="{{ asset('images/tecnologia1.jpg') }}" alt="Tecnología Avanzada" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/50"></div>
             </div>
 
-            <!-- Main Content -->
-            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
-                <!-- Left Content -->
-                <div class="space-y-8">
-                    <!-- Achievement Badge -->
-                    <div class="inline-flex items-center bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3 rounded-full shadow-lg">
-                        <i class="fas fa-trophy mr-3 text-yellow-300"></i>
-                        <span class="font-semibold">MBA - Universidad del Pacífico Business School</span>
-                    </div>
+        
+            <div class="absolute inset-0 flex items-center">
+                <div class="container mx-auto px-4 md:px-10 relative z-10">
+                    <div class="max-w-3xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-graduation-cap text-white"></i>
+                            </div>
+                            <span class="text-sm md:text-base font-semibold tracking-wide text-white">La Luz Educa</span>
+                        </div>
 
-                    <!-- Main Text -->
-                    <div class="prose prose-lg max-w-none">
-                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                            Con gran emoción y orgullo, compartimos un nuevo capítulo en la historia de crecimiento y liderazgo del 
-                            <strong class="text-secondary">Dr. Fermín Silva Cayatopa</strong>, Fundador y CEO del Grupo Empresarial La Luz, 
-                            y uno de los oftalmólogos más reconocidos del país.
+                        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
+                      
+                            <span class="text-primary relative inline-block">
+                                Especialización
+                                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 200 6" fill="none">
+                                    <path d="M0 3C50 0.5 150 0.5 200 3" stroke="#B11A1A" stroke-width="5" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <span class="block mt-2">en Oftalmología</span>
+                        </h1>
+
+                        <p class="text-white/90 text-lg mb-8 max-w-2xl leading-relaxed">
+                            Formamos oftalmólogos y subespecialistas con los más altos estándares de ética y moral, 
+                            acreditados por la Universidad César Vallejo y Clínica La Luz.
                         </p>
-                        
-                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                            Hoy celebramos su reciente graduación del <strong class="text-primary">MBA en la prestigiosa Universidad del Pacífico – Business School</strong>, 
-                            una meta que refleja su constante compromiso por seguir aprendiendo, innovando y brindando lo mejor a miles de peruanos.
-                        </p>
-                        
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Este logro no solo suma a su trayectoria profesional, sino que reafirma su visión de seguir construyendo 
-                            <strong class="text-accent">una salud más humana, accesible y de calidad para todos</strong>.
-                        </p>
-                    </div>
 
-                    <!-- Achievement Stats -->
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                            <div class="flex items-center mb-3">
-                                <div class="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mr-3">
-                                    <i class="fas fa-building text-white"></i>
-                                </div>
-                                <div>
-                                    <div class="text-2xl font-bold text-secondary">20+</div>
-                                    <div class="text-sm text-gray-600">Años de Liderazgo</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                            <div class="flex items-center mb-3">
-                                <div class="w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-lg flex items-center justify-center mr-3">
-                                    <i class="fas fa-users text-white"></i>
-                                </div>
-                                <div>
-                                    <div class="text-2xl font-bold text-secondary">1000+</div>
-                                    <div class="text-sm text-gray-600">Vidas Transformadas</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Congratulations Message -->
-                    <div class="bg-gradient-to-r from-accent/10 to-primary/10 p-6 rounded-xl border-l-4 border-primary">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                                    <i class="fas fa-heart text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-bold text-secondary mb-2">¡Felicitaciones, Doctor!</h4>
-                                <p class="text-gray-700 italic">
-                                    "Su ejemplo nos inspira a seguir creciendo con pasión y propósito." 
-                                    <span class="text-2xl">👏🎓</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Image -->
-                <div class="relative">
-                    <div class="relative group">
-                        <!-- Main Image Container -->
-                        <div class="relative overflow-hidden rounded-2xl shadow-2xl">
-                            <img src="{{ asset('images/fermin-mba.png') }}" 
-                                 alt="Dr. Fermín Silva Cayatopa en su graduación del MBA - Universidad del Pacífico" 
-                                 class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105">
-                            
-                            <!-- Image Overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-secondary/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        </div>
-
-                        <!-- Floating University Badge -->
-                        <div class="absolute -top-6 -right-6 bg-white p-4 rounded-xl shadow-xl border border-gray-100 transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                            <div class="text-center">
-                                <div class="w-12 h-12 bg-gradient-to-br from-secondary to-secondary/80 rounded-full flex items-center justify-center mx-auto mb-2">
-                                    <i class="fas fa-university text-white"></i>
-                                </div>
-                                <div class="text-xs font-bold text-secondary">Universidad</div>
-                                <div class="text-xs text-gray-600">del Pacífico</div>
-                            </div>
-                        </div>
-
-                        <!-- Floating MBA Badge -->
-                        <div class="absolute -bottom-4 -left-4 bg-gradient-to-r from-primary to-primary/90 text-white p-4 rounded-xl shadow-xl transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                            <div class="flex items-center">
-                                <i class="fas fa-medal text-yellow-300 text-xl mr-2"></i>
-                                <div>
-                                    <div class="font-bold text-sm">MBA</div>
-                                    <div class="text-xs opacity-90">Business School</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Decorative Elements -->
-                        <div class="absolute top-4 left-4 w-8 h-8 border-2 border-accent rounded-full opacity-30"></div>
-                        <div class="absolute bottom-8 right-8 w-6 h-6 bg-primary rounded-full opacity-40"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Call to Action -->
-            <div class="text-center">
-                <div class="bg-gradient-to-r from-secondary to-secondary/90 rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
-                    <!-- Background Pattern -->
-                    <div class="absolute inset-0 opacity-10">
-                        <div class="absolute top-6 left-6 w-12 h-12 border-2 border-white rounded-full"></div>
-                        <div class="absolute top-12 right-12 w-8 h-8 bg-white rounded-full"></div>
-                        <div class="absolute bottom-8 left-1/4 w-6 h-6 border border-white rounded-full"></div>
-                        <div class="absolute bottom-6 right-1/3 w-14 h-14 border-2 border-white rounded-full"></div>
-                    </div>
-                    
-                    <div class="relative z-10">
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4">
-                            Liderazgo que Inspira, Excelencia que Transforma
-                        </h3>
-                        <p class="text-lg mb-8 opacity-90 max-w-3xl mx-auto">
-                            El compromiso del Dr. Silva con la formación continua refleja nuestros valores institucionales 
-                            de excelencia, innovación y servicio a la comunidad.
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-4 justify-center">
-                            <a href="#contacto" class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 inline-flex items-center">
-                                <span>Conoce Nuestros Servicios</span>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#objetivos" class="inline-flex items-center bg-primary text-white font-bold py-3 px-8 rounded-xl hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 transform hover:scale-105">
+                                <span>Conocer el Programa</span>
                                 <i class="fas fa-arrow-right ml-2"></i>
                             </a>
-                            
-                            <a href="#programa" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-all duration-300 hover:shadow-lg hover:-translate-y-1 inline-flex items-center">
-                                <i class="fas fa-graduation-cap mr-2"></i>
-                                <span>Programa Fellows</span>
+                            <a href="#contacto" class="inline-flex items-center border-2 border-white text-white font-bold py-3 px-8 rounded-xl hover:bg-white hover:text-secondary transition-all duration-300">
+                                <i class="fas fa-envelope mr-2"></i>
+                                <span>Contactar</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+                <button class="carousel-indicator active w-3 h-3 rounded-full bg-white transition-all duration-300" data-slide="0"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white/50 transition-all duration-300" data-slide="1"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white/50 transition-all duration-300" data-slide="2"></button>
+            </div>
         </div>
     </section>
 
-
-
-
-    <section id="fotos_felows" class="relative bg-white py-12 md:py-20 overflow-hidden hero-pattern">
-
-
-        <!-- Fellows Showcase Section -->
-        <div class="mt-16 text-center fade-in">
-            <h3 class="text-2xl font-bold text-secondary mb-2">Nuestros Fellows Destacados</h3>
-            <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-            <p class="text-gray-500 mb-10 max-w-2xl mx-auto">Conoce a los especialistas que se han formado en nuestro
-                programa y ahora son referentes en sus áreas de especialización.</p>
-
-            <!-- Fellows Slider -->
-            <div class="fellows-slider-container relative max-w-6xl mx-auto px-4 py-10">
-                <!-- Illumination Effects -->
-                <div
-                    class="absolute top-1/2 left-1/4 w-64 h-64 bg-primary opacity-10 rounded-full blur-3xl transform -translate-y-1/2">
-                </div>
-                <div
-                    class="absolute top-1/2 right-1/4 w-64 h-64 bg-accent opacity-10 rounded-full blur-3xl transform -translate-y-1/2">
-                </div>
-
-                <!-- Main Slider -->
-                <div class="swiper fellowsSwiper">
-                    <div class="swiper-wrapper">
-                        <!-- Fellow 1 -->
-                        <div class="swiper-slide">
-                            <div class="fellow-card group">
-                                <div
-                                    class="fellow-image-container relative mx-auto w-56 h-64 md:w-64 md:h-72 mb-6 overflow-hidden shadow-xl">
-                                    <!-- Overlay gradient on hover -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary opacity-0 group-hover:opacity-30 transition-opacity duration-300 z-10">
-                                    </div>
-
-                                    <!-- Image with subtle border -->
-                                    <div class="absolute inset-0 border-2 border-primary/20 overflow-hidden">
-                                        <img src="{{ asset('images/FELLOWS ANTIGUOS/fotos_felows/amy-perez.jpg') }}"
-                                            alt="Dr. Juan Pérez"
-                                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                                    </div>
-
-                                    <!-- Shine Effect -->
-                                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 rotate-45 z-20"
-                                        style="transform: translateX(-100%); animation: shine 3s infinite;"></div>
-                                </div>
-                                <h4
-                                    class="text-xl font-bold text-secondary mb-1 transition-transform duration-300 group-hover:text-primary">
-                                    Dr. Juan Pérez</h4>
-                                <p class="text-accent font-medium mb-3">Especialista en Córnea y Cirugía Refractiva</p>
-                                <p class="text-gray-600 max-w-md mx-auto text-sm">Fellow 2018-2020. Actualmente
-                                    Director de la Unidad de Córnea en Hospital Universitario.</p>
-                            </div>
-                        </div>
-
-                        <!-- Fellow 2 -->
-                        <div class="swiper-slide">
-                            <div class="fellow-card group">
-                                <div
-                                    class="fellow-image-container relative mx-auto w-56 h-64 md:w-64 md:h-72 mb-6 overflow-hidden shadow-xl">
-                                    <!-- Overlay gradient on hover -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary opacity-0 group-hover:opacity-30 transition-opacity duration-300 z-10">
-                                    </div>
-
-                                    <!-- Image with subtle border -->
-                                    <div class="absolute inset-0 border-2 border-primary/20 overflow-hidden">
-                                        <img src="{{ asset('images/FELLOWS ANTIGUOS/fotos_felows/niurka.jpg') }}"
-                                            alt="Dra. María Rodríguez"
-                                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                                    </div>
-
-                                    <!-- Shine Effect -->
-                                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 rotate-45 z-20"
-                                        style="transform: translateX(-100%); animation: shine 3s infinite;"></div>
-                                </div>
-                                <h4
-                                    class="text-xl font-bold text-secondary mb-1 transition-transform duration-300 group-hover:text-primary">
-                                    Dra. María Rodríguez</h4>
-                                <p class="text-accent font-medium mb-3">Especialista en Retina y Vítreo</p>
-                                <p class="text-gray-600 max-w-md mx-auto text-sm">Fellow 2019-2021. Investigadora
-                                    principal en el Instituto Nacional de Oftalmología.</p>
-                            </div>
-                        </div>
-
-                        <!-- Fellow 3 -->
-                        <div class="swiper-slide">
-                            <div class="fellow-card group">
-                                <div
-                                    class="fellow-image-container relative mx-auto w-56 h-64 md:w-64 md:h-72 mb-6 overflow-hidden shadow-xl">
-                                    <!-- Overlay gradient on hover -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary opacity-0 group-hover:opacity-30 transition-opacity duration-300 z-10">
-                                    </div>
-
-                                    <!-- Image with subtle border -->
-                                    <div class="absolute inset-0 border-2 border-primary/20 overflow-hidden">
-                                        <img src="{{ asset('images/FELLOWS ANTIGUOS/fotos_felows/pedro-tinoco.png') }}"
-                                            alt="Dr. Carlos Gómez"
-                                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                                    </div>
-
-                                    <!-- Shine Effect -->
-                                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 rotate-45 z-20"
-                                        style="transform: translateX(-100%); animation: shine 3s infinite;"></div>
-                                </div>
-                                <h4
-                                    class="text-xl font-bold text-secondary mb-1 transition-transform duration-300 group-hover:text-primary">
-                                    Dr. Carlos Gómez</h4>
-                                <p class="text-accent font-medium mb-3">Especialista en Glaucoma</p>
-                                <p class="text-gray-600 max-w-md mx-auto text-sm">Fellow 2017-2019. Director de la
-                                    Clínica de Glaucoma en Centro Médico Nacional.</p>
-                            </div>
-                        </div>
-
-                        <!-- Fellow 4 -->
-                        <div class="swiper-slide">
-                            <div class="fellow-card group">
-                                <div
-                                    class="fellow-image-container relative mx-auto w-56 h-64 md:w-64 md:h-72 mb-6 overflow-hidden shadow-xl">
-                                    <!-- Overlay gradient on hover -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary opacity-0 group-hover:opacity-30 transition-opacity duration-300 z-10">
-                                    </div>
-
-                                    <!-- Image with subtle border -->
-                                    <div class="absolute inset-0 border-2 border-primary/20 overflow-hidden">
-                                        <img src="{{ asset('images/FELLOWS ANTIGUOS/fotos_felows/ricardo-alarcon.jpg') }}"
-                                            alt="Dra. Ana García"
-                                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                                    </div>
-
-                                    <!-- Shine Effect -->
-                                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 rotate-45 z-20"
-                                        style="transform: translateX(-100%); animation: shine 3s infinite;"></div>
-                                </div>
-                                <h4
-                                    class="text-xl font-bold text-secondary mb-1 transition-transform duration-300 group-hover:text-primary">
-                                    Dra. Ana García</h4>
-                                <p class="text-accent font-medium mb-3">Especialista en Oftalmología Pediátrica</p>
-                                <p class="text-gray-600 max-w-md mx-auto text-sm">Fellow 2020-2022. Jefa del
-                                    Departamento de Oftalmología Pediátrica en Hospital Infantil.</p>
-                            </div>
-                        </div>
-
-                        <!-- Fellow 5 -->
-                        <div class="swiper-slide">
-                            <div class="fellow-card group">
-                                <div
-                                    class="fellow-image-container relative mx-auto w-56 h-64 md:w-64 md:h-72 mb-6 overflow-hidden shadow-xl">
-                                    <!-- Overlay gradient on hover -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary opacity-0 group-hover:opacity-30 transition-opacity duration-300 z-10">
-                                    </div>
-
-                                    <!-- Image with subtle border -->
-                                    <div class="absolute inset-0 border-2 border-primary/20 overflow-hidden">
-                                        <img src="{{ asset('images/FELLOWS ANTIGUOS/fotos_felows/ricardo-alarcon.jpg') }}"
-                                            alt="Dr. Roberto Sánchez"
-                                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                                    </div>
-
-                                    <!-- Shine Effect -->
-                                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 rotate-45 z-20"
-                                        style="transform: translateX(-100%); animation: shine 3s infinite;"></div>
-                                </div>
-                                <h4
-                                    class="text-xl font-bold text-secondary mb-1 transition-transform duration-300 group-hover:text-primary">
-                                    Dr. Roberto Sánchez</h4>
-                                <p class="text-accent font-medium mb-3">Especialista en Neuro-oftalmología</p>
-                                <p class="text-gray-600 max-w-md mx-auto text-sm">Fellow 2018-2020. Investigador
-                                    asociado en el Centro de Neurociencias.</p>
-                            </div>
-                        </div>
-
-                        <!-- Fellow 6 -->
-                        <div class="swiper-slide">
-                            <div class="fellow-card group">
-                                <div
-                                    class="fellow-image-container relative mx-auto w-56 h-64 md:w-64 md:h-72 mb-6 overflow-hidden shadow-xl">
-                                    <!-- Overlay gradient on hover -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary opacity-0 group-hover:opacity-30 transition-opacity duration-300 z-10">
-                                    </div>
-
-                                    <!-- Image with subtle border -->
-                                    <div class="absolute inset-0 border-2 border-primary/20 overflow-hidden">
-                                        <img src="{{ asset('images/FELLOWS ANTIGUOS/fotos_felows/ricardo-alarcon.jpg') }}"
-                                            alt="Dra. Laura Martínez"
-                                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                                    </div>
-
-                                    <!-- Shine Effect -->
-                                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 rotate-45 z-20"
-                                        style="transform: translateX(-100%); animation: shine 3s infinite;"></div>
-                                </div>
-                                <h4
-                                    class="text-xl font-bold text-secondary mb-1 transition-transform duration-300 group-hover:text-primary">
-                                    Dra. Laura Martínez</h4>
-                                <p class="text-accent font-medium mb-3">Especialista en Oculoplastia</p>
-                                <p class="text-gray-600 max-w-md mx-auto text-sm">Fellow 2019-2021. Directora de la
-                                    Unidad de Cirugía Oculoplástica en Clínica Internacional.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Navigation Elements -->
-                    <div class="swiper-pagination mt-8"></div>
-
-                    <!-- Navigation Arrows -->
-                    <div
-                        class="swiper-button-prev after:content-[''] w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary transition-all duration-300 hover:bg-primary hover:text-white">
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div
-                        class="swiper-button-next after:content-[''] w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary transition-all duration-300 hover:bg-primary hover:text-white">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        </div>
-    </section>
-
-    <!-- About Fellows Program -->
-    <section id="programa" class="py-20  relative overflow-hidden">
-        <!-- Background Decorative Elements -->
-        <div class="absolute top-20 right-10 w-64 h-64 bg-primary opacity-5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 left-10 w-80 h-80 bg-accent opacity-5 rounded-full blur-3xl"></div>
-        <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-6xl mx-auto">
-            <div
-                class="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-primary/20 -translate-x-10 -translate-y-10">
-            </div>
-            <div
-                class="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-primary/20 translate-x-10 translate-y-10">
-            </div>
-        </div>
-
-        <div class="container mx-auto px-4 relative z-10">
+     
+    <section id="objetivos" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-10">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-2 fade-in">Programa de Fellows</h2>
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">I. Objetivos</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Nuestros Objetivos</h2>
                 <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">Nuestro programa de formación especializada en oftalmología
-                    está diseñado para desarrollar profesionales de excelencia con habilidades clínicas y quirúrgicas
-                    avanzadas.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Image Column with Effects -->
-                <div class="relative group">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg transform rotate-3 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    </div>
-
-                    <div class="relative overflow-hidden rounded-lg shadow-2xl">
-                        <!-- Image Container -->
-                        <div class="relative overflow-hidden">
-                            <img src="{{ asset('images/FELLOWS ANTIGUOS/fotos/foto1.jpeg') }}"
-                                alt="Programa de Fellows"
-                                class="w-full transform transition-transform duration-700 group-hover:scale-105">
-
-                            <!-- Overlay Gradient -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-secondary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            </div>
-
-                            <!-- Shine Effect -->
-                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 rotate-45 z-20"
-                                style="transform: translateX(-100%); animation: shine 3s infinite;"></div>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-primary hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-bullseye text-white text-xl"></i>
                         </div>
-
-                        <!-- Caption -->
-                        <div
-                            class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                            <div class="text-white text-sm md:text-base">
-                                <span class="bg-primary/90 px-3 py-1 rounded-full text-sm">Formación Integral</span>
-                            </div>
-                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-secondary">Objetivo General</h3>
                     </div>
-
-                    <!-- Floating Elements -->
-                    <div
-                        class="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full opacity-80 shadow-lg transform rotate-0 group-hover:rotate-45 transition-transform duration-500">
-                    </div>
-                    <div
-                        class="absolute -bottom-4 -left-4 w-8 h-8 bg-secondary rounded-full opacity-80 shadow-lg transform rotate-0 group-hover:rotate-45 transition-transform duration-500">
-                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Ser una sede docente competitiva para formar oftalmólogos y subespecialistas en 
+                        <strong>Segmento Anterior, Córnea y Cirugía Refractiva</strong>; 
+                        <strong>Córnea, Refractiva y Superficie Ocular</strong>; 
+                        <strong>Glaucoma Clínico-Quirúrgico</strong>; 
+                        <strong>Retina y Vítreo Clínico-Quirúrgico</strong> a nivel nacional e internacional 
+                        con acreditación de la Universidad César Vallejo y Clínica La Luz, para que se conduzcan 
+                        con los estándares más altos de ética y moral, tanto en su vida personal como profesional.
+                    </p>
                 </div>
 
-                <!-- Content Column with Animations -->
-                <div class="slide-in-right">
-                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-primary">
-                        <h3 class="text-2xl font-bold text-primary mb-6 flex items-center">
-                            <span class="relative">
-                                Formación de Excelencia
-                                <span
-                                    class="absolute bottom-0 left-0 w-full h-1 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-                            </span>
-                            <div class="ml-3 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                                <i class="fas fa-graduation-cap text-primary"></i>
-                            </div>
-                        </h3>
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-secondary hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-list-check text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-secondary">Objetivos Específicos</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-700">Capacitar oftalmólogos y subespecialistas nacionales e internacionales en 6 áreas: 
+                            Académica, Asistencial, Docente, Investigación Científica, Responsabilidad Social y Marketing en servicios de salud visual.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-700">Estar actualizados con los avances del conocimiento, la ciencia y tecnología en oftalmología, 
+                            acreditar y reportar nuestro trabajo asistencial con fines académicos, científicos y protocolizar nuestros servicios.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-700">Lograr una formación teórica y práctica en procedimientos y cirugías oftalmológicas 
+                            de todos los niveles de complejidad, con tutoría a través de clases, wetlab y cirugías.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <p class="text-gray-700 mb-6">El programa de fellows de la Clínica la Luz ofrece una
-                            experiencia educativa integral con:</p>
+   
+    <section id="areas-formacion" class="py-20 bg-neutral">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">II. Áreas de Formación</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Formación Integral en 6 Áreas</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Nuestro programa desarrolla competencias en múltiples dimensiones para formar profesionales completos
+                </p>
+            </div>
 
-                        <ul class="space-y-4">
-                            <li
-                                class="flex items-start transform hover:-translate-y-1 transition-transform duration-300">
-                                <div
-                                    class="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3 shadow-md">
-                                    <i class="fas fa-clinic-medical text-white text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-secondary">Rotaciones Clínicas</h4>
-                                    <p class="text-gray-600 text-sm">En todas las subespecialidades oftalmológicas</p>
-                                </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+             
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:border-primary border-2 border-transparent transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-book-open text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Académica</h3>
+                    <p class="text-gray-600">Formación teórica sólida con actualización constante en los últimos avances científicos y tecnológicos.</p>
+                </div>
+
+           
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:border-primary border-2 border-transparent transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-user-md text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Asistencial</h3>
+                    <p class="text-gray-600">Práctica clínica supervisada con exposición a casos de todos los niveles de complejidad.</p>
+                </div>
+
+          
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:border-primary border-2 border-transparent transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Docente</h3>
+                    <p class="text-gray-600">Desarrollo de habilidades pedagógicas para la formación de futuras generaciones de oftalmólogos.</p>
+                </div>
+
+           
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:border-primary border-2 border-transparent transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-microscope text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Investigación Científica</h3>
+                    <p class="text-gray-600">Participación activa en proyectos de investigación y publicaciones científicas.</p>
+                </div>
+
+               
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:border-primary border-2 border-transparent transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-hands-helping text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Responsabilidad Social</h3>
+                    <p class="text-gray-600">Compromiso con la comunidad a través de programas de salud visual y prevención.</p>
+                </div>
+
+            
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:border-primary border-2 border-transparent transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Marketing en Salud Visual</h3>
+                    <p class="text-gray-600">Gestión y promoción de servicios oftalmológicos con enfoque ético y profesional.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="font-heading text-2xl font-bold text-secondary mb-8 text-center">Roles y Responsabilidades por Área</h3>
+                
+                <div class="space-y-8">
+                    
+                    <div class="border-l-4 border-secondary pl-6">
+                        <h4 class="font-heading text-xl font-bold text-secondary mb-4 flex items-center">
+                            <i class="fas fa-stethoscope text-secondary mr-3"></i>
+                            Actividades Asistenciales
+                        </h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Atender consulta externa normal de acuerdo a la demanda, todos los días en cualquiera de las sedes de la Clínica La Luz, excepto los días quirúrgicos.</span>
                             </li>
-
-                            <li
-                                class="flex items-start transform hover:-translate-y-1 transition-transform duration-300">
-                                <div
-                                    class="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3 shadow-md">
-                                    <i class="fas fa-user-md text-white text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-secondary">Entrenamiento Quirúrgico</h4>
-                                    <p class="text-gray-600 text-sm">Supervisado por especialistas reconocidos</p>
-                                </div>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Satisfacer a nuestros pacientes, atendiendo con calidad y calidez, reconociendo que el paciente siempre es primero y que define si nuestro servicio crece o desaparece.</span>
                             </li>
-
-                            <li
-                                class="flex items-start transform hover:-translate-y-1 transition-transform duration-300">
-                                <div
-                                    class="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3 shadow-md">
-                                    <i class="fas fa-microscope text-white text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-secondary">Investigación</h4>
-                                    <p class="text-gray-600 text-sm">Participación en investigaciones y publicaciones
-                                        científicas</p>
-                                </div>
-                            </li>
-
-                            <li
-                                class="flex items-start transform hover:-translate-y-1 transition-transform duration-300">
-                                <div
-                                    class="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3 shadow-md">
-                                    <i class="fas fa-laptop-medical text-white text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-secondary">Tecnología de Vanguardia</h4>
-                                    <p class="text-gray-600 text-sm">Acceso a equipamiento moderno y técnicas avanzadas
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li
-                                class="flex items-start transform hover:-translate-y-1 transition-transform duration-300">
-                                <div
-                                    class="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3 shadow-md">
-                                    <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-secondary">Sesiones Académicas</h4>
-                                    <p class="text-gray-600 text-sm">Conferencias con expertos internacionales</p>
-                                </div>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>La consulta externa es un acto médico que tiene la finalidad de prestar un servicio de calidad al paciente dando valor a la marca Clínica La Luz y a la marca de su nombre del médico.</span>
                             </li>
                         </ul>
+                    </div>
 
-                        <div class="mt-8 flex flex-wrap gap-4">
-                            <a href="#contacto"
-                                class="inline-flex items-center bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition shadow-md hover:shadow-lg transform hover:-translate-y-1 group">
-                                <span>Solicitar Información</span>
-                                <i
-                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
-                            </a>
+                     
+                    <div class="border-l-4 border-primary pl-6">
+                        <h4 class="font-heading text-xl font-bold text-secondary mb-4 flex items-center">
+                            <i class="fas fa-chalkboard-teacher text-primary mr-3"></i>
+                            Actividades Docentes
+                        </h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>El residente mayor apoyará en las charlas al residente menor y rotantes. El fellow mayor apoyará a todos los residentes, rotantes y fellows menores.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Hacer tutoría en el wetlab a los residentes, rotantes y fellows menores.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Hacer tutoría en las cirugías correspondientes de los residentes y fellows menores.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Capacitar al personal de todos los puntos de contacto de la cadena de producción de un servicio.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Participar en la organización de un curso anual para formar promotores de salud ocular dirigido a profesores y dirigentes comunales del programa LUZ PARA TUS OJOS.</span>
+                            </li>
+                        </ul>
+                    </div>
 
-                            <a href="#especialidades"
-                                class="inline-flex items-center bg-white text-secondary border-2 border-secondary font-bold py-3 px-6 rounded-lg hover:bg-secondary hover:text-white transition shadow-md hover:shadow-lg transform hover:-translate-y-1">
-                                <i class="fas fa-eye mr-2"></i>
-                                <span>Ver Especialidades</span>
-                            </a>
+                    
+                    <div class="border-l-4 border-primary pl-6">
+                        <h4 class="font-heading text-xl font-bold text-secondary mb-4 flex items-center">
+                            <i class="fas fa-microscope text-primary mr-3"></i>
+                            Actividades de Investigación Científica
+                        </h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span><strong>Fellows:</strong> Deben hacer 2 trabajos de investigación por año. <strong>Residentes:</strong> 1 trabajo por año.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Todos los trabajos deberán ser publicados en revistas indexadas de alto impacto y/o presentados en congresos nacionales e internacionales.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Todos los trabajos de investigación deberán presentarse a nombre de la Clínica La Luz.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>El tutor principal de la sede y/o el cirujano principal del trabajo será el autor principal y el residente o Fellow será el coautor.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>La ejecución será por la Clínica La Luz y la publicación será por la gestión de la clínica y/o por los recursos de los investigadores.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                     
+                    <div class="border-l-4 border-primary pl-6">
+                        <h4 class="font-heading text-xl font-bold text-secondary mb-4 flex items-center">
+                            <i class="fas fa-hands-helping text-primary mr-3"></i>
+                            Actividades de Responsabilidad Social
+                        </h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Participar en todas las campañas sociales y quirúrgicas del programa social LUZ PARA TUS OJOS.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Realizar charlas preventivo-promocionales de salud visual a los pacientes en cualquiera de las sedes y en atenciones extramurales.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Realizar consultas sociales en cualquiera de las sedes de la Clínica La Luz y en atenciones extramurales.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                                <span>Realizar cursos de formación de promotores de salud ocular dirigidos a profesores, dirigentes comunales y promotores de salud integrales.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    
+                    <div class="border-l-4 border-secondary pl-6">
+                        <h4 class="font-heading text-xl font-bold text-secondary mb-4 flex items-center">
+                            <i class="fas fa-chart-line text-secondary mr-3"></i>
+                            Actividades de Marketing en Servicios de Salud
+                        </h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-secondary-50 p-4 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-2">Charlas Incluidas:</p>
+                                <ul class="space-y-1 text-sm text-gray-700">
+                                    <li>• Cómo generar un servicio de calidad con los puntos de contacto</li>
+                                    <li>• Cómo hacer un equipo ganador</li>
+                                    <li>• Gestión eficiente de una IPRESS de salud visual</li>
+                                    <li>• Estrategias de venta</li>
+                                    <li>• Cómo definir su personalidad financiera</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- III. Plan Curricular -->
+    <section id="plan-curricular" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">III. Plan Curricular</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Programas de Alta Especialización</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="showProgram('segmento-anterior')" class="program-tab active px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-primary text-white shadow-md">
+                    Segmento Anterior
+                </button>
+                <button onclick="showProgram('glaucoma')" class="program-tab px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-neutral text-secondary shadow-md hover:bg-primary-light hover:text-white">
+                    Glaucoma
+                </button>
+                <button onclick="showProgram('retina')" class="program-tab px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-neutral text-secondary shadow-md hover:bg-primary-light hover:text-white">
+                    Retina y Vítreo
+                </button>
+            </div>
+
+            <!-- Segmento Anterior Program -->
+            <div id="segmento-anterior" class="program-content">
+                <div class="bg-white p-8 rounded-xl shadow-lg mb-8 border-2 border-primary">
+                    <h3 class="font-heading text-2xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fas fa-eye text-primary mr-3"></i>
+                        Segmento Anterior, Córnea y Cirugía Refractiva
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Áreas de Estudio</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Anatomía funcional, inervación y fisiología corneal</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Topografía/Tomografía y OCT de segmento anterior</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Queratitis bacteriana, fúngica y Acanthamoeba</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Queratocono: diagnóstico y tratamiento (Cross-linking, anillos)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Trasplantes corneales: PKP, DALK, DSEK, DMEK, PDEK</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Cirugía de catarata: facoemulsificación y LIOs premium</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Cirugía refractiva: LASIK, PRK, SMILE, ICL</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Plana Docente</h4>
+                            <div class="space-y-3">
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dr. Fermín Silva Cayatopa</p>
+                                    <p class="text-sm text-gray-600">Director del Programa</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dr. Víctor Viaña Pongo</p>
+                                    <p class="text-sm text-gray-600">Jefe del Departamento</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dr. Edgar Gonzales Dávila</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dra. Marilda Macedo Rosas</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dra. Fabiola Custodio Sheen</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-neutral p-6 rounded-lg shadow-md">
+                        <h4 class="font-heading text-lg font-bold text-secondary mb-4">Contenido Curricular (52 Temas)</h4>
+                        <div class="grid md:grid-cols-3 gap-4 text-sm text-gray-700">
+                            <div>
+                                <p class="font-bold text-primary mb-2">Córnea</p>
+                                <ul class="space-y-1">
+                                    <li>• Anatomía y fisiología</li>
+                                    <li>• Topografía/Tomografía</li>
+                                    <li>• OCT segmento anterior</li>
+                                    <li>• Queratitis bacteriana</li>
+                                    <li>• Queratitis fúngica</li>
+                                    <li>• Queratocono</li>
+                                    <li>• Cross-linking</li>
+                                    <li>• Anillos intracorneales</li>
+                                    <li>• Distrofias corneales</li>
+                                    <li>• PKP, DALK, DSEK, DMEK</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-bold text-primary mb-2">Catarata</p>
+                                <ul class="space-y-1">
+                                    <li>• Biometría e IOL</li>
+                                    <li>• Manejo del astigmatismo</li>
+                                    <li>• Facoemulsificación</li>
+                                    <li>• Complicaciones intra/post-op</li>
+                                    <li>• LIOs premium (EDOF, trifocales)</li>
+                                    <li>• Catarata + glaucoma</li>
+                                    <li>• Pupila pequeña/IFIS</li>
+                                    <li>• Catarata pediátrica</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-bold text-primary mb-2">Refractiva</p>
+                                <ul class="space-y-1">
+                                    <li>• Criterios de selección</li>
+                                    <li>• LASIK</li>
+                                    <li>• PRK/TransPRK</li>
+                                    <li>• SMILE</li>
+                                    <li>• Wavefront-guided</li>
+                                    <li>• ICL/Artisan</li>
+                                    <li>• Presbicia</li>
+                                    <li>• Ectasia post-láser</li>
+                                    <li>• Ojo seco post-refractiva</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Statistics Section -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center transform hover:-translate-y-2 transition-transform duration-300 border-t-2 border-primary">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-calendar-alt text-primary text-2xl"></i>
+            <!-- Glaucoma Program -->
+            <div id="glaucoma" class="program-content hidden">
+                <div class="bg-white p-8 rounded-xl shadow-lg mb-8 border-2 border-secondary">
+                    <h3 class="font-heading text-2xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fas fa-low-vision text-secondary mr-3"></i>
+                        Glaucoma Clínico-Quirúrgico
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Contenido del Programa</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Introducción y epidemiología del glaucoma</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Evaluación clínica del nervio óptico</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Dinámica del humor acuoso y tonometría</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Gonioscopía</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Pruebas funcionales y estructurales</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Glaucoma crónico de ángulo abierto</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Enfermedad por cierre angular primario</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Tratamiento médico y quirúrgico (Trabeculectomía, MIGS, implantes)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Plana Docente</h4>
+                            <div class="space-y-3">
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dra. Luisa Bastardo Guillén</p>
+                                    <p class="text-sm text-gray-600">Jefa del Departamento</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dra. Meida Espinoza</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dra. Ana Villacorta</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dr. Adolfo Calderón Fernández</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dr. Yoaner Martín Perera</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="text-3xl font-bold text-primary">2</h4>
-                    <p class="text-gray-600 text-sm">Años de Duración</p>
-                </div>
 
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center transform hover:-translate-y-2 transition-transform duration-300 border-t-2 border-secondary">
-                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-graduate text-secondary text-2xl"></i>
-                    </div>
-                    <h4 class="text-3xl font-bold text-secondary">6</h4>
-                    <p class="text-gray-600 text-sm">Especialidades</p>
-                </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-neutral p-6 rounded-lg shadow-md">
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Récord Quirúrgico Mínimo</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-center">
+                                    <span class="bg-secondary-100 text-secondary font-bold px-3 py-1 rounded-full mr-3">50</span>
+                                    <span>Cirugías como ayudante</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="bg-secondary-100 text-secondary font-bold px-3 py-1 rounded-full mr-3">30</span>
+                                    <span>Cirugías realizadas tutoreadas</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="bg-secondary-100 text-secondary font-bold px-3 py-1 rounded-full mr-3">50</span>
+                                    <span>Procedimientos con láser</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="bg-secondary-100 text-secondary font-bold px-3 py-1 rounded-full mr-3">60</span>
+                                    <span>Cirugías de catarata (MININUC/Faco)</span>
+                                </li>
+                            </ul>
+                        </div>
 
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center transform hover:-translate-y-2 transition-transform duration-300 border-t-2 border-accent">
-                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-hospital-user text-accent text-2xl"></i>
+                        <div class="bg-neutral p-6 rounded-lg shadow-md">
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Métodos Diagnósticos</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-microscope text-secondary mt-1 mr-2"></i>
+                                    <span>OCT de nervio óptico y células ganglionares (Cirrus)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-microscope text-secondary mt-1 mr-2"></i>
+                                    <span>Angio OCT (Cirrus 5000)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-microscope text-secondary mt-1 mr-2"></i>
+                                    <span>Campos visuales (Humphrey)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-microscope text-secondary mt-1 mr-2"></i>
+                                    <span>Foto color del nervio óptico</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-microscope text-secondary mt-1 mr-2"></i>
+                                    <span>Paquímetros, ecógrafo, UBM</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <h4 class="text-3xl font-bold text-accent">+500</h4>
-                    <p class="text-gray-600 text-sm">Pacientes Atendidos</p>
                 </div>
+            </div>
 
-                <div
-                    class="bg-white p-6 rounded-lg shadow-md text-center transform hover:-translate-y-2 transition-transform duration-300 border-t-2 border-primary">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-certificate text-primary text-2xl"></i>
+            <!-- Retina y Vítreo Program -->
+            <div id="retina" class="program-content hidden">
+                <div class="bg-white p-8 rounded-xl shadow-lg mb-8 border-2 border-primary">
+                    <h3 class="font-heading text-2xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fas fa-glasses text-primary mr-3"></i>
+                        Retina y Vítreo Clínico-Quirúrgico
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Contenido del Programa</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>Anatomía y fisiología de la retina</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>Topografía y morfología retiniana</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>Circulación retiniana y epitelio pigmentario</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>Métodos de evaluación: Fluoresceína, ICG, OCT</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>Retinopatía diabética: no proliferativa y proliferativa</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>Edema macular diabético</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>Oclusiones venosas de la retina</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>Desprendimiento de retina: cerclajes y vitrectomía</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Plana Docente</h4>
+                            <div class="space-y-3">
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dra. Ibet Mayata</p>
+                                    <p class="text-sm text-gray-600">Jefa del Departamento</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dr. Eduardo Zans</p>
+                                    <p class="text-sm text-gray-600">CMP 58190 RNE 034997</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dr. Sergio Sánchez</p>
+                                    <p class="text-sm text-gray-600">CMP 56718</p>
+                                </div>
+                                <div class="bg-neutral p-4 rounded-lg shadow">
+                                    <p class="font-bold text-secondary">Dr. Eugenio Moya</p>
+                                    <p class="text-sm text-gray-600">CMP 59822 RNE 03141</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="text-3xl font-bold text-primary">100%</h4>
-                    <p class="text-gray-600 text-sm">Tasa de Empleabilidad</p>
+
+                    <div class="bg-neutral p-6 rounded-lg shadow-md">
+                        <h4 class="font-heading text-lg font-bold text-secondary mb-4">Temas Principales del Currículo</h4>
+                        <div class="grid md:grid-cols-3 gap-4 text-sm text-gray-700">
+                            <div>
+                                <p class="font-bold text-primary mb-2">Anatomía y Fisiología</p>
+                                <ul class="space-y-1">
+                                    <li>• Embriología</li>
+                                    <li>• Topografía retiniana</li>
+                                    <li>• Coroides</li>
+                                    <li>• Circulación retiniana</li>
+                                    <li>• Epitelio pigmentario</li>
+                                    <li>• Bioquímica del vítreo</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-bold text-primary mb-2">Diagnóstico</p>
+                                <ul class="space-y-1">
+                                    <li>• Electrofisiología clínica</li>
+                                    <li>• Ultrasonografía</li>
+                                    <li>• Fluoresceína</li>
+                                    <li>• Angiografía ICG</li>
+                                    <li>• OCT</li>
+                                    <li>• Láser: principios y tipos</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-bold text-primary mb-2">Patologías</p>
+                                <ul class="space-y-1">
+                                    <li>• Retinopatía diabética</li>
+                                    <li>• Oclusiones venosas</li>
+                                    <li>• Desprendimiento de retina</li>
+                                    <li>• Retinopatía hipertensiva</li>
+                                    <li>• Enfermedad de Coats</li>
+                                    <li>• Retinopatía de prematuridad</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Specialties Section -->
-    <section id="especialidades" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-secondary mb-2">Nuestras Especialidades</h2>
+
+     <!-- IV. Metas Quirúrgicas Mínimas -->
+     <!-- Replacing the Wetlab section with Surgical Goals section -->
+    <section class="py-20 bg-neutral">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">IV. Metas Quirúrgicas Mínimas</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Récord Quirúrgico Requerido</h2>
                 <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">Ofrecemos formación especializada en todas las áreas de la
-                    oftalmología moderna, con tecnología de vanguardia y profesionales de primer nivel.</p>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Metas quirúrgicas mínimas que deben cumplir los fellows en cada programa de alta especialización
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                 <!-- Segmento Anterior -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-eye text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-secondary">Segmento Anterior, Córnea y Cirugía Refractiva</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">MININUC</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">20</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">FACONUC</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">50</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">FACOEMULSIFICACIÓN</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">50</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">Cx con FEMTOSEGUNDO</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">10</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">LIO FÁQUICOS</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">10</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">EXCIMER LASER</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">20</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">FEMTOANILLOS</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">5</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">CROSSLINKING</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">10</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Glaucoma -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-low-vision text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-secondary">Glaucoma Clínico-Quirúrgico</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-secondary-50 rounded-lg border-l-4 border-secondary">
+                            <span class="text-gray-700 font-medium">Cirugías como ayudante</span>
+                            <span class="bg-secondary text-white font-bold px-4 py-2 rounded-full">50</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-secondary-50 rounded-lg border-l-4 border-secondary">
+                            <span class="text-gray-700 font-medium">Cirugías tutoreadas</span>
+                            <span class="bg-secondary text-white font-bold px-4 py-2 rounded-full">30</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-secondary-50 rounded-lg border-l-4 border-secondary">
+                            <span class="text-gray-700 font-medium">Procedimientos con láser</span>
+                            <span class="bg-secondary text-white font-bold px-4 py-2 rounded-full">50</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-secondary-50 rounded-lg border-l-4 border-secondary">
+                            <span class="text-gray-700 font-medium">MININUC/Faco</span>
+                            <span class="bg-secondary text-white font-bold px-4 py-2 rounded-full">60</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-secondary-100 rounded-lg">
+                        <p class="text-sm text-gray-700">
+                            <strong>Nota:</strong> Incluye trabeculectomía, MIGS, implantes de válvulas y procedimientos combinados.
+                        </p>
+                    </div>
+                </div>
+
+                 <!-- Retina y Vítreo -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-glasses text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-secondary">Retina y Vítreo Clínico-Quirúrgico</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-primary pl-4 mb-4">
+                            <h4 class="font-heading font-bold text-secondary mb-2">Competencias Clínicas</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• Manejo de retinopatía diabética con láser fotocoagulador y láser amarillo</li>
+                                <li>• Manejo de degeneración macular relacionada a la edad</li>
+                                <li>• Manejo de membranas neovasculares y uso de antiangiogénicos</li>
+                                <li>• Manejo del edema macular</li>
+                                <li>• Manejo de coroidopatía serosa central y variantes</li>
+                            </ul>
+                        </div>
+
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="font-heading font-bold text-secondary mb-2">Competencias Quirúrgicas</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• Examen exhaustivo de retina en polo posterior y periferia</li>
+                                <li>• Tratamiento de lesiones predisponentes</li>
+                                <li>• Manejo de pacientes pre y postoperatorios</li>
+                                <li>• Manejo de patología variada en retina, vítreo y mácula</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-primary-100 rounded-lg">
+                        <p class="text-sm text-gray-700">
+                            <strong>Duración:</strong> Programa de 2 años con énfasis en técnicas avanzadas de vitrectomía y manejo médico-quirúrgico.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Wetlab Training -->
+            <div class="mt-12 bg-white p-8 rounded-xl shadow-lg">
+                <div class="text-center mb-8">
+                    <h3 class="font-heading text-2xl font-bold text-secondary mb-4">Entrenamiento en Wetlab y Cirugía Experimental</h3>
+                    <p class="text-gray-600">Programa intensivo de entrenamiento quirúrgico con supervisión constante</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="font-heading font-bold text-secondary mb-2">Curso Intensivo Inicial</h4>
+                            <p class="text-sm text-gray-700">Un mes antes de empezar, curso de cirugía experimental intensivo de lunes a sábado, 
+                            tutoreado por diferentes profesores. Incluye wetlab de Alcon.</p>
+                        </div>
+
+                        <div class="border-l-4 border-secondary pl-4">
+                            <h4 class="font-heading font-bold text-secondary mb-2">Conjuntiva</h4>
+                            <p class="text-sm text-gray-700">R1 practica perilimbotomía, puntos para plastia libre y recubrimiento conjuntival.</p>
+                        </div>
+
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="font-heading font-bold text-secondary mb-2">Esclera</h4>
+                            <p class="text-sm text-gray-700">Fellows, R2 y R3 practican esclerotomías, flaps esclerales para TEC, válvulas, 
+                            fijaciones esclerales e incisiones de MININUC.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-secondary pl-4">
+                            <h4 class="font-heading font-bold text-secondary mb-2">Córnea</h4>
+                            <p class="text-sm text-gray-700">Práctica de incisiones, pockets, túneles corneales para anillos (manual y femtosegundo), 
+                            flaps de LASIK, puntos corneales. Fellows practican CLEAR, PKP y trasplantes lamelares.</p>
+                        </div>
+
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="font-heading font-bold text-secondary mb-2">Cámara Anterior</h4>
+                            <p class="text-sm text-gray-700">Primer mes: Capsulorexis, capsulotomía, hidrodisección, facoemulsificación en ojos artificiales. 
+                            Segundo mes: Implante de LIO en bolsa, surco, Artisan, fijaciones esclerales, ICL, IPC.</p>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-red-600 to-red-700 text-white p-4 rounded-lg">
+                            <p class="text-sm font-bold">Requisito: Aprobar examen teórico-práctico de cirugía experimental para iniciar récord quirúrgico.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- V. Evaluación -->
+    <section id="evaluacion" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">V. Evaluación</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Sistema de Evaluación Mensual</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Evaluación integral y continua en todas las áreas de formación
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg mb-8 border-2 border-primary">
+                <h3 class="font-heading text-2xl font-bold text-secondary mb-6 text-center">Áreas de Evaluación y Responsables</h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th class="px-6 py-4 text-left rounded-tl-lg">Área de Evaluación</th>
+                                <th class="px-6 py-4 text-left rounded-tr-lg">Profesor/Responsable</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-user-md text-secondary mr-3"></i>
+                                        <span class="font-bold text-secondary">Asistencial</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">Tutor</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-presentation text-primary mr-3"></i>
+                                        <span class="font-bold text-secondary">Académica: Exposiciones</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">Jefa de Enseñanza</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-flask text-secondary mr-3"></i>
+                                        <span class="font-bold text-secondary">Wetlab</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">Jefe de Cirugía Experimental</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-procedures text-primary mr-3"></i>
+                                        <span class="font-bold text-secondary">Cirugía</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">Tutor</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-chalkboard-teacher text-secondary mr-3"></i>
+                                        <span class="font-bold text-secondary">Docencia</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">Tutor</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-microscope text-primary mr-3"></i>
+                                        <span class="font-bold text-secondary">Investigación Científica</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">Dirección de Investigación</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-hands-helping text-secondary mr-3"></i>
+                                        <span class="font-bold text-secondary">Responsabilidad Social</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">Administrador</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-chart-line text-primary mr-3"></i>
+                                        <span class="font-bold text-secondary">Marketing en Servicios de Salud Visual</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700">Administrador</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- Specialty 1 -->
-                <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1 hover:shadow-xl">
-                    <div class="h-48 bg-primary flex items-center justify-center">
-                        <i class="fas fa-eye text-white text-5xl"></i>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-book-reader text-white text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-secondary mb-2">Córnea y Cirugía Refractiva</h3>
-                        <p class="text-gray-600 mb-4">Especialización en trasplantes de córnea, cirugía refractiva
-                            láser y tratamientos avanzados para enfermedades corneales.</p>
-                        <div class="flex items-center text-sm text-primary">
-                            <span>Más información</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Evaluación Teórica</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                            <span>Exámenes periódicos por módulo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                            <span>Presentaciones de casos clínicos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                            <span>Revisión bibliográfica</span>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Specialty 2 -->
-                <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1 hover:shadow-xl">
-                    <div class="h-48 bg-secondary flex items-center justify-center">
-                        <i class="fas fa-glasses text-white text-5xl"></i>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-user-md text-white text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-secondary mb-2">Retina y Vítreo</h3>
-                        <p class="text-gray-600 mb-4">Diagnóstico y tratamiento de enfermedades retinianas, incluyendo
-                            degeneración macular, retinopatía diabética y desprendimiento de retina.</p>
-                        <div class="flex items-center text-sm text-primary">
-                            <span>Más información</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Evaluación Práctica</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Desempeño en wetlab</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Habilidades quirúrgicas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Manejo de complicaciones</span>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Specialty 3 -->
-                <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1 hover:shadow-xl">
-                    <div class="h-48 bg-accent flex items-center justify-center">
-                        <i class="fas fa-low-vision text-white text-5xl"></i>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-microscope text-white text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-secondary mb-2">Glaucoma</h3>
-                        <p class="text-gray-600 mb-4">Manejo integral del glaucoma con técnicas diagnósticas avanzadas
-                            y procedimientos quirúrgicos mínimamente invasivos.</p>
-                        <div class="flex items-center text-sm text-primary">
-                            <span>Más información</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Specialty 4 -->
-                <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1 hover:shadow-xl">
-                    <div class="h-48 bg-accent flex items-center justify-center">
-                        <i class="fas fa-child text-white text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-secondary mb-2">Oftalmología Pediátrica</h3>
-                        <p class="text-gray-600 mb-4">Atención especializada para niños con problemas visuales,
-                            estrabismo y otras patologías oculares infantiles.</p>
-                        <div class="flex items-center text-sm text-primary">
-                            <span>Más información</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Specialty 5 -->
-                <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1 hover:shadow-xl">
-                    <div class="h-48 bg-primary flex items-center justify-center">
-                        <i class="fas fa-brain text-white text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-secondary mb-2">Neuro-oftalmología</h3>
-                        <p class="text-gray-600 mb-4">Diagnóstico y tratamiento de trastornos visuales relacionados con
-                            el sistema nervioso y enfermedades neurológicas.</p>
-                        <div class="flex items-center text-sm text-primary">
-                            <span>Más información</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Specialty 6 -->
-                <div
-                    class="bg-white rounded-lg shadow-md overflow-hidden transition transform hover:-translate-y-1 hover:shadow-xl">
-                    <div class="h-48 bg-secondary flex items-center justify-center">
-                        <i class="fas fa-microscope text-white text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-secondary mb-2">Oculoplastia</h3>
-                        <p class="text-gray-600 mb-4">Cirugía reconstructiva y estética de párpados, órbita y vías
-                            lagrimales con técnicas mínimamente invasivas.</p>
-                        <div class="flex items-center text-sm text-primary">
-                            <span>Más información</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </div>
-                    </div>
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-3">Investigación</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                            <span>Trabajo de investigación obligatorio</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                            <span>Presentación oral y escrita</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
+                            <span>Entrega 2 meses antes de finalizar</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section id="logros" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-secondary mb-2">Nuestros Logros</h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">A lo largo de nuestra trayectoria, hemos alcanzado
-                    importantes hitos que nos posicionan como un centro de referencia en oftalmología.</p>
-            </div>
-
+     <!-- VI. Duración y Alcance -->
+     <!-- VII. Financiamiento -->
+     <!-- VIII. Selección de Postulantes -->
+     <!-- Expanding sections VI, VII, and VIII with detailed information -->
+    <section class="py-20 bg-neutral">
+        <div class="container mx-auto px-4 md:px-10">
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold text-primary mb-6">Reconocimientos</h3>
-                    <div class="space-y-6">
-                        <div class="flex">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                    <i class="fas fa-award text-white text-xl"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-secondary mb-1">Centro de Excelencia en Cirugía
-                                    Refractiva</h4>
-                                <p class="text-gray-600">Reconocimiento internacional por nuestros resultados en
-                                    cirugía refractiva y trasplantes de córnea.</p>
-                            </div>
+                 <!-- VI. Duración y Alcance -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="font-heading text-2xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fas fa-calendar-check text-primary mr-3"></i>
+                        VI. Duración y Alcance
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">Segmento Anterior, Córnea y Cirugía Refractiva</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">1 año</span>
                         </div>
-                        <div class="flex">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                    <i class="fas fa-star text-white text-xl"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-secondary mb-1">Acreditación Internacional</h4>
-                                <p class="text-gray-600">Programa acreditado por las principales sociedades
-                                    oftalmológicas internacionales.</p>
-                            </div>
+                        <div class="flex items-center justify-between p-4 bg-secondary-50 rounded-lg border-l-4 border-secondary">
+                            <span class="text-gray-700 font-medium">Córnea, Refractiva y Superficie Ocular</span>
+                            <span class="bg-secondary text-white font-bold px-4 py-2 rounded-full">1 año</span>
                         </div>
-                        <div class="flex">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                    <i class="fas fa-certificate text-white text-xl"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-secondary mb-1">Premio a la Innovación Médica
-                                </h4>
-                                <p class="text-gray-600">Por el desarrollo de nuevas técnicas quirúrgicas y protocolos
-                                    de tratamiento.</p>
-                            </div>
+                        <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
+                            <span class="text-gray-700 font-medium">Glaucoma Clínico-Quirúrgico</span>
+                            <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">1 año</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-secondary-50 rounded-lg border-l-4 border-secondary">
+                            <span class="text-gray-700 font-medium">Retina y Vítreo Clínico-Quirúrgico</span>
+                            <span class="bg-secondary text-white font-bold px-4 py-2 rounded-full">2 años</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-neutral-100 rounded-lg">
+                        <p class="text-gray-700 text-sm">
+                            <strong>Alcance:</strong> Nuestros programas de alta especialización (fellowship) están dirigidos a oftalmólogos nacionales e internacionales.
+                        </p>
+                    </div>
+                </div>
+
+                 <!-- VII. Financiamiento -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="font-heading text-2xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fas fa-dollar-sign text-primary mr-3"></i>
+                        VII. Financiamiento
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-primary-50 p-4 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-secondary mb-2">Costo del Programa</h4>
+                            <p class="text-gray-700">Los oftalmólogos que hacen cualquiera de los programas de alta especialización (fellowship) en la Clínica La Luz <strong>no pagarán por su capacitación</strong> y estarán a dedicación exclusiva ad honorem.</p>
+                        </div>
+
+                        <div class="bg-secondary-50 p-4 rounded-lg border-l-4 border-secondary">
+                            <h4 class="font-bold text-secondary mb-2">Instrumental y Materiales</h4>
+                            <p class="text-gray-700">Los fellows de todos los programas tienen la <strong>obligación de tener su instrumental quirúrgico</strong> para poder operar, de igual manera deben tener sus insumos para realizar su cirugía experimental.</p>
+                        </div>
+
+                        <div class="bg-primary-50 p-4 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-secondary mb-2">Beneficios por Investigación</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• <strong>Residentes:</strong> 1 trabajo de investigación por año publicado en revistas indexadas = pasaje a congreso en América Latina</li>
+                                <li>• <strong>Fellows:</strong> 1 trabajo sobre resultados visuales + 1 trabajo sobre mejora continua publicados = pasaje a congreso internacional en AL</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold text-primary mb-6">Estadísticas</h3>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-primary mb-2">+500</div>
-                            <p class="text-gray-700">Fellows graduados</p>
+                 <!-- VIII. Selección de Postulantes -->
+                <div class="bg-white p-8 rounded-xl shadow-lg md:col-span-2 hover:shadow-xl transition-all duration-300">
+                    <h3 class="font-heading text-2xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fas fa-user-check text-primary mr-3"></i>
+                        VIII. Selección de Postulantes
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Perfil del Aspirante</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                    <span class="text-gray-700">Médico oftalmólogo nacional o internacional acreditado o en proceso de serlo</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                    <span class="text-gray-700">Académicamente sobresaliente, que valora el conocimiento científico basado en evidencias</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                    <span class="text-gray-700">Comprometido con la labor social de la clínica con deseos de tener un impacto positivo en la vida de las personas que menos tienen</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                    <span class="text-gray-700">Motivado, dinámico, creativo, proactivo, comprometido a la superación personal</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                    <span class="text-gray-700">Persona con valores, socialmente responsable y que se conduce con los estándares más altos de ética</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-primary mb-2">98%</div>
-                            <p class="text-gray-700">Tasa de éxito quirúrgico</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-primary mb-2">+200</div>
-                            <p class="text-gray-700">Publicaciones científicas</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-primary mb-2">+50</div>
-                            <p class="text-gray-700">Países representados</p>
+
+                        <div>
+                            <h4 class="font-heading text-lg font-bold text-secondary mb-4">Proceso de Selección</h4>
+                            <div class="space-y-3">
+                                <div class="bg-primary-50 p-4 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="bg-primary text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mr-3">1</span>
+                                        <span class="font-bold text-secondary">Solicitud de Vacante</span>
+                                    </div>
+                                    <p class="text-sm text-gray-700 ml-11">Enviar solicitud al email: <strong>jefaturadeposgrado@clinicalaluz.com.pe</strong></p>
+                                    <p class="text-sm text-gray-600 ml-11">Contacto: Sra. Magda Arcaya, Secretaria de Posgrado</p>
+                                </div>
+
+                                <div class="bg-primary-50 p-4 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="bg-primary text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mr-3">2</span>
+                                        <span class="font-bold text-secondary">Evaluación Curricular</span>
+                                    </div>
+                                    <p class="text-sm text-gray-700 ml-11">Revisión de expediente académico y profesional</p>
+                                </div>
+
+                                <div class="bg-primary-50 p-4 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <span class="bg-primary text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mr-3">3</span>
+                                        <span class="font-bold text-secondary">Entrevista y Evaluación Psicométrica</span>
+                                    </div>
+                                    <p class="text-sm text-gray-700 ml-11">Realizada por el Comité de Capacitación y Docencia de la Clínica</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <h4 class="text-lg font-semibold text-secondary mb-3">Nuestros Fellows en el mundo</h4>
-                        <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
-                            <div class="h-full bg-primary rounded-full" style="width: 85%"></div>
-                        </div>
-                        <div class="flex justify-between mt-2 text-sm text-gray-600">
-                            <span>Posiciones de liderazgo</span>
-                            <span>85%</span>
+
+                    <div class="bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-xl">
+                        <h4 class="font-bold text-xl mb-4">Vacantes Disponibles por Programa</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="flex items-center justify-between">
+                                <span>Segmento Anterior, Córnea y Cirugía Refractiva</span>
+                                <span class="bg-white text-primary font-bold px-4 py-2 rounded-full">5/año</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Córnea, Refractiva y Superficie Ocular</span>
+                                <span class="bg-white text-primary font-bold px-4 py-2 rounded-full">1/año</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Glaucoma Clínico-Quirúrgico</span>
+                                <span class="bg-white text-primary font-bold px-4 py-2 rounded-full">2/año</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Retina Clínica-Quirúrgico</span>
+                                <span class="bg-white text-primary font-bold px-4 py-2 rounded-full">2/2 años</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1038,166 +1264,887 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-16 bg-secondary text-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-2">Testimonios de Nuestros Fellows</h2>
+     <!-- IX. Estrategia para Enseñar a Operar Cataratas Ambidiestramente -->
+     <!-- Adding new section IX with the ambidextrous cataract surgery training strategy -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">IX. Estrategia de Entrenamiento</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Estrategia Segura para Enseñar a Operar Cataratas Ambidiestramente</h2>
                 <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto">Conoce las experiencias de quienes han formado parte de nuestro programa
-                    de especialización.</p>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Programa estructurado en 6 ejes y 3 etapas para desarrollar habilidades quirúrgicas ambidiestras sin complicaciones
+                </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Testimonial 1 -->
-                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">MR</span>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="mb-8">
+                    <h3 class="font-heading text-2xl font-bold text-secondary mb-4">Estructura del Programa</h3>
+                    <p class="text-gray-700 mb-6">
+                        El programa se desarrolla en <strong>12 meses</strong>, dividido en <strong>3 etapas progresivas (E1, E2, E3)</strong>, 
+                        integrando <strong>6 ejes fundamentales</strong> de formación:
+                    </p>
+                    
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-primary-50 p-4 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-secondary mb-2">1. Exposiciones</h4>
+                            <p class="text-sm text-gray-700">Presentaciones académicas y casos clínicos</p>
                         </div>
-                        <div>
-                            <h4 class="font-bold">Dra. María Rodríguez</h4>
-                            <p class="text-sm opacity-80">Fellow 2019-2021</p>
+                        <div class="bg-secondary-50 p-4 rounded-lg border-l-4 border-secondary">
+                            <h4 class="font-bold text-secondary mb-2">2. Consultas</h4>
+                            <p class="text-sm text-gray-700">Atención clínica supervisada</p>
+                        </div>
+                        <div class="bg-primary-50 p-4 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-secondary mb-2">3. Investigación Científica</h4>
+                            <p class="text-sm text-gray-700">Desarrollo y publicación de trabajos</p>
+                        </div>
+                        <div class="bg-secondary-50 p-4 rounded-lg border-l-4 border-secondary">
+                            <h4 class="font-bold text-secondary mb-2">4. Docencia</h4>
+                            <p class="text-sm text-gray-700">Enseñanza a residentes menores</p>
+                        </div>
+                        <div class="bg-primary-50 p-4 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-secondary mb-2">5. Responsabilidad Social</h4>
+                            <p class="text-sm text-gray-700">Campañas y programas comunitarios</p>
+                        </div>
+                        <div class="bg-secondary-50 p-4 rounded-lg border-l-4 border-secondary">
+                            <h4 class="font-bold text-secondary mb-2">6. Marketing en Salud Visual</h4>
+                            <p class="text-sm text-gray-700">Gestión de servicios oftalmológicos</p>
                         </div>
                     </div>
-                    <p class="italic">"Mi experiencia como fellow en la Clínica la Luz transformó mi carrera. El nivel
-                        de formación, la exposición a casos complejos y el apoyo de los profesores fueron
-                        excepcionales."</p>
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">JL</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Dr. Juan López</h4>
-                            <p class="text-sm opacity-80">Fellow 2018-2020</p>
-                        </div>
+                <div class="bg-neutral p-6 rounded-xl shadow-md mb-8">
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-4">Matriz de Entrenamiento Progresivo</h3>
+                    <div class="mb-4">
+                        <img src="{{ asset('images/estrategia-ambidiestra.png') }}" alt="Estrategia de Entrenamiento Ambidiestro" class="w-full rounded-lg shadow-lg">
                     </div>
-                    <p class="italic">"La formación quirúrgica que recibí fue incomparable. Ahora dirijo mi propia
-                        clínica y aplico diariamente las técnicas y conocimientos adquiridos durante mi fellowship."</p>
+                    <p class="text-sm text-gray-600 italic">
+                        Matriz detallada del programa de entrenamiento en cirugía de catarata ambidiestra, mostrando la progresión de habilidades a través de las 3 etapas.
+                    </p>
                 </div>
 
-                <!-- Testimonial 3 -->
-                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">AG</span>
+                <div class="grid md:grid-cols-3 gap-6">
+                     <!-- Etapa 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-primary text-white font-bold text-2xl w-12 h-12 rounded-full flex items-center justify-center mr-3">E1</span>
+                            <h4 class="font-heading text-xl font-bold text-secondary">Etapa 1</h4>
                         </div>
-                        <div>
-                            <h4 class="font-bold">Dra. Ana García</h4>
-                            <p class="text-sm opacity-80">Fellow 2020-2022</p>
+                        <p class="text-sm text-gray-600 mb-4">Meses 1-4</p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• Protocolos de investigación</li>
+                            <li>• Wetlab 24x7</li>
+                            <li>• Examen de fluídica y facodinamia</li>
+                            <li>• Evaluación pre, trans y post quirúrgica</li>
+                            <li>• Manejo de equipos y microscopios</li>
+                            <li>• Crosslinking</li>
+                            <li>• Aprender a instrumentar</li>
+                            <li>• Exámenes auxiliares y uso de IA</li>
+                            <li>• Presentar 25% de trabajo de investigación</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-primary-100 rounded-lg">
+                            <p class="text-xs font-bold text-primary">Evaluación: ETP (Examen Teórico-Práctico)</p>
                         </div>
                     </div>
-                    <p class="italic">"Lo que más valoro de mi tiempo como fellow fue la combinación perfecta entre
-                        práctica clínica, investigación y docencia. Una experiencia integral que me preparó para los
-                        desafíos de la oftalmología moderna."</p>
+
+                     <!-- Etapa 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-secondary text-white font-bold text-2xl w-12 h-12 rounded-full flex items-center justify-center mr-3">E2</span>
+                            <h4 class="font-heading text-xl font-bold text-secondary">Etapa 2</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Meses 5-8</p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• Manejo de núcleo con diferentes técnicas</li>
+                            <li>• STOP AND CHOP</li>
+                            <li>• CHOP HORIZONTAL Y VERTICAL</li>
+                            <li>• DOBLE PRECHOPER</li>
+                            <li>• Wetlab PKP y lamelares</li>
+                            <li>• VVAA Central x PP</li>
+                            <li>• Presentar 25% de trabajo de investigación</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-secondary-100 rounded-lg">
+                            <p class="text-xs font-bold text-secondary">Evaluación: ETP (Examen Teórico-Práctico)</p>
+                        </div>
+                    </div>
+
+                     <!-- Etapa 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-primary text-white font-bold text-2xl w-12 h-12 rounded-full flex items-center justify-center mr-3">E3</span>
+                            <h4 class="font-heading text-xl font-bold text-secondary">Etapa 3</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Meses 9-12</p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li>• Facoemulsificación y FLACS</li>
+                            <li>• Cirugía de catarata compleja (MN)</li>
+                            <li>• LIO Fáquicos</li>
+                            <li>• LIO Premium</li>
+                            <li>• Manejo de la Afaquia (FE y RP)</li>
+                            <li>• Manejo de Queratocono</li>
+                            <li>• Ojo pequeño con VVAa</li>
+                            <li>• Excimer laser</li>
+                            <li>• Wetlab PKP y lamelares</li>
+                            <li>• PKP previo examen</li>
+                            <li>• Presentar 50% de trabajo</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-primary-100 rounded-lg">
+                            <p class="text-xs font-bold text-primary">Evaluación: EDG (Examen de Grado)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-xl shadow-lg">
+                    <h4 class="font-bold text-xl mb-3">Evaluación Final</h4>
+                    <p class="text-sm mb-4">
+                        Al final de cada etapa: <strong>Examen teórico-práctico</strong> por Dr. F. Silva, Dr. E. Gonzales y presentar trabajo de investigación a Dra. LG (entregables).
+                    </p>
+                    <p class="text-sm">
+                        <strong>Requisito adicional:</strong> FACONUC y MININUC con anestesia peribulbar. E1 + E2 + E3 con anestesia PB o tópica asistida.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-secondary-50 p-6 rounded-xl mt-12 shadow-lg">
+                <h4 class="font-heading text-lg font-bold text-secondary mb-3 flex items-center">
+                    <i class="fas fa-lightbulb text-secondary mr-3"></i>
+                    Requisitos Previos
+                </h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                        <span>2 protocolos de investigación (córnea y escleral)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                        <span>Wetlab 24x7 (disponibilidad completa)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                        <span>Examen de fluídica y facodinamia aprobado</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                        <span>Firma de acta de cumplimiento de reglamento</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                        <span>Hacer todo con la mano no dominante</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-secondary mt-1 mr-3 flex-shrink-0"></i>
+                        <span>Presentar su instrumental quirúrgico</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+     <!-- X. Perspectiva Laboral -->
+     <!-- Moving Perspectiva Laboral to its own section after section IX -->
+    <section class="py-20 bg-neutral">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-12">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">X. Perspectiva Laboral</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Oportunidades Profesionales</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-briefcase text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-xl font-bold text-secondary">Empleabilidad</h3>
+                            <div class="flex items-center mt-2">
+                                <span class="bg-primary-100 text-primary font-bold px-4 py-2 rounded-full text-2xl">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Nuestros graduados ocupan posiciones de liderazgo en instituciones prestigiosas a nivel nacional e internacional.
+                    </p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Clínicas y hospitales de alta complejidad</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Práctica privada independiente</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Docencia universitaria</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3 flex-shrink-0"></i>
+                            <span>Investigación clínica</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <h3 class="font-heading text-xl font-bold text-secondary mb-6">Ventajas Competitivas</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-secondary mb-1">Formación Integral</h4>
+                                <p class="text-sm text-gray-700">Capacitación en 6 áreas: académica, asistencial, docente, investigación, responsabilidad social y marketing</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-hands text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-secondary mb-1">Habilidades Ambidiestras</h4>
+                                <p class="text-sm text-gray-700">Capacidad única de operar con ambas manos, aumentando versatilidad quirúrgica</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-microscope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-secondary mb-1">Experiencia en Investigación</h4>
+                                <p class="text-sm text-gray-700">Publicaciones en revistas indexadas y presentaciones en congresos internacionales</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-certificate text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-secondary mb-1">Acreditación Reconocida</h4>
+                                <p class="text-sm text-gray-700">Certificación por Universidad César Vallejo y Clínica La Luz</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Adding new subsection: Oportunidades en Clínica La Luz -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <h3 class="font-heading text-2xl font-bold text-secondary mb-6 text-center">Oportunidades en Clínica La Luz</h3>
+                <p class="text-gray-700 text-center mb-8">
+                    La Clínica La Luz ofrece a nuestros egresados la posibilidad de trabajar en cualquiera de nuestras sedes 
+                    de Lima o de provincias, y también ofrece la posibilidad de participar como asociado o socios en nuestros 
+                    proyectos de expansión en el interior del país.
+                </p>
+
+                <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div class="bg-primary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-primary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">SMP</p>
+                        <p class="text-xs text-gray-600">San Martín de Porres</p>
+                    </div>
+                    <div class="bg-secondary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-secondary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">Central</p>
+                        <p class="text-xs text-gray-600">Sede Principal</p>
+                    </div>
+                    <div class="bg-primary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-primary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">Breña</p>
+                        <p class="text-xs text-gray-600">Lima</p>
+                    </div>
+                    <div class="bg-secondary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-secondary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">Comas</p>
+                        <p class="text-xs text-gray-600">Lima Norte</p>
+                    </div>
+                    <div class="bg-primary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-primary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">SJL</p>
+                        <p class="text-xs text-gray-600">San Juan de Lurigancho</p>
+                    </div>
+                    <div class="bg-secondary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-secondary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">Tacna</p>
+                        <p class="text-xs text-gray-600">Provincia</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-center">
+                        <i class="fas fa-map-marked-alt text-4xl mr-4"></i>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Chiclayo - Próximamente</h4>
+                            <p class="text-sm">Nuevas oportunidades de expansión en el norte del país</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-secondary mb-2">Contáctanos</h2>
+    <!-- Adding new section: Testimonios de Egresados -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">Testimonios</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Lo Que Dicen Nuestros Egresados</h2>
                 <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">¿Interesado en nuestro programa de fellows? Completa el
-                    formulario y nuestro equipo se pondrá en contacto contigo.</p>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Historias de éxito de profesionales que han completado nuestros programas de alta especialización
+                </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gray-50 p-8 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold text-primary mb-6">Envíanos un mensaje</h3>
-                    <form>
-                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-md text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary">Dr. Juan Pérez</h4>
+                            <p class="text-sm text-gray-600">Fellow 2022 - Segmento Anterior</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-quote-left text-secondary text-2xl"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "El programa de La Luz Educa transformó mi carrera. La formación ambidiestra y el acceso a tecnología 
+                        de punta me han permitido destacar en mi práctica profesional."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-md text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary">Dra. María González</h4>
+                            <p class="text-sm text-gray-600">Fellow 2021 - Glaucoma</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-quote-left text-primary text-2xl"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "La experiencia en investigación y la publication de mis trabajos me abrieron puertas a nivel internacional. 
+                        Hoy trabajo en una clínica de prestigio y sigo colaborando con La Luz."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-md text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary">Dr. Carlos Rodríguez</h4>
+                            <p class="text-sm text-gray-600">Fellow 2020 - Retina y Vítreo</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <i class="fas fa-quote-left text-secondary text-2xl"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "El programa de 2 años en retina me dio la confianza y habilidades para manejar casos complejos. 
+                        La formación integral en las 6 áreas me convirtió en un profesional completo."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adding new section: Preguntas Frecuentes (FAQ) -->
+    <section class="py-20 bg-neutral">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">FAQ</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Preguntas Frecuentes</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Respuestas a las preguntas más comunes sobre nuestros programas de fellowship
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-secondary">¿Cuál es el costo del programa de fellowship?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0 text-gray-700">
+                        <p>Los oftalmólogos que realizan cualquiera de los programas de alta especialización (fellowship) en la Clínica La Luz <strong>no pagan por su capacitación</strong>. El programa es ad honorem con dedicación exclusiva. Sin embargo, los fellows deben contar con su propio instrumental quirúrgico e insumos para cirugía experimental.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-secondary">¿Puedo aplicar si soy oftalmólogo extranjero?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0 text-gray-700">
+                        <p>Sí, nuestros programas están dirigidos tanto a oftalmólogos nacionales como internacionales. Para fellows extranjeros, la Clínica La Luz apoyará en la gestión de la visa de estudiante. Además, deben contar con un seguro médico activo durante el tiempo que dure el fellowship y un seguro de repatriación de restos en caso de fatalidad.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-secondary">¿Cuántas cirugías realizaré durante el programa?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0 text-gray-700">
+                        <p>Las metas quirúrgicas varían según el programa. Por ejemplo, en Segmento Anterior: 20 MININUC, 50 FACONUC, 50 facoemulsificaciones, 10 cirugías con femtosegundo, 10 LIO fáquicos, 20 excimer laser, entre otros. En Glaucoma: 50 cirugías como ayudante, 30 cirugías tutoreadas, 50 procedimientos con láser, y 60 cirugías de catarata.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-secondary">¿Qué requisitos de investigación debo cumplir?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0 text-gray-700">
+                        <p>Los fellows deben realizar <strong>2 trabajos de investigación por año</strong>: uno sobre resultados visuales y complicaciones de sus pacientes, y otro sobre temas que impacten positivamente en la mejora continua de los servicios. Ambos deben ser publicados en revistas indexadas. El cumplimiento de este requisito otorga el derecho a un pasaje para un congreso internacional en América Latina.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-secondary">¿Cómo es el proceso de selección?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0 text-gray-700">
+                        <p>El proceso incluye: 1) Solicitud de vacante al email jefaturadeposgrado@clinicalaluz.com.pe (contacto: Sra. Magda Arcaya), 2) Evaluación curricular, 3) Entrevista y evaluación psicométrica por el Comité de Capacitación y Docencia de la Clínica. Buscamos profesionales académicamente sobresalientes, con valores éticos sólidos y compromiso con la responsabilidad social.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-secondary">¿Qué es la estrategia de entrenamiento ambidiestro?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0 text-gray-700">
+                        <p>Es un programa estructurado en 3 etapas (E1, E2, E3) a lo largo de 12 meses, que integra 6 ejes de formación. El objetivo es desarrollar habilidades quirúrgicas con ambas manos, permitiendo mayor versatilidad y seguridad en cirugías de catarata. Incluye wetlab intensivo, evaluaciones teórico-prácticas y progresión desde técnicas básicas hasta procedimientos complejos como FLACS y manejo de cataratas complejas.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-secondary">¿Cuántas vacantes hay disponibles por programa?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0 text-gray-700">
+                        <p>Las vacantes son limitadas: Segmento Anterior, Córnea y Cirugía Refractiva (5 por año), Córnea, Refractiva y Superficie Ocular (1 por año), Glaucoma Clínico-Quirúrgico (2 por año), y Retina Clínica-Quirúrgico (2 cada 2 años). Recomendamos aplicar con anticipación.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition" onclick="toggleFAQ(this)">
+                        <span class="font-bold text-secondary">¿Qué oportunidades laborales tendré al graduarme?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0 text-gray-700">
+                        <p>La Clínica La Luz ofrece a los egresados la posibilidad de trabajar en cualquiera de nuestras sedes (SMP, Central, Breña, Comas, SJL, Tacna, Chiclayo) y la oportunidad de participar como asociado o socio en proyectos de expansión en el interior del país. Nuestros graduados tienen una empleabilidad del 100% y ocupan posiciones de liderazgo en instituciones prestigiosas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adding new section: Galería y Recursos -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">Instalaciones</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Nuestras Instalaciones y Tecnología</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Contamos con tecnología de punta y espacios diseñados para la excelencia en formación oftalmológica
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-microscope text-white text-3xl"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-secondary mb-2">Wetlab Avanzado</h4>
+                    <p class="text-sm text-gray-700">Laboratorio de cirugía experimental disponible 24/7 con equipos de última generación</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-procedures text-white text-3xl"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-secondary mb-2">Salas de Cirugía</h4>
+                    <p class="text-sm text-gray-700">Quirófanos equipados con tecnología femtosegundo, FLACS y sistemas de facoemulsificación</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-laptop-medical text-white text-3xl"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-secondary mb-2">Diagnóstico Avanzado</h4>
+                    <p class="text-sm text-gray-700">OCT Cirrus 5000, Angio-OCT, campos visuales Humphrey, topógrafos y tomógrafos</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book-reader text-white text-3xl"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-secondary mb-2">Biblioteca Digital</h4>
+                    <p class="text-sm text-gray-700">Acceso a revistas indexadas, bases de datos científicas y material académico actualizado</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-primary to-secondary text-white p-8 rounded-xl shadow-lg">
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <div class="text-4xl font-bold mb-2">7+</div>
+                        <p class="text-sm">Sedes en Perú</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2">50+</div>
+                        <p class="text-sm">Profesores Especialistas</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2">100+</div>
+                        <p class="text-sm">Fellows Graduados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adding new section: Acreditación y Reconocimientos -->
+    <section class="py-20 bg-neutral">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">Acreditación</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Reconocimientos y Certificaciones</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Nuestros programas cuentan con el respaldo de instituciones académicas de prestigio
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-university text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-xl font-bold text-secondary">Universidad César Vallejo</h3>
+                            <p class="text-sm text-gray-600">Acreditación Académica</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        Nuestros programas de fellowship están acreditados por la Universidad César Vallejo (UCV), 
+                        una de las instituciones educativas más prestigiosas del Perú, garantizando la calidad académica 
+                        y el reconocimiento nacional e internacional de nuestros certificados.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-hospital text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-xl font-bold text-secondary">Clínica La Luz</h3>
+                            <p class="text-sm text-gray-600">Certificación Institucional</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        La Clínica La Luz es una institución líder en oftalmología en Perú, con más de 7 sedes y un equipo 
+                        de más de 50 especialistas. Nuestro compromiso con la excelencia médica y la formación de profesionales 
+                        de alto nivel nos posiciona como referente en educación oftalmológica.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto hover:shadow-xl transition-all duration-300">
+                <h3 class="font-heading text-2xl font-bold text-secondary mb-6 text-center">Estándares Internacionales</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-600 text-2xl mr-4 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-secondary mb-2">International Council of Ophthalmology (ICO)</h4>
+                            <p class="text-sm text-gray-700">Nuestros programas siguen los estándares académicos y quirúrgicos establecidos por el ICO</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-600 text-2xl mr-4 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-secondary mb-2">American Academy of Ophthalmology (AAO)</h4>
+                            <p class="text-sm text-gray-700">Cumplimos con las exigencias académicas y quirúrgicas de la AAO para formación de subespecialistas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adding new section: Calendario Académico -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold text-sm uppercase tracking-wide">Calendario</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Calendario Académico</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Fechas importantes y actividades programadas para el año académico
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-calendar-check text-white text-xl"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-secondary">Convocatoria</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-primary text-xs mt-2 mr-3"></i>
+                                <span><strong>Enero - Febrero:</strong> Apertura de convocatoria para nuevos fellows</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-primary text-xs mt-2 mr-3"></i>
+                                <span><strong>Marzo:</strong> Entrevistas y evaluaciones psicométricas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-primary text-xs mt-2 mr-3"></i>
+                                <span><strong>Abril:</strong> Publicación de resultados y matrícula</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-white text-xl"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-secondary">Inicio de Programa</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-secondary text-xs mt-2 mr-3"></i>
+                                <span><strong>Mayo:</strong> Inicio del programa académico y curso intensivo de wetlab</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-secondary text-xs mt-2 mr-3"></i>
+                                <span><strong>Junio:</strong> Inicio de actividades clínicas y quirúrgicas</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-users-class text-white text-xl"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-secondary">Eventos Académicos</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-primary text-xs mt-2 mr-3"></i>
+                                <span><strong>Agosto (cada 2 años):</strong> Curso Internacional de Segmento Anterior, Córnea y Refractiva</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-primary text-xs mt-2 mr-3"></i>
+                                <span><strong>Durante el año:</strong> Participación en congresos nacionales e internacionales</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-award text-white text-xl"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-secondary">Graduación</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-secondary text-xs mt-2 mr-3"></i>
+                                <span><strong>Marzo - Abril:</strong> Presentación de trabajos de investigación</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-secondary text-xs mt-2 mr-3"></i>
+                                <span><strong>Mayo:</strong> Ceremonia de graduación</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-center">
+                        <i class="fas fa-info-circle text-3xl mr-4"></i>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Nota Importante</h4>
+                            <p class="text-sm">Las fechas pueden variar según el programa específico. Consulta con la Secretaría de Posgrado para información actualizada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adding CTA section before contact -->
+    <section class="py-20 bg-gradient-to-br from-primary to-secondary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-6">¿Listo para Transformar tu Carrera?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+                Únete a la próxima generación de oftalmólogos líderes. Aplica ahora a nuestros programas de alta especialización.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#contacto" class="inline-flex items-center bg-white text-primary font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                    <i class="fas fa-paper-plane mr-3"></i>
+                    <span>Solicitar Información</span>
+                </a>
+                <a href="mailto:jefaturadeposgrado@clinicalaluz.com.pe" class="inline-flex items-center border-2 border-white text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-primary transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                    <i class="fas fa-envelope mr-3"></i>
+                    <span>Contactar Directamente</span>
+                </a>
+            </div>
+            <div class="mt-8 flex items-center justify-center text-sm opacity-75">
+                <i class="fas fa-clock mr-2"></i>
+                <span>Vacantes limitadas - Aplica antes del 28 de febrero</span>
+            </div>
+        </div>
+    </section>
+
+     <!-- Contact Section -->
+    <section id="contacto" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-10">
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mb-4">Contáctanos</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    ¿Interesado en nuestro programa? Completa el formulario y nos pondremos en contacto contigo
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-neutral p-8 rounded-xl shadow-lg">
+                    <form action="{{ route('contact.submit') }}" method="POST">
+                        @csrf
+                        <div class="space-y-4">
                             <div>
-                                <label for="name" class="block text-gray-700 mb-2">Nombre</label>
-                                <input type="text" id="name"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <label for="name" class="block text-secondary font-bold mb-2">Nombre Completo</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
                             </div>
                             <div>
-                                <label for="email" class="block text-gray-700 mb-2">Email</label>
-                                <input type="email" id="email"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <label for="email" class="block text-secondary font-bold mb-2">Email</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
                             </div>
+                            <div>
+                                <label for="phone" class="block text-secondary font-bold mb-2">Teléfono</label>
+                                <input type="tel" id="phone" name="phone"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
+                            </div>
+                            <div>
+                                <label for="specialty" class="block text-secondary font-bold mb-2">Especialidad de Interés</label>
+                                <select id="specialty" name="specialty" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="segmento-anterior">Segmento Anterior, Córnea y Cirugía Refractiva</option>
+                                    <option value="glaucoma">Glaucoma Clínico-Quirúrgico</option>
+                                    <option value="retina">Retina y Vítreo Clínico-Quirúrgico</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-secondary font-bold mb-2">Mensaje</label>
+                                <textarea id="message" name="message" rows="4"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl">
+                                Enviar Solicitud
+                            </button>
                         </div>
-                        <div class="mb-4">
-                            <label for="subject" class="block text-gray-700 mb-2">Asunto</label>
-                            <input type="text" id="subject"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 mb-2">Mensaje</label>
-                            <textarea id="message" rows="4"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                        </div>
-                        <button type="submit"
-                            class="bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition w-full">Enviar
-                            Mensaje</button>
                     </form>
                 </div>
 
-                <div>
-                    <h3 class="text-2xl font-bold text-primary mb-6">Información de Contacto</h3>
-                    <div class="space-y-6">
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
-                                </div>
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-white text-xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-semibold text-secondary mb-1">Dirección</h4>
-                                <p class="text-gray-600">Av. Principal 123, Ciudad Médica<br>CP 12345, País</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                    <i class="fas fa-phone text-white text-xl"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-secondary mb-1">Teléfono</h4>
-                                <p class="text-gray-600">+123 456 7890</p>
-                                <p class="text-gray-600">+123 456 7891</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                    <i class="fas fa-envelope text-white text-xl"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-semibold text-secondary mb-1">Email</h4>
-                                <p class="text-gray-600">fellows@clinicalaluz.com</p>
-                                <p class="text-gray-600">info@clinicalaluz.com</p>
+                                <h4 class="font-bold text-secondary mb-2">Dirección</h4>
+                                <p class="text-gray-700">Clínica La Luz<br>Lima, Perú</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-8">
-                        <h4 class="text-lg font-semibold text-secondary mb-4">Síguenos</h4>
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-secondary mb-2">Email</h4>
+                                <p class="text-gray-700">fellows@clinicalaluz.com.pe</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-phone text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-secondary mb-2">Teléfono</h4>
+                                <p class="text-gray-700">+51 XXX XXX XXX</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <h4 class="font-bold text-secondary mb-4">Síguenos</h4>
                         <div class="flex space-x-4">
-                            <a href="#"
-                                class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-90 transition">
+                            <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#"
-                                class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-90 transition">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#"
-                                class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-90 transition">
+                            <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#"
-                                class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-90 transition">
+                            <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </div>
@@ -1208,88 +2155,37 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-secondary text-white py-12">
-        <div class="container mx-auto px-4">
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 md:px-10">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-eye-dropper text-primary text-3xl mr-2"></i>
-                        <div>
-                            <h1 class="text-xl font-bold text-primary">Clínica la Luz</h1>
-                            <p class="text-xs text-white opacity-80">Excelencia en Oftalmología</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 mb-4">Formando a los mejores especialistas en oftalmología con los más
-                        altos estándares de calidad y tecnología de vanguardia.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-primary transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-primary transition">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-primary transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-primary transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-bold mb-4">La Luz Educa</h3>
+                    <p class="text-gray-400">Formando a los mejores especialistas en oftalmología con excelencia académica y ética profesional.</p>
                 </div>
-
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
+                    <h4 class="font-bold mb-4">Enlaces Rápidos</h4>
                     <ul class="space-y-2">
-                        <li><a href="#inicio" class="text-gray-400 hover:text-primary transition">Inicio</a></li>
-                        <li><a href="#programa" class="text-gray-400 hover:text-primary transition">Programa
-                                Fellows</a></li>
-                        <li><a href="#especialidades"
-                                class="text-gray-400 hover:text-primary transition">Especialidades</a></li>
-                        <li><a href="#logros" class="text-gray-400 hover:text-primary transition">Logros</a></li>
-                        <li><a href="#contacto" class="text-gray-400 hover:text-primary transition">Contacto</a></li>
+                        <li><a href="#objetivos" class="text-gray-400 hover:text-white transition">Objetivos</a></li>
+                        <li><a href="#areas-formacion" class="text-gray-400 hover:text-white transition">Áreas de Formación</a></li>
+                        <li><a href="#plan-curricular" class="text-gray-400 hover:text-white transition">Plan Curricular</a></li>
                     </ul>
                 </div>
-
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Especialidades</h4>
+                    <h4 class="font-bold mb-4">Especialidades</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition">Córnea y Cirugía
-                                Refractiva</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition">Retina y Vítreo</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition">Glaucoma</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition">Oftalmología
-                                Pediátrica</a></li>
-                        <li><a href="#"
-                                class="text-gray-400 hover:text-primary transition">Neuro-oftalmología</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Segmento Anterior</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Glaucoma</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Retina y Vítreo</a></li>
                     </ul>
                 </div>
-
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Horario de Atención</h4>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between">
-                            <span class="text-gray-400">Lunes - Viernes:</span>
-                            <span class="text-white">8:00 - 20:00</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-400">Sábados:</span>
-                            <span class="text-white">9:00 - 14:00</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-400">Domingos:</span>
-                            <span class="text-white">Cerrado</span>
-                        </li>
-                    </ul>
-                    <div class="mt-4">
-                        <a href="#contacto"
-                            class="bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition inline-block">Contáctanos</a>
-                    </div>
+                    <h4 class="font-bold mb-4">Acreditación</h4>
+                    <p class="text-gray-400 mb-2">Universidad César Vallejo</p>
+                    <p class="text-gray-400">Clínica La Luz</p>
                 </div>
             </div>
-
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Clínica la Luz. Todos los derechos reservados.</p>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; {{ date('Y') }} Clínica La Luz. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -1305,21 +2201,19 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scrolling for anchor links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-
+                
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-
-                    // Close mobile menu if open
+                    
                     if (!mobileMenu.classList.contains('hidden')) {
                         mobileMenu.classList.add('hidden');
                     }
@@ -1327,111 +2221,101 @@
             });
         });
 
+        // Program tabs
+        function showProgram(programId) {
+            document.querySelectorAll('.program-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            document.querySelectorAll('.program-tab').forEach(tab => {
+                tab.classList.remove('active', 'bg-primary', 'text-white');
+                tab.classList.add('bg-neutral', 'text-secondary');
+            });
+            
+            document.getElementById(programId).classList.remove('hidden');
+            
+            event.target.classList.add('active', 'bg-primary', 'text-white');
+            event.target.classList.remove('bg-neutral', 'text-secondary');
+        }
+
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
-                header.classList.add('py-2');
                 header.classList.add('shadow-lg');
+                header.classList.add('border-b', 'border-gray-200');
             } else {
-                header.classList.remove('py-2');
                 header.classList.remove('shadow-lg');
+                header.classList.remove('border-b', 'border-gray-200');
             }
         });
 
-        // Initialize Swiper
-        var swiper = new Swiper(".mySwiper", {
-            effect: "fade",
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-        });
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        let currentSlide = 0;
+        let carouselInterval;
 
-        // Counter animation
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200;
-
-        counters.forEach(counter => {
-            const animate = () => {
-                const value = +counter.innerText.replace('+', '');
-                const data = +counter.getAttribute('data-target');
-                const time = data / speed;
-
-                if (value < data) {
-                    counter.innerText = Math.ceil(value + time);
-                    setTimeout(animate, 1);
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('active');
                 } else {
-                    if (counter.innerText.indexOf('+') === -1 && counter.innerText > 100) {
-                        counter.innerText += '+';
-                    }
+                    slide.classList.add('opacity-0');
+                    slide.classList.remove('active');
                 }
-            }
-
-            // Set data-target attribute based on current text
-            const targetValue = counter.innerText.replace('+', '');
-            counter.setAttribute('data-target', targetValue);
-            counter.innerText = '0';
-
-            // Start animation when element is in viewport
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animate();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.5
             });
+            
+            indicators.forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.add('active', 'bg-white');
+                    indicator.classList.remove('bg-white/50');
+                } else {
+                    indicator.classList.remove('active', 'bg-white');
+                    indicator.classList.add('bg-white/50');
+                }
+            });
+        }
 
-            observer.observe(counter);
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function startCarousel() {
+            // Changed interval to 7000ms (7 seconds) as per the update
+            carouselInterval = setInterval(nextSlide, 7000); // 7 seconds between slides
+        }
+
+        function stopCarousel() {
+            clearInterval(carouselInterval);
+        }
+
+        indicators.forEach((indicator, i) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = i;
+                showSlide(currentSlide);
+                stopCarousel();
+                startCarousel(); // Restart the interval
+            });
         });
-        // Initialize Fellows Slider
-        var fellowsSwiper = new Swiper(".fellowsSwiper", {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            centeredSlides: true,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            effect: "coverflow",
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: false,
-            },
-            pagination: {
-                el: ".fellows-slider-container .swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".fellows-slider-container .swiper-button-next",
-                prevEl: ".fellows-slider-container .swiper-button-prev",
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 1,
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                },
-            }
-        });
+
+        // Start carousel on page load
+        startCarousel();
+
+        // Pause carousel on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', stopCarousel);
+        carouselContainer.addEventListener('mouseleave', startCarousel);
+
     </script>
 </body>
-
 </html>
