@@ -42,5 +42,5 @@ Route::middleware(['web', FilamentAuthenticate::class])->group(function () {
         '/fellows/evaluaciones/{id}/imprimir',
         [PrintEvaluacionController::class, 'show']
     )->name('fellows.eval.print');
-    Route::get('/calculadora', [CalculadoraController::class, 'index'])->name('calculadora.index');
+
 });
