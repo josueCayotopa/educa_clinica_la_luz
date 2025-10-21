@@ -21,7 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
+Route::get('/centros-quirurgicos', function () {
+    return view('page.centros-quirurgicos');
+})->name('centros.index');
+
+
 
 Route::get('/evaluaciones', function () {
     return view('evaluaciones');
@@ -34,6 +40,27 @@ Route::get('/contacto', function () {
     return view('contacto');
 })->name('contact.submit');
 
+Route::get('/contactos', function () {
+    return view('contactos');
+})->name('contacto');
+
+Route::get('/nosotros', function () {
+    return view('nosotros');
+})->name('nosotros');
+
+// Programas
+Route::get('/programas/segmento-anterior', function () {
+    return view('programas.segmento-anterior');
+})->name('programas.segmento-anterior');
+
+Route::get('/programas/glaucoma', function () {
+    return view('programas.glaucoma');
+})->name('programas.glaucoma');
+
+Route::get('/programas/retina-vitreo', function () {
+    return view('programas.retina-vitreo');
+})->name('programas.retina-vitreo');
+
 
 Route::middleware(['web', FilamentAuthenticate::class])->group(function () {
     Route::get('/fellows/curva', [LearningCurveController::class, 'show'])->name('fellows.curva');
@@ -42,5 +69,4 @@ Route::middleware(['web', FilamentAuthenticate::class])->group(function () {
         '/fellows/evaluaciones/{id}/imprimir',
         [PrintEvaluacionController::class, 'show']
     )->name('fellows.eval.print');
-
 });
