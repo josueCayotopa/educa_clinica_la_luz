@@ -59,15 +59,13 @@
                 </span>
             </div>
             <h1 class="text-5xl md:text-6xl font-bold mb-6">
-                Centros Quirúrgicos de Oftalmología
+                11 salas de operaciones en oftalmología de la red Clínica La Luz
             </h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
-                9 centros especializados equipados con tecnología de última generación para tu formación práctica
-            </p>
+            
             <div class="flex flex-wrap justify-center gap-6 text-lg">
                 <div class="flex items-center">
                     <i class="fas fa-check-circle text-green-400 mr-2 text-2xl"></i>
-                    <span>9 Centros a Nivel Nacional</span>
+                    <span>11 salas quirúrgicas a Nivel Nacional</span>
                 </div>
                 <div class="flex items-center">
                     <i class="fas fa-check-circle text-green-400 mr-2 text-2xl"></i>
@@ -98,13 +96,13 @@
             <!-- Lima Central -->
             <div class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-8 border-2 border-primary/20 card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-2xl font-bold text-secondary">Lima Central</h3>
+                    <h3 class="text-2xl font-bold text-secondary">Sede  Central</h3>
                     <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold">4 Sedes</span>
                 </div>
                 <ul class="space-y-3">
                     <li class="flex items-center text-gray-700">
                         <i class="fas fa-map-marker-alt text-primary mr-3"></i>
-                        Sede Principal - La Victoria
+                        Sede Principal - Av Arequipa 
                     </li>
                     <li class="flex items-center text-gray-700">
                         <i class="fas fa-map-marker-alt text-primary mr-3"></i>
@@ -114,17 +112,14 @@
                         <i class="fas fa-map-marker-alt text-primary mr-3"></i>
                         San Juan de Lurigancho
                     </li>
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-map-marker-alt text-primary mr-3"></i>
-                        Sede Central Plus
-                    </li>
+                  
                 </ul>
             </div>
             
             <!-- Norte -->
             <div class="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-2xl p-8 border-2 border-secondary/20 card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-2xl font-bold text-secondary">Zona Norte</h3>
+                    <h3 class="text-2xl font-bold text-secondary"> Norte Peruano</h3>
                     <span class="bg-secondary text-white px-4 py-2 rounded-full text-sm font-bold">3 Sedes</span>
                 </div>
                 <ul class="space-y-3">
@@ -138,7 +133,7 @@
                     </li>
                     <li class="flex items-center text-gray-700">
                         <i class="fas fa-map-marker-alt text-primary mr-3"></i>
-                        Piura (Próximamente)
+                        Cajamarca (Próximamente)
                     </li>
                 </ul>
             </div>
@@ -146,7 +141,7 @@
             <!-- Sur -->
             <div class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-8 border-2 border-primary/20 card-hover">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-2xl font-bold text-secondary">Zona Sur</h3>
+                    <h3 class="text-2xl font-bold text-secondary">Sur Peruano</h3>
                     <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold">2 Sedes</span>
                 </div>
                 <ul class="space-y-3">
@@ -154,10 +149,7 @@
                         <i class="fas fa-map-marker-alt text-primary mr-3"></i>
                         Tacna
                     </li>
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-map-marker-alt text-primary mr-3"></i>
-                        Arequipa (Próximamente)
-                    </li>
+                   
                 </ul>
             </div>
         </div>

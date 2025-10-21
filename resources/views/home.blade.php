@@ -814,7 +814,7 @@
                 <div class="grid md:grid-cols-2 gap-0 items-center">
                     <!-- Imagen del Dr. Fermín -->
                     <div class="relative">
-                        <img src="{{ asset('images/doctor-fermin.jpg') }}" alt="Dr. Fermín Silva Cayatopa" class="w-full h-full object-cover md:rounded-l-2xl">
+                        <img src="{{ asset('images/doctor-fermin 3.jpg') }}" alt="Dr. Fermín Silva Cayatopa" class="w-full h-full object-cover md:rounded-l-2xl">
                         <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent md:rounded-l-2xl"></div>
                         <div class="absolute bottom-4 left-4 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md">
                             Fundador y Director General
@@ -865,11 +865,11 @@
                         <h3 class="text-xl font-bold text-secondary mb-2">Dr. Víctor Viaña Pongo</h3>
                         <p class="text-primary font-semibold mb-3">
                             <i class="fas fa-user-md mr-2"></i>
-                            Jefe del Departamento Segmento Anterior, Córnea y Cirugía Refractiva
+                            Jefe del Departamento Segmento Anterior, Córnea y Cirugía Refractiva 
                         </p>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                             Subespecialista en Cirugía Refractiva y Catarata. Certificada por la Sociedad
-                            Panamericana de Oftalmología. Pionera en técnicas de femtosegundo.
+                            Panamericana de Oftalmología. Pionera en técnicas de femtosegundo.Jefe del departamento de imagen de Segmento Anterior, Córnea y Cirugía Refractiva de Clínica La Luz. Docente del fellowship de Segmento Anterior de Clínica La Luz.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">LASIK</span>
@@ -914,17 +914,10 @@
                         <h3 class="text-xl font-bold text-secondary mb-2"> Dr. Alejandro Silva</h3>
                         <p class="text-primary font-semibold mb-3">
                             <i class="fas fa-user-md mr-2"></i>
-                            Subespecialista en Segmento Anterior, Córnea y Cirugía Refractiva
+                            Subespecialista en Segmento Anterior, Córnea y Cirugía Refractiva, profesor del fellowship de Segmento Anterior de Clínica La Luz
                         </p>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                            Médico cirujano oftalmólogo empático y profesional, con
-                            experiencia de pacientes por consulta externa, tópico de Calle
-                            emergencia y medicina preventiva, mi objetivo es seguir Sol de la
-                            desarrollando habilidades y adquiriendo experiencia, a fin La
-                            de continuar creciendo como profesional. Un líder fuerte
-                            que trabaja bien bajo presión y en equipo con otros
-                            profesionales médicos y no médicos, comprometido a
-                            brindar a los pacientes la mejor atención posible.
+                            Médico cirujano oftalmólogo con subespecialidad en segmento anterior, córnea y cirugía refractiva. Profesor del fellowship de Segmento Anterior de Clínica La Luz. Miembro del directorio del Grupo Empresarial La Luz.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">Catarata</span>
@@ -941,14 +934,13 @@
                 <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
                     <img src="{{ asset('images/doctores con fondo/dra ana luisa gonzales 2.jpg') }}" alt="Dra. Ana Luisa González Mendes" class="doctor-image">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-secondary mb-2"> Dra. Ana Luisa González Mendes</h3>
+                        <h3 class="text-xl font-bold text-secondary mb-2"> Dra. Ana Luisa González Mendez</h3>
                         <p class="text-primary font-semibold mb-3">
                             <i class="fas fa-user-md mr-2"></i>
-                            Especialista en Superficie Ocular
+                            Subespecialista en Segmento Anterior, Córnea y Cirugía Refractiva
                         </p>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                            Fellowship en enfermedades de superficie ocular y ojo seco. Experta en
-                            preparación preoperatoria y optimización de resultados quirúrgicos.
+                            Médico cirujano oftalmólogo con subespecialidad en segmento anterior, córnea y cirugía refractiva. Directora de investigación y docente del fellowship de Segmento Anterior, córnea y cirugía refractiva de Clínica La Luz.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">Ojo Seco</span>
@@ -967,15 +959,13 @@
                         <h3 class="text-xl font-bold text-secondary mb-2">Dr. Jorge Vega Aquino</h3>
                         <p class="text-primary font-semibold mb-3">
                             <i class="fas fa-user-md mr-2"></i>
-                            Especialista en Superficie Ocular
+                            Medico especialista en segmento anterior, córnea y cirugía refractiva
                         </p>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                            Fellowship en enfermedades de superficie ocular y ojo seco. Experta en
-                            preparación preoperatoria y optimización de resultados quirúrgicos.
+                            Profesor del fellowship de Segmento Anterior, Córnea y Cirugía Refractiva de Clínica La Luz. Jefe del servicio de oftalmología de Clínica La Luz Sede San Juan de Lurigancho.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">Ojo Seco</span>
-                            <span class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">Superficie</span>
+                          
                         </div>
                         <div class="flex gap-3 text-gray-600">
                             <a href="#" class="hover:text-primary transition"><i class="fab fa-linkedin text-xl"></i></a>
@@ -984,7 +974,7 @@
                     </div>
                 </div>
 
-
+ M
             </div>
         </div>
     </section>
@@ -2454,135 +2444,7 @@
 
 
 
-    <!-- ================================ -->
-    <!-- NUEVA SECCIÓN: CÓRNEA  Y CIRUGIA REFRACTIVA -->
-    <!-- ================================ -->
 
-    <section id="profesores-segmento-anterior" class="py-20 bg-white">
-
-        <div class="container mx-auto px-4 md:px-10">
-            <!-- Título de la sección -->
-            <div class="text-center mb-16">
-                <span class="text-primary font-bold text-sm uppercase tracking-wide">Programa de Especialización</span>
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Córnea, Refractiva y Superficie Ocular</h2>
-                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto text-lg">
-                    Descubre nuestro programa de alta especialización en Córnea, Refractiva y Superficie Ocular.
-                </p>
-            </div>
-
-            <!-- Video Principal - Grande y Responsivo -->
-            <div class="max-w-6xl mx-auto mb-12">
-                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                    <div class="video-container">
-                        <!-- Opción 1: Video de YouTube -->
-                        <iframe width="1280" height="720" src="https://www.youtube.com/embed/ZqH8_omBycc" title="Experiencia en programa de alta especialización - Fellowship (Clínica La Luz)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="container mx-auto px-4 md:px-10">
-                <!-- Título de la sección -->
-                <div class="text-center mb-16">
-                    <span class="text-primary font-bold text-sm uppercase tracking-wide">Nuestro Equipo</span>
-                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">
-                        Profesores de Córnea, Refractiva y Superficie Ocular
-                    </h2>
-                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                    <p class="text-gray-600 max-w-3xl mx-auto">
-                        Conoce a nuestros destacados profesionales con amplia experiencia nacional e internacional
-                        en cirugía de Córnea, Refractiva y Superficie Ocular.
-                    </p>
-                </div>
-
-                <!-- Grid de Médicos/Profesores -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Doctor Fermin Silva -->
-                    <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
-                        <img src="{{ asset('images/doctores con fondo/dr fermín 2.jpg') }}" alt="Dr. Juan Pérez" class="doctor-image">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-secondary mb-2"> Dr. Fermín Silva Cayatopa</h3>
-                            <p class="text-primary font-semibold mb-3">
-                                <i class="fas fa-user-md mr-2"></i>
-                                Especialista en Segmento Anterior
-                            </p>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Subespecialista de Segmento Anterior, Córnea y Cirugía Refractiva.
-                                Fundador del departamento de capacitacion, docencia e investigacion de la Clinica La Luz en el 2012
-                                Profesor de cirugía experimental de trasplantes de cornea totales y lamelares en ojos de cerdo
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">Catarata</span>
-                                <span class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">Córnea</span>
-                                <span class="text-xs bg-secondary/10 text-secondary px-3 py-1 rounded-full">Refractiva</span>
-                            </div>
-                            <div class="flex gap-3 text-gray-600">
-                                <a href="#" class="hover:text-primary transition"><i class="fab fa-linkedin text-xl"></i></a>
-                                <a href="#" class="hover:text-primary transition"><i class="fas fa-envelope text-xl"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Doctor Alejandro Silva -->
-                    <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
-                        <img src="{{ asset('images/doctores con fondo/dr alejandro silva 2.jpg') }}" alt="Dr. Juan Pérez" class="doctor-image">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-secondary mb-2"> Dr. Alejandro Silva</h3>
-                            <p class="text-primary font-semibold mb-3">
-                                <i class="fas fa-user-md mr-2"></i>
-                                Subespecialista en Segmento Anterior, Córnea y Cirugía Refractiva
-                            </p>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Médico cirujano oftalmólogo empático y profesional, con
-                                experiencia de pacientes por consulta externa, tópico de Calle
-                                emergencia y medicina preventiva, mi objetivo es seguir Sol de la
-                                desarrollando habilidades y adquiriendo experiencia, a fin La
-                                de continuar creciendo como profesional. Un líder fuerte
-                                que trabaja bien bajo presión y en equipo con otros
-                                profesionales médicos y no médicos, comprometido a
-                                brindar a los pacientes la mejor atención posible.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">Catarata</span>
-                                <span class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">Córnea</span>
-                                <span class="text-xs bg-secondary/10 text-secondary px-3 py-1 rounded-full">Refractiva</span>
-                            </div>
-                            <div class="flex gap-3 text-gray-600">
-                                <a href="#" class="hover:text-primary transition"><i class="fab fa-linkedin text-xl"></i></a>
-                                <a href="#" class="hover:text-primary transition"><i class="fas fa-envelope text-xl"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  Dra. Ana Luisa González Mendes -->
-                    <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
-                        <img src="{{ asset('images/doctores con fondo/dra ana luisa gonzales 2.jpg') }}" alt="Dra. Ana Luisa González Mendes" class="doctor-image">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-secondary mb-2"> Dra. Ana Luisa González Mendes</h3>
-                            <p class="text-primary font-semibold mb-3">
-                                <i class="fas fa-user-md mr-2"></i>
-                                Especialista en Superficie Ocular
-                            </p>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                Fellowship en enfermedades de superficie ocular y ojo seco. Experta en
-                                preparación preoperatoria y optimización de resultados quirúrgicos.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">Ojo Seco</span>
-                                <span class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">Superficie</span>
-                            </div>
-                            <div class="flex gap-3 text-gray-600">
-                                <a href="#" class="hover:text-primary transition"><i class="fab fa-linkedin text-xl"></i></a>
-                                <a href="#" class="hover:text-primary transition"><i class="fas fa-envelope text-xl"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-    </section>
 
 <!-- ================================ -->
 <!-- SECCIÓN: GLAUCOMA -->
@@ -2593,7 +2455,7 @@
         <!-- Título de la sección -->
         <div class="text-center mb-16">
             <span class="text-primary font-bold text-sm uppercase tracking-wide">Programa de Especialización</span>
-            <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Glaucoma</h2>
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Glaucoma Clínico-Quirúrgico</h2>
             <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p class="text-gray-600 max-w-3xl mx-auto text-lg">
                 Programa integral de formación en diagnóstico, tratamiento médico y quirúrgico del glaucoma
@@ -2649,6 +2511,26 @@
             </h3>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+             <!-- Dr. Yoaner Martín Perera -->
+                <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img src="{{ asset('images/Dr Yoanner Martin.jpeg') }}" 
+                         alt="Dr. Yoaner Martín Perera" 
+                         class="doctor-image">
+                    <div class="p-5">
+                        <h4 class="text-lg font-bold text-secondary mb-2">Dr. Yoaner Martín Perera</h4>
+                        <p class="text-primary font-semibold text-sm mb-2">
+                            <i class="fas fa-stethoscope mr-1"></i>
+                           Jefe del Departamento de Glaucoma Clínico-Quirúrgico
+                        </p>
+                        <p class="text-gray-600 text-sm mb-3">
+                          Medico subespecialista en glaucoma 
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">OCT</span>
+                            <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">Campimetría</span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Dra. Meida Espinoza -->
                 <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
@@ -2694,27 +2576,7 @@
                     </div>
                 </div>
 
-                <!-- Dr. Yoaner Martín Perera -->
-                <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
-                    <img src="{{ asset('images/Dr Yoanner Martin.jpeg') }}" 
-                         alt="Dr. Yoaner Martín Perera" 
-                         class="doctor-image">
-                    <div class="p-5">
-                        <h4 class="text-lg font-bold text-secondary mb-2">Dr. Yoaner Martín Perera</h4>
-                        <p class="text-primary font-semibold text-sm mb-2">
-                            <i class="fas fa-stethoscope mr-1"></i>
-                            Especialista en Diagnóstico por Imágenes
-                        </p>
-                        <p class="text-gray-600 text-sm mb-3">
-                            Experto en imagenología: OCT, Campimetría y Paquimetría.
-                            Diagnóstico precoz del glaucoma.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">OCT</span>
-                            <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">Campimetría</span>
-                        </div>
-                    </div>
-                </div>
+               
 
             </div>
         </div>
@@ -4031,10 +3893,7 @@
                             <span class="text-gray-700 font-medium">Segmento Anterior, Córnea y Cirugía Refractiva</span>
                             <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">1 año</span>
                         </div>
-                        <div class="flex items-center justify-between p-4 bg-secondary-50 rounded-lg border-l-4 border-secondary">
-                            <span class="text-gray-700 font-medium">Córnea, Refractiva y Superficie Ocular</span>
-                            <span class="bg-secondary text-white font-bold px-4 py-2 rounded-full">1 año</span>
-                        </div>
+                      
                         <div class="flex items-center justify-between p-4 bg-primary-50 rounded-lg border-l-4 border-primary">
                             <span class="text-gray-700 font-medium">Glaucoma Clínico-Quirúrgico</span>
                             <span class="bg-primary text-white font-bold px-4 py-2 rounded-full">1 año</span>
@@ -4150,10 +4009,7 @@
                                 <span>Segmento Anterior, Córnea y Cirugía Refractiva</span>
                                 <span class="bg-white text-primary font-bold px-4 py-2 rounded-full">5/año</span>
                             </div>
-                            <div class="flex items-center justify-between">
-                                <span>Córnea, Refractiva y Superficie Ocular</span>
-                                <span class="bg-white text-primary font-bold px-4 py-2 rounded-full">1/año</span>
-                            </div>
+                            
                             <div class="flex items-center justify-between">
                                 <span>Glaucoma Clínico-Quirúrgico</span>
                                 <span class="bg-white text-primary font-bold px-4 py-2 rounded-full">2/año</span>
@@ -4190,38 +4046,13 @@
                         integrando <strong>6 ejes fundamentales</strong> de formación:
                     </p>
 
-                    <div class="grid md:grid-cols-3 gap-4 mb-8">
-                        <div class="bg-primary-50 p-4 rounded-lg border-l-4 border-primary">
-                            <h4 class="font-bold text-secondary mb-2">1. Exposiciones</h4>
-                            <p class="text-sm text-gray-700">Presentaciones académicas y casos clínicos</p>
-                        </div>
-                        <div class="bg-secondary-50 p-4 rounded-lg border-l-4 border-secondary">
-                            <h4 class="font-bold text-secondary mb-2">2. Consultas</h4>
-                            <p class="text-sm text-gray-700">Atención clínica supervisada</p>
-                        </div>
-                        <div class="bg-primary-50 p-4 rounded-lg border-l-4 border-primary">
-                            <h4 class="font-bold text-secondary mb-2">3. Investigación Científica</h4>
-                            <p class="text-sm text-gray-700">Desarrollo y publicación de trabajos</p>
-                        </div>
-                        <div class="bg-secondary-50 p-4 rounded-lg border-l-4 border-secondary">
-                            <h4 class="font-bold text-secondary mb-2">4. Docencia</h4>
-                            <p class="text-sm text-gray-700">Enseñanza a residentes menores</p>
-                        </div>
-                        <div class="bg-primary-50 p-4 rounded-lg border-l-4 border-primary">
-                            <h4 class="font-bold text-secondary mb-2">5. Responsabilidad Social</h4>
-                            <p class="text-sm text-gray-700">Campañas y programas comunitarios</p>
-                        </div>
-                        <div class="bg-secondary-50 p-4 rounded-lg border-l-4 border-secondary">
-                            <h4 class="font-bold text-secondary mb-2">6. Marketing en Salud Visual</h4>
-                            <p class="text-sm text-gray-700">Gestión de servicios oftalmológicos</p>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div class="bg-neutral p-6 rounded-xl shadow-md mb-8">
                     <h3 class="font-heading text-xl font-bold text-secondary mb-4">Matriz de Entrenamiento Progresivo</h3>
                     <div class="mb-4">
-                        <img src="{{ asset('images/estrategia-ambidiestra.png') }}" alt="Estrategia de Entrenamiento Ambidiestro" class="w-full rounded-lg shadow-lg">
+                        <img src="{{ asset('images/estrategia.png') }}" alt="Estrategia de Entrenamiento Ambidiestro" class="w-full rounded-lg shadow-lg">
                     </div>
                     <p class="text-sm text-gray-600 italic">
                         Matriz detallada del programa de entrenamiento en cirugía de catarata ambidiestra, mostrando la progresión de habilidades a través de las 3 etapas.
@@ -4235,7 +4066,7 @@
                             <span class="bg-primary text-white font-bold text-2xl w-12 h-12 rounded-full flex items-center justify-center mr-3">E1</span>
                             <h4 class="font-heading text-xl font-bold text-secondary">Etapa 1</h4>
                         </div>
-                        <p class="text-sm text-gray-600 mb-4">Meses 1-4</p>
+                        <p class="text-sm text-gray-600 mb-4">Meses 1-3</p>
                         <ul class="space-y-2 text-sm text-gray-700">
                             <li>• Protocolos de investigación</li>
                             <li>• Wetlab 24x7</li>
@@ -4258,7 +4089,7 @@
                             <span class="bg-secondary text-white font-bold text-2xl w-12 h-12 rounded-full flex items-center justify-center mr-3">E2</span>
                             <h4 class="font-heading text-xl font-bold text-secondary">Etapa 2</h4>
                         </div>
-                        <p class="text-sm text-gray-600 mb-4">Meses 5-8</p>
+                        <p class="text-sm text-gray-600 mb-4">Meses 4-7</p>
                         <ul class="space-y-2 text-sm text-gray-700">
                             <li>• Manejo de núcleo con diferentes técnicas</li>
                             <li>• STOP AND CHOP</li>
@@ -4279,7 +4110,7 @@
                             <span class="bg-primary text-white font-bold text-2xl w-12 h-12 rounded-full flex items-center justify-center mr-3">E3</span>
                             <h4 class="font-heading text-xl font-bold text-secondary">Etapa 3</h4>
                         </div>
-                        <p class="text-sm text-gray-600 mb-4">Meses 9-12</p>
+                        <p class="text-sm text-gray-600 mb-4">Meses 8-12</p>
                         <ul class="space-y-2 text-sm text-gray-700">
                             <li>• Facoemulsificación y FLACS</li>
                             <li>• Cirugía de catarata compleja (MN)</li>
@@ -4447,15 +4278,16 @@
                 </p>
 
                 <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
-                    <div class="bg-primary-50 p-4 rounded-lg shadow text-center">
-                        <i class="fas fa-hospital text-primary text-3xl mb-2"></i>
-                        <p class="font-bold text-secondary">SMP</p>
-                        <p class="text-xs text-gray-600">San Martín de Porres</p>
-                    </div>
+                    
                     <div class="bg-secondary-50 p-4 rounded-lg shadow text-center">
                         <i class="fas fa-hospital text-secondary text-3xl mb-2"></i>
                         <p class="font-bold text-secondary">Central</p>
                         <p class="text-xs text-gray-600">Sede Principal</p>
+                    </div>
+                    <div class="bg-primary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-primary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">SMP</p>
+                        <p class="text-xs text-gray-600">San Martín de Porres</p>
                     </div>
                     <div class="bg-primary-50 p-4 rounded-lg shadow text-center">
                         <i class="fas fa-hospital text-primary text-3xl mb-2"></i>
@@ -4477,13 +4309,23 @@
                         <p class="font-bold text-secondary">Tacna</p>
                         <p class="text-xs text-gray-600">Provincia</p>
                     </div>
+                    <div class="bg-secondary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-secondary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">Chiclayo </p>
+                        <p class="text-xs text-gray-600">Provincia</p>
+                    </div>
+                    <div class="bg-secondary-50 p-4 rounded-lg shadow text-center">
+                        <i class="fas fa-hospital text-secondary text-3xl mb-2"></i>
+                        <p class="font-bold text-secondary">Jaén</p>
+                        <p class="text-xs text-gray-600">Provincia</p>
+                    </div>
                 </div>
 
                 <div class="mt-6 bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-xl shadow-lg">
                     <div class="flex items-center justify-center">
                         <i class="fas fa-map-marked-alt text-4xl mr-4"></i>
                         <div>
-                            <h4 class="font-bold text-lg mb-1">Chiclayo - Próximamente</h4>
+                            <h4 class="font-bold text-lg mb-1">Cajamarca - Próximamente</h4>
                             <p class="text-sm">Nuevas oportunidades de expansión en el norte del país</p>
                         </div>
                     </div>
@@ -4728,22 +4570,7 @@
                 </div>
             </div>
 
-            <div class="bg-gradient-to-r from-primary to-secondary text-white p-8 rounded-xl shadow-lg">
-                <div class="grid md:grid-cols-3 gap-6 text-center">
-                    <div>
-                        <div class="text-4xl font-bold mb-2">7+</div>
-                        <p class="text-sm">Sedes en Perú</p>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold mb-2">50+</div>
-                        <p class="text-sm">Profesores Especialistas</p>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold mb-2">100+</div>
-                        <p class="text-sm">Fellows Graduados</p>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </section>
 
@@ -4796,28 +4623,22 @@
             </div>
 
             <div class="mt-12 bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto hover:shadow-xl transition-all duration-300">
-                <h3 class="font-heading text-2xl font-bold text-secondary mb-6 text-center">Estándares Internacionales</h3>
+                <h3 class="font-heading text-2xl font-bold text-secondary mb-6 text-center">Universidad Federico Villarreal</h3>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="flex items-start">
                         <i class="fas fa-check-circle text-green-600 text-2xl mr-4 flex-shrink-0"></i>
                         <div>
-                            <h4 class="font-bold text-secondary mb-2">International Council of Ophthalmology (ICO)</h4>
-                            <p class="text-sm text-gray-700">Nuestros programas siguen los estándares académicos y quirúrgicos establecidos por el ICO</p>
+                            <h4 class="font-bold text-secondary mb-2"></h4>
+                            <p class="text-sm text-gray-700"></p>
                         </div>
                     </div>
-                    <div class="flex items-start">
-                        <i class="fas fa-check-circle text-green-600 text-2xl mr-4 flex-shrink-0"></i>
-                        <div>
-                            <h4 class="font-bold text-secondary mb-2">American Academy of Ophthalmology (AAO)</h4>
-                            <p class="text-sm text-gray-700">Cumplimos con las exigencias académicas y quirúrgicas de la AAO para formación de subespecialistas</p>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Adding new section: Calendario Académico -->
+    <!-- Adding new section: Calendario Académico 
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-10">
             <div class="text-center mb-16">
@@ -4923,7 +4744,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="mt-8">
     </section>
+    -->
+
 
     <!-- Adding CTA section before contact -->
     <section class="py-20 bg-gradient-to-br from-primary to-secondary text-white">
