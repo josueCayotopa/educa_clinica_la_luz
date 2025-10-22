@@ -1105,7 +1105,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-secondary mb-2">Email</h4>
-                                <p class="text-gray-700">fellows@clinicalaluz.com.pe</p>
+                                <p class="text-gray-700">jefaturadeposgrado@clinicalaluz.com.pe</p>
                             </div>
                         </div>
                     </div>
@@ -1117,7 +1117,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-secondary mb-2">Teléfono</h4>
-                                <p class="text-gray-700">+51 XXX XXX XXX</p>
+                                <p class="text-gray-700">+51 999943047</p>
                             </div>
                         </div>
                     </div>
@@ -1125,14 +1125,14 @@
                     <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                         <h4 class="font-bold text-secondary mb-4">Síguenos</h4>
                         <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
+                            <a href="https://www.facebook.com/ClinicaLaLuz/" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
+                            <a href="https://www.instagram.com/clinicalaluz/" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
-                                <i class="fab fa-linkedin-in"></i>
+                            <a href="https://www.tiktok.com/@clinicalaluz" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition">
+                                <i class="fab fa-tiktok"></i>
                             </a>
                         </div>
                     </div>
@@ -1569,21 +1569,6 @@
         }
 
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
