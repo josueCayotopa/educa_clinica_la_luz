@@ -3,14 +3,14 @@
             <!-- Logo -->
             <div class="flex items-center">
                 <a href="{{ url('/') }}" class="block transition-transform duration-300 hover:scale-105">
-                    <img src="{{ asset('images/logo-fellow1.png') }}" alt="Clínica La Luz" class="w-15 h-10">
+                    <img src="{{ asset('images/laluzeduca1.png') }}" alt="Clínica La Luz" class="w-25 h-20">
                 </a>
             </div>
 
             <!-- Navegación -->
             <nav class="hidden md:flex space-x-6 items-center">
-                <a href="/" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Inicio</a>
-                <a href="/#objetivos" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Objetivos</a>
+                <a href="#inicio" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Inicio</a>
+                <a href="#objetivos" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Objetivos</a>
                 <a href="/centros-quirurgicos" class="text-secondary hover:text-primary transition-colors duration-300 font-semibold">Centros Quirúrgicos</a>
 
                 <!-- Dropdown: Programa de Alta Especialización -->
@@ -20,14 +20,11 @@
                         <i class="fas fa-chevron-down text-xs"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="#segmento-anterior-cornea">
+                        <a href="#segmento-anterior">
                             <i class="fas fa-eye"></i>
                             Segmento Anterior, Córnea y Cirugía Refractiva
                         </a>
-                        <a href="#cornea-refractiva-superficie">
-                            <i class="fas fa-eye-low-vision"></i>
-                            Córnea, Refractiva y Superficie Ocular
-                        </a>
+
                         <a href="#glaucoma">
                             <i class="fas fa-eye-dropper"></i>
                             Glaucoma Clínico-Quirúrgico
@@ -68,12 +65,10 @@
                         <i class="fas fa-chevron-down" id="mobile-dropdown-icon"></i>
                     </button>
                     <div id="mobile-submenu" class="hidden pl-4 space-y-2 pb-2">
-                        <a href="#segmento-anterior-cornea" class="block text-secondary hover:text-primary py-2">
+                        <a href="#segmento-anterior" class="block text-secondary hover:text-primary py-2">
                             <i class="fas fa-eye mr-2"></i>Segmento Anterior, Córnea y Cirugía Refractiva
                         </a>
-                        <a href="#cornea-refractiva-superficie" class="block text-secondary hover:text-primary py-2">
-                            <i class="fas fa-eye-low-vision mr-2"></i>Córnea, Refractiva y Superficie Ocular
-                        </a>
+                       
                         <a href="#glaucoma" class="block text-secondary hover:text-primary py-2">
                             <i class="fas fa-eye-dropper mr-2"></i>Glaucoma Clínico-Quirúrgico
                         </a>

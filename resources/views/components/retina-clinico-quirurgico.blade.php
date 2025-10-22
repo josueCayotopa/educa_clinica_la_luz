@@ -1,14 +1,14 @@
-
 <!-- ================================ -->
 <!-- SECCIÓN: RETINA Y VÍTREO -->
 <!-- ================================ -->
 <section id="retina-vitreo" class="py-20 bg-white">
     <div class="container mx-auto px-4 md:px-10">
-        
+
         <!-- Título de la sección -->
         <div class="text-center mb-16">
             <span class="text-primary font-bold text-sm uppercase tracking-wide">Programa de Especialización</span>
-            <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Retina y Vítreo</h2>
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-secondary mt-2 mb-4">Retina y vitreo Clínico - Quirúrgico
+            </h2>
             <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p class="text-gray-600 max-w-3xl mx-auto text-lg">
                 Formación avanzada en el diagnóstico y tratamiento médico-quirúrgico de las enfermedades
@@ -20,18 +20,23 @@
         <div class="max-w-5xl mx-auto mb-16">
             <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/TU_VIDEO_RETINA_VITREO_ID_AQUI" 
-                            title="Video Programa Retina y Vítreo" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
+
+                    <!-- Video de YouTube para Retina y Vítreo 
+                    <iframe src="https://www.youtube.com/embed/TU_VIDEO_RETINA_VITREO_ID_AQUI" title="Video Programa Retina y Vítreo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                     </iframe>
+                    -->
+                     <img
+                        src="{{ asset('images/graduacion2.jpg') }}"
+                        alt="Foto de Graduación Segmento Anterior"
+                        class="w-full h-[full] object-cover"
+                        />
                 </div>
 
                 <div class="p-6 md:p-8">
                     <h3 class="text-2xl font-bold text-secondary mb-3">
                         <i class="fas fa-eye text-primary mr-2"></i>
-                        Fellowship en Retina y Vítreo
+                        Fellowship en Retina y vitreo Clínico - Quirúrgico
+
                     </h3>
                     <p class="text-gray-700 leading-relaxed mb-4">
                         Programa integral que combina formación clínica en enfermedades retinales,
@@ -67,21 +72,26 @@
 
                 <!-- Dr. Sergio Sánchez -->
                 <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
-                    <img src="{{ asset('images/doctores/doctor1-retina.jpg') }}" 
-                         alt="Dr. Sergio Sánchez" 
-                         class="doctor-image">
+                    <img src="{{ asset('images/doctores con fondo 2/dr 3 2.jpg') }}" alt="Dr. Sergio Sánchez" class="doctor-image">
                     <div class="p-5">
                         <h4 class="text-lg font-bold text-secondary mb-2">Dr. Sergio Sánchez</h4>
                         <p class="text-primary font-semibold text-sm mb-2">
                             <i class="fas fa-stethoscope mr-1"></i>
-                            Especialista en Mácula, Retina y Vítreo
+                            Médico Oftalmólogo, Supraespecialista en Retina y Vítreo
                         </p>
                         <p class="text-gray-600 text-sm mb-3">
-                            Supraespecialista con más de 10 años de experiencia. Labor asistencial en Fundación Visión - ILEVI (Paraguay) 
-                            e Instituto de la Visión (México). Ex Jefe de Retinopatía del Prematuro.
+                            Supraespecialista en Retina y Vítreo, con más de
+                            10 años de experiencia profesional. He realizado labor asistencial en el
+                            Departamento de Retina de la Fundación Visión – ILEVI (Paraguay) y en
+                            el Departamento de Retina del Instituto de la Visión en México.
+                            Trabajé como Jefe de la Unidad de Retinopatía del Prematuro en el
+                            Programa CBM en Asunción y en Jefatura de Residencia de
+                            Oftalmología.
                         </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Vitrectomía</span>
+                            <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                                Retinólogo Jefe del Departamento de Retina, y responsable en la
+                                Coordinación Académica de Oftalmología en Clínica la Luz (Lima- Perú)</span>
                             <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">Desprendimiento</span>
                         </div>
                     </div>
@@ -89,31 +99,28 @@
 
                 <!-- Dr. Ernesto Alemañy Rubio -->
                 <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
-                    <img src="{{ asset('images/doctores/doctor2-retina.jpg') }}" 
-                         alt="Dr. Ernesto Alemañy Rubio" 
-                         class="doctor-image">
+                    <img src="{{ asset('images/doctores con fondo 2/dr 1 2.jpg') }}" alt="Dr. Ernesto Alemañy Rubio" class="doctor-image">
                     <div class="p-5">
                         <h4 class="text-lg font-bold text-secondary mb-2">Dr. Ernesto Alemañy Rubio</h4>
                         <p class="text-primary font-semibold text-sm mb-2">
                             <i class="fas fa-stethoscope mr-1"></i>
-                            Especialista en Retina y Vítreo
+                            Medico Especialista en Retina y Vítreo
                         </p>
                         <p class="text-gray-600 text-sm mb-3">
-                            Doctor en Medicina (1995) y Especialista en Oftalmología (1999) por Universidad de Ciencias Médicas de La Habana, Cuba. 
-                            Hospital Clínico-Quirúrgico "Hermanos Ameijeiras".
+                            Doctor en medicina: 1995. Universidad de Ciencias Médicas de La Habana. Cuba.
+                            Especialista en Oftalmología: 1999. Hospital Clínico-Quirúrgico: “Hermanos Ameijeiras”. La Habana, Cuba.
+
                         </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">DMAE</span>
-                            <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">Retinopatía</span>
+                            <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Neuroftalmología </span>
+                            <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">Tratamiento de retinopatía de la prematuridad y retinoblastoma</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Dra. Yvette Steffi Maita Ancieta -->
                 <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
-                    <img src="{{ asset('images/doctores/doctor3-retina.jpg') }}" 
-                         alt="Dra. Yvette Steffi Maita Ancieta" 
-                         class="doctor-image">
+                    <img src="{{ asset('images/doctores con fondo 2/dra 2 2.jpg') }}" alt="Dra. Yvette Steffi Maita Ancieta" class="doctor-image">
                     <div class="p-5">
                         <h4 class="text-lg font-bold text-secondary mb-2">Dra. Yvette Steffi Maita Ancieta</h4>
                         <p class="text-primary font-semibold text-sm mb-2">
@@ -121,8 +128,13 @@
                             Especialista en Retina, Vítreo y Mácula
                         </p>
                         <p class="text-gray-600 text-sm mb-3">
-                            Médico Cirujano por Universidad Peruana Los Andes. Colegiada por el Colegio Médico del Perú (2012). 
-                            Especialista en patologías de retina y mácula.
+                            Universidad Nacional Federico Villareal: Título de “ESPECIALISTA EN
+                            OFTALMOLOGIA“. Realizado desde Julio 2014 a julio 2017
+                            Instituto Oftalmológico – Clínica La Luz. FELLOWSHIP DE SEGMENTO
+                            ANTERIOR Y REFRACTIVA. Realizado desde Julio 2018 a Julio 2019
+                            Instituto OFTALMOLÓGICO Ramón Pando Ferrer FELLOWSHIP DE
+                            CIRUGÍA RETINA VÍTREO Y MÁCULA – Realizado desde Octubre 2019
+                            a diciembre 2021
                         </p>
                         <div class="flex flex-wrap gap-2">
                             <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">Anti-VEGF</span>
@@ -133,9 +145,7 @@
 
                 <!-- Dra. Moya Morales -->
                 <div class="doctor-card bg-white rounded-xl shadow-lg overflow-hidden">
-                    <img src="{{ asset('images/doctores/doctor4-retina.jpg') }}" 
-                         alt="Dra. Moya Morales" 
-                         class="doctor-image">
+                    <img src="{{ asset('images/doctores/doctor4-retina.jpg') }}" alt="Dra. Moya Morales" class="doctor-image">
                     <div class="p-5">
                         <h4 class="text-lg font-bold text-secondary mb-2">Dra. Moya Morales</h4>
                         <p class="text-primary font-semibold text-sm mb-2">
@@ -218,7 +228,7 @@
         <!-- PLAN CURRICULAR -->
         <div class="max-w-7xl mx-auto" id="plan-curricular-retina">
             <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-gray-100">
-                
+
                 <!-- Header del Plan Curricular -->
                 <div class="bg-gradient-to-r from-secondary to-secondary-900 p-8 text-white text-center">
                     <h3 class="text-3xl font-bold mb-2">
@@ -233,33 +243,23 @@
                 <!-- Tabs Navigation -->
                 <div class="bg-gradient-to-r from-secondary to-secondary-900 p-4">
                     <div class="flex flex-wrap justify-center gap-3">
-                        <button onclick="showModuleCategory('fundamentos-vision')" 
-                                id="tab-fundamentos-vision"
-                                class="module-tab active px-6 py-3 rounded-lg font-bold text-white bg-primary transition-all duration-300">
+                        <button onclick="showModuleCategory('fundamentos-vision')" id="tab-fundamentos-vision" class="module-tab active px-6 py-3 rounded-lg font-bold text-white bg-primary transition-all duration-300">
                             <i class="fas fa-eye mr-2"></i>
                             Fisiología y Evaluación (5)
                         </button>
-                        <button onclick="showModuleCategory('diagnostico-imagenes')" 
-                                id="tab-diagnostico-imagenes"
-                                class="module-tab px-6 py-3 rounded-lg font-bold text-white bg-secondary-700 hover:bg-primary transition-all duration-300">
+                        <button onclick="showModuleCategory('diagnostico-imagenes')" id="tab-diagnostico-imagenes" class="module-tab px-6 py-3 rounded-lg font-bold text-white bg-secondary-700 hover:bg-primary transition-all duration-300">
                             <i class="fas fa-camera mr-2"></i>
                             Imagenología (4)
                         </button>
-                        <button onclick="showModuleCategory('laser')" 
-                                id="tab-laser"
-                                class="module-tab px-6 py-3 rounded-lg font-bold text-white bg-secondary-700 hover:bg-primary transition-all duration-300">
+                        <button onclick="showModuleCategory('laser')" id="tab-laser" class="module-tab px-6 py-3 rounded-lg font-bold text-white bg-secondary-700 hover:bg-primary transition-all duration-300">
                             <i class="fas fa-bolt mr-2"></i>
                             Láser (2)
                         </button>
-                        <button onclick="showModuleCategory('vasculares')" 
-                                id="tab-vasculares"
-                                class="module-tab px-6 py-3 rounded-lg font-bold text-white bg-secondary-700 hover:bg-primary transition-all duration-300">
+                        <button onclick="showModuleCategory('vasculares')" id="tab-vasculares" class="module-tab px-6 py-3 rounded-lg font-bold text-white bg-secondary-700 hover:bg-primary transition-all duration-300">
                             <i class="fas fa-heartbeat mr-2"></i>
                             Patología Vascular (15)
                         </button>
-                        <button onclick="showModuleCategory('desprendimiento')" 
-                                id="tab-desprendimiento"
-                                class="module-tab px-6 py-3 rounded-lg font-bold text-white bg-secondary-700 hover:bg-primary transition-all duration-300">
+                        <button onclick="showModuleCategory('desprendimiento')" id="tab-desprendimiento" class="module-tab px-6 py-3 rounded-lg font-bold text-white bg-secondary-700 hover:bg-primary transition-all duration-300">
                             <i class="fas fa-exclamation-triangle mr-2"></i>
                             Desprendimiento de Retina (14)
                         </button>
@@ -268,7 +268,7 @@
 
                 <!-- Tabs Content -->
                 <div class="p-8 md:p-12">
-                    
+
                     <!-- FUNDAMENTOS Y FISIOLOGÍA DE LA VISIÓN (Módulos 1-5) -->
                     <div id="content-fundamentos-vision" class="module-content">
                         <div class="mb-8">
@@ -518,14 +518,10 @@
 
                         <!-- Subtabs -->
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <button onclick="showVascularSubtab('diabetica')" 
-                                    id="subtab-diabetica"
-                                    class="vascular-subtab active-subtab px-4 py-2 rounded-lg font-semibold text-white bg-primary text-sm">
+                            <button onclick="showVascularSubtab('diabetica')" id="subtab-diabetica" class="vascular-subtab active-subtab px-4 py-2 rounded-lg font-semibold text-white bg-primary text-sm">
                                 Retinopatía Diabética (7)
                             </button>
-                            <button onclick="showVascularSubtab('otras')" 
-                                    id="subtab-otras"
-                                    class="vascular-subtab px-4 py-2 rounded-lg font-semibold text-secondary bg-gray-100 text-sm hover:bg-gray-200">
+                            <button onclick="showVascularSubtab('otras')" id="subtab-otras" class="vascular-subtab px-4 py-2 rounded-lg font-semibold text-secondary bg-gray-100 text-sm hover:bg-gray-200">
                                 Otras Vasculopatías (8)
                             </button>
                         </div>
@@ -634,14 +630,10 @@
 
                         <!-- Subtabs -->
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <button onclick="showDesprendimientoSubtab('fundamentos-dr')" 
-                                    id="subtab-fundamentos-dr"
-                                    class="desprendimiento-subtab active-subtab px-4 py-2 rounded-lg font-semibold text-white bg-primary text-sm">
+                            <button onclick="showDesprendimientoSubtab('fundamentos-dr')" id="subtab-fundamentos-dr" class="desprendimiento-subtab active-subtab px-4 py-2 rounded-lg font-semibold text-white bg-primary text-sm">
                                 Fundamentos (7)
                             </button>
-                            <button onclick="showDesprendimientoSubtab('cirugia-dr')" 
-                                    id="subtab-cirugia-dr"
-                                    class="desprendimiento-subtab px-4 py-2 rounded-lg font-semibold text-secondary bg-gray-100 text-sm hover:bg-gray-200">
+                            <button onclick="showDesprendimientoSubtab('cirugia-dr')" id="subtab-cirugia-dr" class="desprendimiento-subtab px-4 py-2 rounded-lg font-semibold text-secondary bg-gray-100 text-sm hover:bg-gray-200">
                                 Técnicas Quirúrgicas (7)
                             </button>
                         </div>
