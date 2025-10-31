@@ -39,7 +39,7 @@
                                     <i class="fas fa-eye mr-2"></i>Segmento Anterior, Córnea Y Cirugía Refractiva
                                 </span>
                                 <span class="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-semibold border border-white/20">
-                                    <i class="fas fa-eye mr-2"></i>Córnea Refractiva Y Superficie Ocular
+                                    <i class="fas fa-eye mr-2"></i>Córnea y Cirugía Refractiva
                                 </span>
                                 <span class="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-semibold border border-white/20">
                                     <i class="fas fa-eye-dropper mr-2"></i>Glaucoma Clínico-Quirúrgico
@@ -51,7 +51,7 @@
 
                             <!-- Botones CTA -->
                             <div class="flex flex-wrap gap-4">
-                                <a href="#programas-especializacion" class="inline-flex items-center bg-primary text-white font-bold py-4 px-8 rounded-xl hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 transform hover:scale-105">
+                                <a href="#segmento-anterior" class="inline-flex items-center bg-primary text-white font-bold py-4 px-8 rounded-xl hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 transform hover:scale-105">
                                     <i class="fas fa-book-open mr-3"></i>
                                     <span>Ver Programas</span>
                                     <i class="fas fa-arrow-right ml-3"></i>
@@ -157,6 +157,7 @@
 
                             <!-- Título principal -->
                             <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white mb-4">
+                            
                                 <span class="block">
                                     Capacitamos a oftalmólogos para dominar la cirugía de catarata
                                 </span>

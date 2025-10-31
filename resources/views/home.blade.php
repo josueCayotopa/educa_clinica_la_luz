@@ -76,8 +76,9 @@
             min-width: 280px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             border-radius: 0.75rem;
-            margin-top: 0.5rem;
-            z-index: 1000;
+           margin-top: 0;
+           
+            z-index: 10000;
             overflow: hidden;
             border: 1px solid #e5e7eb;
         }
@@ -178,7 +179,28 @@
             background-color: white;
             color: #1f2937;
         }
+            /* Header fijo y clickeable */
+        #header {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        pointer-events: auto;
+        }
 
+        /* Espacio bajo el header */
+        main {
+        padding-top: 6rem; /* ajustable según su header */
+        }
+
+        /* Desplazamiento suave */
+        html {
+        scroll-behavior: smooth;
+        }
+
+        /* Dropdown seguro sobre todo */
+        .dropdown-content {
+        z-index: 10000;
+        }
     </style>
 </head>
 
@@ -533,7 +555,7 @@
 
     <!-- IX. Estrategia para Enseñar a Operar Cataratas Ambidiestramente -->
     <!-- Adding new section IX with the ambidextrous cataract surgery training strategy -->
-    <section class="py-20 bg-white">
+    <section id="estrategia-ambidiestra" class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-10">
             <div class="text-center mb-16">
                 <span class="text-primary font-bold text-sm uppercase tracking-wide"> Estrategia de Entrenamiento</span>
